@@ -31,61 +31,59 @@ const Marketplace = () => {
     setCollectionItems(items?.filter((item) => item?.tokenAddress.format() !== dragonAddress));
   }, [items]);
   return (
-    <>
-      <div className="metaportal_fn_mintpage">
-        <div className="container small" style={{ marginTop: '20px', marginBottom: '20px' }}>
-          <div className="rightBlock">
-            <div>
-              <Space style={{ height: '44px' }}>
-                <Search placeholder="Search Token ID" allowClear size="small" onChange={filterHandle} />
-              </Space>
-            </div>
-            <div>
-              <Select
-                showSearch
-                style={{
-                  width: 200,
-                }}
-                className="filter-sec"
-                placeholder="Recently  listed"
-                optionFilterProp="children"
-                filterOption={(input, option) => (option?.label ?? '').includes(input)}
-                filterSort={(optionA, optionB) =>
-                  (optionA?.label ?? '').toLowerCase().localeCompare((optionB?.label ?? '').toLowerCase())
-                }
-                options={[
-                  {
-                    value: '1',
-                    label: 'Lowest total price',
-                  },
-                  {
-                    value: '2',
-                    label: 'Highest total price',
-                  },
-                  {
-                    value: '3',
-                    label: 'Lowest fixed price',
-                  },
-                  {
-                    value: '4',
-                    label: 'Highest fixed price',
-                  },
-                ]}
-              />
-            </div>
+    <div className="metaportal_fn_mintpage">
+      <div className="container small" style={{ marginTop: '20px', marginBottom: '20px' }}>
+        <div className="rightBlock">
+          <div>
+            <Space style={{ height: '44px' }}>
+              <Search placeholder="Search Token ID" allowClear size="small" onChange={filterHandle} />
+            </Space>
           </div>
-          <div className="nft">
-            <Grid className="NFT">
-              {collectionItems ? (
-                collectionItems.map((item, key) => <ItemCard nft={item} key={key} />)
-              ) : (
-                <p style={{ color: `${color1}` }}>No NFT</p>
-              )}
-            </Grid>
+          <div>
+            <Select
+              showSearch
+              style={{
+                width: 200,
+              }}
+              className="filter-sec"
+              placeholder="Recently  listed"
+              optionFilterProp="children"
+              filterOption={(input, option) => (option?.label ?? '').includes(input)}
+              filterSort={(optionA, optionB) =>
+                (optionA?.label ?? '').toLowerCase().localeCompare((optionB?.label ?? '').toLowerCase())
+              }
+              options={[
+                {
+                  value: '1',
+                  label: 'Lowest total price',
+                },
+                {
+                  value: '2',
+                  label: 'Highest total price',
+                },
+                {
+                  value: '3',
+                  label: 'Lowest fixed price',
+                },
+                {
+                  value: '4',
+                  label: 'Highest fixed price',
+                },
+              ]}
+            />
           </div>
         </div>
+        <div className="nft">
+          <Grid className="NFT">
+            {collectionItems ? (
+              collectionItems.map((item, key) => <ItemCard nft={item} key={key} />)
+            ) : (
+              <p style={{ color: `${color1}` }}>No NFT</p>
+            )}
+          </Grid>
+        </div>
       </div>
-    </>
+    </div>
   );
 };
 
