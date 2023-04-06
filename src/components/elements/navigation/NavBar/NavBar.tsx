@@ -1,48 +1,38 @@
-import React, { ReactNode } from 'react';
 import {
-  IconButton,
-  Box,
-  CloseButton,
-  Flex,
-  Icon,
-  useColorModeValue,
-  Link,
-  Drawer,
-  DrawerContent,
-  Text,
-  useDisclosure,
-  BoxProps,
-  FlexProps,
+  Box, BoxProps, CloseButton, Drawer,
+  DrawerContent, Flex, useColorModeValue, useDisclosure
 } from '@chakra-ui/react';
-import {
-  FiHome,
-  FiTrendingUp,
-  FiCompass,
-  FiStar,
-  FiSettings,
-  FiMenu,
-} from 'react-icons/fi';
-import { IconType } from 'react-icons';
-
+import Image from 'next/image';
+import React, { ReactNode } from 'react';
+import css from './index.module.css';
+import MobileNav from './MobileNav';
+import NavItem from './NavItem';
 interface LinkItemProps {
   name: string;
-  icon: IconType;
+  src: string;
 }
-const LinkItems: Array<LinkItemProps> = [
-  { name: 'Home', icon: FiHome },
-  { name: 'Trending', icon: FiTrendingUp },
-  { name: 'Explore', icon: FiCompass },
-  { name: 'Favourites', icon: FiStar },
-  { name: 'Settings', icon: FiSettings },
+
+
+const LinkItemsNFT: Array<LinkItemProps> = [
+  { name: 'Explore', src: '/icons/explore.png' },
+  { name: 'My Collection', src: '/icons/collection.png' },
+  { name: 'History', src: '/icons/history.png' },
+];
+
+const LinkItemsDex: Array<LinkItemProps> = [
+  { name: 'My Wallet', src: '/icons/wallet.png' },
+  { name: 'History', src: '/icons/history.png' },
 ];
 
 export default function SimpleSidebar({ children }: { children: ReactNode }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   return (
-    <Box minH="100vh" bg={useColorModeValue('gray.100', 'gray.900')}>
+    <Box bg={useColorModeValue('gray.100', 'gray.900')}>
       <SidebarContent
         onClose={() => onClose}
         display={{ base: 'none', md: 'block' }}
+        className={css['slide-bar']}
+        bg='#1D1F2F'
       />
       <Drawer
         autoFocus={false}
@@ -58,7 +48,7 @@ export default function SimpleSidebar({ children }: { children: ReactNode }) {
       </Drawer>
       {/* mobilenav */}
       <MobileNav display={{ base: 'flex', md: 'none' }} onOpen={onOpen} />
-      <Box ml={{ base: 0, md: 60 }} p="4">
+      <Box ml={{ base: 0, md: 96 }} p="4">
         {children}
       </Box>
     </Box>
@@ -74,86 +64,62 @@ const SidebarContent = ({ onClose, ...rest }: SidebarProps) => {
     <Box
       borderRight="1px"
       borderBottom="1px"
-      borderRightColor={useColorModeValue('gray.200', 'gray.700')}
-      borderBottomColor={useColorModeValue('gray.200', 'gray.700')}
+      borderRightColor={useColorModeValue('gray.200', '#1D1F2F')}
+      borderBottomColor={useColorModeValue('gray.200', '#1D1F2F')}
       w={{ base: 'full', md: 60 }}
       pos="absolute"
       h="100vh"
       {...rest}>
-      <Flex h="20" alignItems="center" mx="8" justifyContent="space-between">
-        <Text fontSize="2xl" fontFamily="monospace" fontWeight="bold">
-          Logo
-        </Text>
+      <Flex alignItems="center" marginBottom={5} margin='8px 0px 0px 61px' gap='10px'>
+        <Image
+          src='/images/logo.png'
+          alt='asd'
+          width={58}
+          height={56}
+        />
+        <h2 style={{ fontWeight: 700, color: 'white' }}>Logo</h2>
         <CloseButton display={{ base: 'flex', md: 'none' }} onClick={onClose} />
       </Flex>
-      {LinkItems.map((link) => (
-        <NavItem key={link.name} icon={link.icon}>
-          {link.name}
-        </NavItem>
-      ))}
+      <div style={{ padding: '10px 60px' }}>
+        <RenderItemNav list={LinkItemsNFT} title='NFT Marketplace' />
+        <button className={css['slidebar-button']}>
+          <span>
+            Create
+          </span>
+        </button>
+
+        <RenderItemNav list={LinkItemsDex} title='DEX' />
+
+        <p style={{ fontSize: 20, color: '#5356FB', fontWeight: 700, margin: '30px 0' }}>Prediction</p>
+        <p style={{ fontSize: 20, color: '#5356FB', fontWeight: 700 }}>AI Trading Bot</p>
+
+        <button className={css['slidebar-button-signout']}>
+          <Image
+            width={39}
+            height={39}
+            src='/icons/signout.png'
+          />
+          <span>
+            Signout
+          </span>
+        </button>
+      </div>
     </Box>
   );
 };
 
-interface NavItemProps extends FlexProps {
-  icon: IconType;
-  children: React.ReactNode;
-}
-const NavItem = ({ icon, children, ...rest }: NavItemProps) => {
-  return (
-    <Link href="#" style={{ textDecoration: 'none' }} _focus={{ boxShadow: 'none' }}>
-      <Flex
-        align="center"
-        p="4"
-        mx="4"
-        borderRadius="lg"
-        role="group"
-        cursor="pointer"
-        _hover={{
-          bg: 'cyan.400',
-          color: 'white',
-        }}
-        {...rest}>
-        {icon && (
-          <Icon
-            mr="4"
-            fontSize="16"
-            _groupHover={{
-              color: 'white',
-            }}
-            as={icon}
-          />
-        )}
-        {children}
-      </Flex>
-    </Link>
-  );
-};
+const RenderItemNav: React.FC<{
+  title: string, list: LinkItemProps[]
+}> = ({ list, title }) => {
 
-interface MobileProps extends FlexProps {
-  onOpen: () => void;
+  return <React.Fragment>
+    <p style={{ fontSize: 20, color: '#5356FB', fontWeight: 700, marginTop: 50 }}>{title}</p>
+    {list.map((link) => (
+      <NavItem key={link.name} src={link.src} style={{ gap: 13 }} >
+        <span style={{ fontWeight: 400, fontSize: 18 }}>
+          {link.name}
+        </span>
+      </NavItem>
+    ))}
+  </React.Fragment>
 }
-const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
-  return (
-    <Flex
-      ml={{ base: 0, md: 60 }}
-      height="20"
-      alignItems="center"
-      bg={useColorModeValue('white', 'gray.900')}
-      borderBottomWidth="1px"
-      borderBottomColor={useColorModeValue('gray.200', 'gray.700')}
-      justifyContent="flex-start"
-      {...rest}>
-      <IconButton
-        variant="outline"
-        onClick={onOpen}
-        aria-label="open menu"
-        icon={<FiMenu />}
-      />
-
-      <Text fontSize="2xl" ml="8" fontFamily="monospace" fontWeight="bold">
-        Logo
-      </Text>
-    </Flex>
-  );
-};
