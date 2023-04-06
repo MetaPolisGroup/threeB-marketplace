@@ -15,7 +15,6 @@ const Marketplace = () => {
     address: constants.MRKPLACE_ADDR,
     chain: constants.CHAIN.bscChain.id,
   });
-  console.log('Items', items);
   const [collectionItems, setCollectionItems] = useState<EvmNft[] | undefined>([]);
   const dragonAddress = '0x98331decd9de4b3261c00068057ce5c3a8de7e04' as string;
   const filterHandle = (e: any) => {
@@ -32,7 +31,7 @@ const Marketplace = () => {
   }, [items]);
   return (
     <div className="metaportal_fn_mintpage">
-      <div className="container small" style={{ marginTop: '20px', marginBottom: '20px' }}>
+      <div className="container small" style={{ margin: '20px 0', padding: 0 }}>
         <div className="rightBlock">
           <div>
             <Space style={{ height: '44px' }}>

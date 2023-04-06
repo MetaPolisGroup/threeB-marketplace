@@ -23,7 +23,7 @@ interface LinkItemProps {
 const LinkItemsNFT: Array<LinkItemProps> = [
   { name: 'Explore', src: '/icons/explore.png' },
   { name: 'My Collection', src: '/icons/collection.png' },
-  { name: 'History', src: '/icons/history.png' },
+  { name: 'Activities', src: '/icons/history.png' },
 ];
 
 const LinkItemsDex: Array<LinkItemProps> = [
@@ -64,7 +64,7 @@ export default function SimpleSidebar({ children }: { children: ReactNode }) {
       </Drawer>
       {/* mobilenav */}
       <MobileNav display={{ base: 'flex', md: 'none' }} onOpen={onOpen} />
-      <Box ml={{ base: 0, md: 96 }} p="4">
+      <Box ml={{ base: 0, md: 96 }} minH={851} p="4">
         {children}
       </Box>
     </Box>
