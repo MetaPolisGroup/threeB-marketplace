@@ -5,8 +5,8 @@ import {
 import Image from 'next/image';
 import React, { ReactNode } from 'react';
 import css from './index.module.css';
-import MobileNav from './MobileNav';
-import NavItem from './NavItem';
+import MobileNav from './MobileSideBar';
+import NavItem from './SideBarItem';
 interface LinkItemProps {
   name: string;
   src: string;
