@@ -1,7 +1,7 @@
 import { FC, ReactNode } from 'react';
 import { Footer, Content } from 'components/modules';
 import Head from 'next/head';
-import Sidebar from 'components/elements/navigation/NavBar/NavBar';
+import Sidebar from 'components/elements/navigation/NavBar/SideBar';
 import { Layout } from 'antd';
 
 
