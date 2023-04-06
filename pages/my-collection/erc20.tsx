@@ -6,7 +6,7 @@ const ERC20 = () => {
   return (
     <Default pageName="ERC20 Balances">
       <Container maxW="container.lg" p={3} marginTop={100} as="main" minH="70vh">
-      <ERC20Balances />
+        <ERC20Balances />
       </Container>
     </Default>
   );
