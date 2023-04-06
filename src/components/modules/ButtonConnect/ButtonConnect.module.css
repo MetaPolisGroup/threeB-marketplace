@@ -4,4 +4,5 @@
   background: linear-gradient(134.38deg, #f539f8 0%, #c342f9 43.55%, #5356fb 104.51%);
   border-radius: 37px;
   text-transform: uppercase;
+  color: var(--color-grey);
 }

@@ -40,6 +40,10 @@ html {
   display: none;
 }
 
+body {
+  --color-grey: #ffffff;
+}
+
 @media (max-width: 910px) {
   .pagination-dragon {
     width: 80%;
