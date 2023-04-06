@@ -1,0 +1,13 @@
+.wrapper-input-header {
+  height: 50px;
+  width: 376px;
+  left: 0px;
+  background: #1d1f2f;
+  border-radius: 60px;
+}
+
+.wrapper-input-header > div {
+  padding-right: 10px;
+  left: 10px;
+  top: 5px;
+}

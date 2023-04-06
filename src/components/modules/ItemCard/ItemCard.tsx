@@ -1,14 +1,15 @@
 /* eslint-env browser */
 
-import React, { FC, useEffect, useState } from 'react';
 import { Box, Image, useColorModeValue } from '@chakra-ui/react';
-import Link from 'next/link';
 import { EvmNft } from '@moralisweb3/common-evm-utils';
-import { getEllipsisTxt } from 'utils/format';
-import { resolveIPFSByPinata, resolveIPFSByPublicGateway } from 'utils/resolveIPFS';
 import { ethers } from 'ethers';
+import Link from 'next/link';
+import { FC, useEffect, useState } from 'react';
+import { resolveIPFSByPinata, resolveIPFSByPublicGateway } from 'utils/resolveIPFS';
 import constants from '../../../../constants';
-
+import { AiFillHeart } from 'react-icons/ai'
+import { BsThreeDotsVertical } from 'react-icons/bs'
+import css from './ItemCard.module.css';
 export interface ItemCardParams {
   key: number;
   nft: EvmNft;
@@ -16,10 +17,8 @@ export interface ItemCardParams {
 
 const ItemCard: FC<ItemCardParams> = ({ nft: { tokenAddress, result, metadata } }) => {
   const bgColor = useColorModeValue('#555', 'gray.700');
-  const color1 = useColorModeValue('#000', '#fff');
-  const borderColor = useColorModeValue('gray.200', 'gray.700');
   const marketplace = new ethers.Contract(constants.MRKPLACE_ADDR, constants.MRKPLACE_ABI, constants.PROVIDER);
-  const [price, setPrice] = useState<string>('1');
+  const [, setPrice] = useState<string>('1');
 
   async function getPrice() {
     console.log('address', tokenAddress.format());
@@ -47,7 +46,7 @@ const ItemCard: FC<ItemCardParams> = ({ nft: { tokenAddress, result, metadata } 
     const typeMed = (metadata as { type?: string })?.type;
     if (typeMed?.includes('video')) {
       return (
-        <video autoPlay style={{ height: '260px' }}>
+        <video autoPlay style={{ height: '266px', width: 332 }}>
           <source src={media1988Dragon()} type="video/mp4" />
         </video>
       );
@@ -55,43 +54,60 @@ const ItemCard: FC<ItemCardParams> = ({ nft: { tokenAddress, result, metadata } 
     if (typeMed?.includes('audio')) {
       return <audio src={media1988Dragon()}></audio>;
     }
-    return <Image src={media1988Dragon()} alt={'nft'} minH="260px" minW="260px" boxSize="100%" objectFit="fill" />;
+    return <Image src={media1988Dragon()} alt={'nft'} minH="236px" minW="332px" boxSize="100%" objectFit="cover" style={{ borderRadius: 12 }} />;
   };
 
-  return (
-    <>
-      <Box maxWidth="375px" bgColor={bgColor} padding={3} borderRadius="xl" borderWidth="1px" borderColor={borderColor}>
-        <div className="featured-card1">
-          <div className="featured-img">
-            <img src="./img/BNBToken.svg" className="bnb-img" alt="BNB" />
-            <MedHTML />
-            <div className="card-overlay">
-              <Link href={`/nft/${tokenAddress.format()}/${result.tokenId}`}>
-                <a className="eg-btn btn--fill-white">View Details</a>
-              </Link>
-            </div>
+  return <Box width="372px" bgColor={bgColor} padding={3} borderRadius="xl" borderWidth="1px" borderColor='#1E1E1E' height='426px' display='flex' justifyContent='center' position='relative' overflow='hidden'>
+    <div className={css["featured-card1"]}>
+      <div className={css["featured-content"]}>
+        <div className={css["meta"]} style={{ marginBottom: '16px' }}>
+          <div className={css["author"]}>
+            <img src="/img/author-details.png" alt="author" />
+            {/* <p style={{ color: `${color1}` }}>{getEllipsisTxt(tokenAddress.format())}</p> */}
           </div>
-          <div className="featured-content">
-            <div className="featured-meta">
-              <div className="f-author">
-                <img src="/img/author-details.png" alt="" />
-                <p style={{ color: `${color1}` }}>{getEllipsisTxt(tokenAddress.format())}</p>
-              </div>
-            </div>
-            <h5>
-              <Link href="">
-                <a style={{ color: `${color1}` }}>{(metadata as { name?: string })?.name}</a>
-              </Link>
-            </h5>
-            <div className="featured-card-bttm">
-              <span style={{ color: `${color1}` }}>Price:</span>
-              <span style={{ color: `${color1}` }}>{price} BNB</span>
-            </div>
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            <span>Owned by</span>
+            <span style={{ color: 'white' }}>Rrayak John</span>
           </div>
         </div>
-      </Box>
-    </>
-  );
+      </div>
+      <div className={css['featured-img']}>
+        {/* <img src="/img/BNBToken.svg" className="bnb-img" alt="BNB" style={{ top: '23%', left: '8%' }} /> */}
+        <span style={{
+          position: 'absolute', top: '22%', left: '10%',
+          padding: '1px 10px', backgroundColor: '#F2994A', borderRadius: 61, color: 'white', fontSize: 10
+        }}>Active
+        </span>
+        <div style={{ position: 'absolute', top: '20%', right: '40px', display: 'flex', gap: 10 }}>
+          <p style={{ background: 'white', padding: 9, borderRadius: '100%' }}>
+            <AiFillHeart />
+          </p>
+          <p style={{ background: 'white', padding: 9, borderRadius: '100%' }}>            <BsThreeDotsVertical />
+          </p>
+        </div>
+        <MedHTML />
+        <div className={css["card-overlay"]}>
+          <Link href={`/nft/${tokenAddress.format()}/${result.tokenId}`}>
+            <a className="eg-btn btn--fill-white">View Details</a>
+          </Link>
+        </div>
+      </div>
+      <h5 style={{ margin: '9px 0 19px 0', fontWeight: 700, color: 'white' }}>Synthetic Dream Anadol</h5>
+      <div className={css["featured-card-bttm"]}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+          <Image
+            width={42}
+            height={42}
+            src='/icons/buttonfootercard.png'
+          />
+          <h5 style={{ color: 'white', fontWeight: 700 }}>75,320 BNB </h5>
+        </div>
+        <button className={css['bottom-footer-card']}>
+          Buy
+        </button>
+      </div>
+    </div>
+  </Box>
 };
 
 export default ItemCard;
