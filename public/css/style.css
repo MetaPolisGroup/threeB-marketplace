@@ -309,7 +309,7 @@ html:before {
   display: table;
   content: '';
 }
-body:after {
+/* body:after {
   content: '';
   position: absolute;
   left: 905px;
@@ -350,7 +350,7 @@ body:before {
   filter: blur(129px);
   border-radius: 1065.5px;
   transform: matrix(-0.56, -0.83, -0.83, 0.56, 0, 0);
-}
+} */
 .fn__svg {
   fill: currentcolor;
   width: 18px;

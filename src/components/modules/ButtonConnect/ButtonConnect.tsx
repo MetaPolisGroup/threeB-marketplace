@@ -1,5 +1,5 @@
-import { signIn, signOut } from 'next-auth/react';
-import { useAccount, useDisconnect, useSignMessage } from 'wagmi';
+import { signIn } from 'next-auth/react';
+import { useAccount, useSignMessage } from 'wagmi';
 import { Text, HStack, Avatar, useToast } from '@chakra-ui/react';
 import { useEffect } from 'react';
 import { ConnectButton } from '@rainbow-me/rainbowkit';
@@ -7,9 +7,9 @@ import { useAuthRequestChallengeEvm } from '@moralisweb3/next';
 import { EvmAddressish } from 'moralis/common-evm-utils';
 import { useSession } from 'next-auth/react';
 import constants from '../../../../constants';
+import classes from './ButtonConnect.module.css';
 
 const ButtonConnect = () => {
-  const { disconnectAsync } = useDisconnect();
   const { address, isConnected } = useAccount();
   const { requestChallengeAsync } = useAuthRequestChallengeEvm();
   const { signMessageAsync } = useSignMessage();
@@ -48,15 +48,9 @@ const ButtonConnect = () => {
     }
   }, [isConnected, address]);
 
-  const handleDisconnect = async () => {
-    await disconnectAsync();
-    signOut({ redirect: false });
-    window.localStorage.removeItem('address');
-  };
-
   return (
     <ConnectButton.Custom>
-      {({ account, chain, openChainModal, openConnectModal, authenticationStatus, mounted }) => {
+      {({ account, chain, openChainModal, openConnectModal, openAccountModal, authenticationStatus, mounted }) => {
         // Note: If your app doesn't use authentication, you
         // can remove all 'authenticationStatus' checks
         const ready = mounted && authenticationStatus !== 'loading';
@@ -76,8 +70,8 @@ const ButtonConnect = () => {
             {(() => {
               if (!connected) {
                 return (
-                  <button onClick={openConnectModal} type="button">
-                    Connect Wallet
+                  <button onClick={openConnectModal} type="button" className={classes['connect-button']}>
+                    Connect
                   </button>
                 );
               }
@@ -89,7 +83,7 @@ const ButtonConnect = () => {
                 );
               }
               return (
-                <HStack onClick={handleDisconnect} cursor={'pointer'}>
+                <HStack onClick={openAccountModal} cursor={'pointer'}>
                   <Avatar size="xs" />
                   <Text fontWeight="medium">{account.displayName}</Text>
                 </HStack>
