@@ -3,7 +3,7 @@ import provider from './provider';
 import { nftCollectionABI, marketplaceABI, paymentTokenABI, stakingABI } from './ABI';
 import { nftCollectionAddr, marketplaceAddr, paymentTokenAddr, stakingAddr } from './address';
 import { ChainType } from '../enum';
-const CURRENT_NETWORK = ChainType.MAINNET;
+const CURRENT_NETWORK = ChainType.TESTNET;
 
 const constants = {
   NFT_ADDR: nftCollectionAddr[CURRENT_NETWORK],
