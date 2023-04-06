@@ -1,14 +1,12 @@
 .cardcreatorbox {
   padding: 14px;
-  background: #ffffff;
   border-radius: 20px;
   border: 2px solid transparent;
-  width: auto;
   cursor: pointer;
   transition: box-shadow 0.3s, border-color 0.3s;
-  width: 550px;
   margin: auto;
   padding: 10px;
+  color: var(--color-grey);
 }
 
 .content {
@@ -17,7 +15,7 @@
 }
 
 .accountName {
-  color: #000;
+  color: var(--color-grey);
   font-size: 40px;
   padding: 10px;
   font-weight: bold;
@@ -32,16 +30,12 @@
 }
 
 .inforAvatar {
-  text-align: left;
+  display: flex;
+  align-items: center;
 }
 
-.avatar:global(.ant-avatar) {
-  /* position: absolute; */
-  bottom: -20px;
-  left: 25%;
-  transform: translate(-50%, 0px);
-  border: 2px solid white;
-  background-color: #fea013;
+.inforAvatarDetail span:nth-child(1) {
+  color: var(--color-grey);
 }
 
 .accountTag {
@@ -85,7 +79,6 @@
 
 @media only screen and (min-width: 250px) and (max-width: 300px) {
   .cardcreatorbox {
-    width: 250px;
     margin: auto;
   }
 
@@ -102,7 +95,6 @@
 
 @media only screen and (min-width: 300px) and (max-width: 400px) {
   .cardcreatorbox {
-    width: 300px;
     margin: auto;
   }
 
@@ -119,7 +111,6 @@
 
 @media only screen and (min-width: 400px) and (max-width: 500px) {
   .cardcreatorbox {
-    width: 400px;
     margin: auto;
   }
 
@@ -156,91 +147,51 @@
 @media only screen and (min-width: 1800px) and (max-width: 2000px) {
   .cardcreatorbox {
     padding: 14px;
-    background: #ffffff;
     border-radius: 20px;
     border: 2px solid transparent;
     width: auto;
     cursor: pointer;
     transition: box-shadow 0.3s, border-color 0.3s;
-    width: 850px;
     margin: auto;
     padding: 10px;
-  }
-
-  .avatar:global(.ant-avatar) {
-    bottom: -20px;
-    left: 10%;
-    transform: translate(-50%, 0px);
-    border: 2px solid white;
-    background-color: #fea013;
   }
 }
 
 @media only screen and (min-width: 1550px) and (max-width: 1800px) {
   .cardcreatorbox {
     padding: 14px;
-    background: #ffffff;
     border-radius: 20px;
     border: 2px solid transparent;
     width: auto;
     cursor: pointer;
     transition: box-shadow 0.3s, border-color 0.3s;
-    width: 750px;
     margin: auto;
     padding: 10px;
-  }
-
-  .avatar:global(.ant-avatar) {
-    bottom: -20px;
-    left: 10%;
-    transform: translate(-50%, 0px);
-    border: 2px solid white;
-    background-color: #fea013;
   }
 }
 
 @media only screen and (min-width: 1450px) and (max-width: 1550px) {
   .cardcreatorbox {
     padding: 14px;
-    background: #ffffff;
     border-radius: 20px;
     border: 2px solid transparent;
     width: auto;
     cursor: pointer;
     transition: box-shadow 0.3s, border-color 0.3s;
-    width: 700px;
     margin: auto;
     padding: 10px;
-  }
-
-  .avatar:global(.ant-avatar) {
-    bottom: -20px;
-    left: 10%;
-    transform: translate(-50%, 0px);
-    border: 2px solid white;
-    background-color: #fea013;
   }
 }
 
 @media only screen and (min-width: 1350px) and (max-width: 1450px) {
   .cardcreatorbox {
     padding: 14px;
-    background: #ffffff;
     border-radius: 20px;
     border: 2px solid transparent;
     width: auto;
     cursor: pointer;
     transition: box-shadow 0.3s, border-color 0.3s;
-    width: 650px;
     margin: auto;
     padding: 10px;
-  }
-
-  .avatar:global(.ant-avatar) {
-    bottom: -20px;
-    left: 10%;
-    transform: translate(-50%, 0px);
-    border: 2px solid white;
-    background-color: #fea013;
   }
 }

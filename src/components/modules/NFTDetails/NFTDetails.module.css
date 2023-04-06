@@ -1,13 +1,10 @@
 .cardimgbox {
   padding: 14px;
-  background: #ffffff;
   border-radius: 20px;
   border: 2px solid transparent;
   width: auto;
   cursor: pointer;
-  height: 550px;
   transition: box-shadow 0.3s, border-color 0.3s;
-  width: 550px;
   margin: auto;
   padding: 10px;
 }
@@ -78,7 +75,7 @@
 @media only screen and (min-width: 1800px) and (max-width: 2000px) {
   .cardbox {
     padding: 14px;
-    background: #ffffff;
+
     border-radius: 20px;
     border: 2px solid transparent;
     width: auto;
@@ -88,16 +85,15 @@
     margin: auto;
     padding: 10px;
   }
+
   .cardimgbox {
     padding: 14px;
-    background: #ffffff;
+
     border-radius: 20px;
     border: 2px solid transparent;
     width: auto;
     cursor: pointer;
-    height: 850px;
     transition: box-shadow 0.3s, border-color 0.3s;
-    width: 850px;
     margin: auto;
     padding: 10px;
   }
@@ -106,7 +102,7 @@
 @media only screen and (min-width: 1550px) and (max-width: 1800px) {
   .cardbox {
     padding: 14px;
-    background: #ffffff;
+
     border-radius: 20px;
     border: 2px solid transparent;
     width: auto;
@@ -119,14 +115,12 @@
 
   .cardimgbox {
     padding: 14px;
-    background: #ffffff;
+
     border-radius: 20px;
     border: 2px solid transparent;
     width: auto;
     cursor: pointer;
-    height: 750px;
     transition: box-shadow 0.3s, border-color 0.3s;
-    width: 750px;
     margin: auto;
     padding: 10px;
   }
@@ -135,7 +129,7 @@
 @media only screen and (min-width: 1450px) and (max-width: 1550px) {
   .cardbox {
     padding: 14px;
-    background: #ffffff;
+
     border-radius: 20px;
     border: 2px solid transparent;
     width: auto;
@@ -148,14 +142,12 @@
 
   .cardimgbox {
     padding: 14px;
-    background: #ffffff;
+
     border-radius: 20px;
     border: 2px solid transparent;
     width: auto;
     cursor: pointer;
-    height: 700px;
     transition: box-shadow 0.3s, border-color 0.3s;
-    width: 700px;
     margin: auto;
     padding: 10px;
   }
@@ -164,7 +156,7 @@
 @media only screen and (min-width: 1350px) and (max-width: 1450px) {
   .cardbox {
     padding: 14px;
-    background: #ffffff;
+
     border-radius: 20px;
     border: 2px solid transparent;
     width: auto;
@@ -177,14 +169,12 @@
 
   .cardimgbox {
     padding: 14px;
-    background: #ffffff;
+
     border-radius: 20px;
     border: 2px solid transparent;
     width: auto;
     cursor: pointer;
-    height: 650px;
     transition: box-shadow 0.3s, border-color 0.3s;
-    width: 650px;
     margin: auto;
     padding: 10px;
   }

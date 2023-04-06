@@ -41,7 +41,8 @@ html {
 }
 
 body {
-  --color-grey: #ffffff;
+  --color-white: #fff;
+  --color-grey: #a7a9b5;
 }
 
 @media (max-width: 910px) {
