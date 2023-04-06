@@ -427,7 +427,7 @@ input[type='text']:focus {
 .container {
   width: 100%;
   max-width: 1800px;
-  padding: 0 100px;
+  /* padding: 0 100px; */
   margin: 0 auto;
 }
 .container.small {
@@ -4922,7 +4922,7 @@ a.metaportal_fn_videobutton:hover .fn__svg,
 
 /* Collection Page */
 .metaportal_fn_collectionpage {
-  padding: 150px 0;
+  /* padding: 150px 0; */
 }
 .metaportal_fn_result_list {
   overflow: hidden;
@@ -4943,7 +4943,7 @@ a.metaportal_fn_videobutton:hover .fn__svg,
 }
 .metaportal_fn_clist {
   width: 100%;
-  padding-left: 50px;
+  /* padding-left: 50px; */
   overflow: hidden;
 }
 .metaportal_fn_clist .metaportal_fn_title {
