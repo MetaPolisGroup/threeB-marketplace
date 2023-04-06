@@ -1,4 +1,4 @@
-import { Col, Grid, Row } from 'antd';
+import { Col, Row } from 'antd';
 import styless from './NFTDetails.module.css';
 import React, { useEffect, useState } from 'react';
 import { CreatorBox } from './CreatorBox';
@@ -11,7 +11,6 @@ import constants from '../../../../constants';
 import { resolveIPFSByPublicGateway, resolveIPFSByPinata } from 'utils/resolveIPFS';
 import { Image } from '@chakra-ui/react';
 
-const { useBreakpoint } = Grid;
 const NFTDetails = () => {
   const router = useRouter();
 
@@ -37,15 +36,14 @@ const NFTDetails = () => {
 
   useEffect(() => {
     if (address && tokenId) {
-      fetch(`https://deep-index.moralis.io/api/v2/nft/${address}/${tokenId}?chain=bsc`, {
+      fetch(`https://deep-index.moralis.io/api/v2/nft/${address}/${tokenId}?chain=bsc%20testnet`, {
         headers: {
           'Content-Type': 'application/json',
           'X-API-Key': `${process.env.NEXT_PUBLIC_MORALIS_API_KEY}`,
         },
       })
         .then((response) => response.json())
-        .then(async (data) => {
-          console.log(data);
+        .then((data) => {
           setNFTData(data);
         });
     }
@@ -53,7 +51,6 @@ const NFTDetails = () => {
   }, [address, tokenId]);
 
   let metadata = {};
-  console.log(nftData);
 
   metadata = nftData?.metadata ? JSON.parse(nftData?.metadata) : {};
 
@@ -82,32 +79,16 @@ const NFTDetails = () => {
     return <Image src={media1988Dragon()} alt={'nft'} minH="260px" minW="260px" boxSize="100%" objectFit="fill" />;
   };
 
-  const { xl } = useBreakpoint();
   return (
     <div style={{ margin: '50px 0' }}>
-      <Row>
+      <Row gutter={[16, 16]}>
         <Col xs={{ span: 24 }} md={{ span: 24 }} xl={{ span: 12 }}>
           <div className={styless.cardimgbox}>
             <MedHTML />
           </div>
           <br />
-          <div className={styless.cardbox}>
-            <div className={styless.description} style={{ borderTop: 'solid 1px gray', fontFamily: 'none' }}>
-              <p style={{ fontFamily: 'GILROY', color: '#000' }}>
-                {metadata ? (metadata as { description?: string })?.description : ''}
-              </p>
-            </div>
-          </div>
         </Col>
         <Col xs={{ span: 24 }} md={{ span: 24 }} xl={{ span: 12 }}>
-          {!xl ? (
-            <>
-              <br />
-            </>
-          ) : (
-            <> </>
-          )}
-
           <CreatorBox
             name={metadata ? (metadata as { name?: string })?.name : ''}
             ownerOf={nftData?.owner_of}

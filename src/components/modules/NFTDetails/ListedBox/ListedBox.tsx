@@ -21,6 +21,9 @@ const ListedBox = ({ address, price, item, tokenAddress }: ListedBoxParams) => {
   const marketplace = new ethers.Contract(constants.MRKPLACE_ADDR, constants.MRKPLACE_ABI, signer as Signer);
   const router = useRouter();
   const [loadingBuy, setLoadingBuy] = useState<boolean>(false);
+
+  console.log({ item });
+
   const buyItem = async () => {
     if (signer) {
       try {
@@ -31,7 +34,7 @@ const ListedBox = ({ address, price, item, tokenAddress }: ListedBoxParams) => {
         console.log('Tx', tx.events);
         setLoadingBuy(false);
         successModal();
-        router.push('/balances/nft');
+        router.push('/my-collection/nft');
       } catch (e) {
         console.log('Error', e);
       }

@@ -3,6 +3,7 @@ import provider from './provider';
 import { nftCollectionABI, marketplaceABI, paymentTokenABI, stakingABI } from './ABI';
 import { nftCollectionAddr, marketplaceAddr, paymentTokenAddr, stakingAddr } from './address';
 import { ChainType } from '../enum';
+import paramsAPI from './param';
 const CURRENT_NETWORK = ChainType.TESTNET;
 
 const constants = {
@@ -23,6 +24,7 @@ const constants = {
       UNIT: 'minute',
     },
   },
+  PARAM_API: paramsAPI[CURRENT_NETWORK],
 };
 
 export default constants;
