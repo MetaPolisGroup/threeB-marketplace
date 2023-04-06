@@ -4,7 +4,7 @@ import React from 'react';
 import css from './index.module.css'
 const SearchComponent = () => {
   return <div>
-    <InputGroup className={css['wrapper-input-header']}>
+    <InputGroup className={css['wrapper-input-header']} >
       <InputLeftElement
         pointerEvents='none'
         children={<PhoneIcon color='gray.300' />}

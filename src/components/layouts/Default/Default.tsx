@@ -1,8 +1,9 @@
 import { FC, ReactNode } from 'react';
-import { Footer, Content } from 'components/modules';
+import { Footer } from 'components/modules';
 import Head from 'next/head';
 import Sidebar from 'components/elements/navigation/NavBar/SideBar';
 import { Layout } from 'antd';
+import Content from 'components/modules/Content';
 
 
 const Default: FC<{ children: ReactNode; pageName: string }> = ({ children, pageName }) => (
