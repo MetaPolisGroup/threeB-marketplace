@@ -2,7 +2,6 @@ import { Avatar, Col, Row } from 'antd';
 import React from 'react';
 import { getEllipsisTxt } from 'utils/format';
 import styless from './CreatorBox.module.css';
-import constants from '../../../../../constants';
 
 interface CreatorBoxParams {
   name: string | undefined;
@@ -10,7 +9,7 @@ interface CreatorBoxParams {
   address: string | undefined;
 }
 
-const CreatorBox = ({ name, ownerOf, address }: CreatorBoxParams) => {
+const CreatorBox = ({ name, ownerOf }: CreatorBoxParams) => {
   return (
     <div className={styless.cardcreatorbox}>
       <div className={styless.content}>
@@ -19,26 +18,17 @@ const CreatorBox = ({ name, ownerOf, address }: CreatorBoxParams) => {
             <Col span={20}></Col>
           </Row>
         </div>
-        <div
-          style={{
-            fontWeight: 'bold',
-            textAlign: 'left',
-            fontSize: '20px',
-            color: '#000',
-          }}
-        >
-          &ensp;Creator
-        </div>
+
         <div className={styless.wrapperAvatar} style={{ marginTop: '-20px' }}>
           <Row>
-            <Col span={4}>
-              <Avatar src="/img/avatar.png" className={styless.avatar} size={60} />
-            </Col>
-            <Col span={20}>
+            <Col span={12}>
               <div className={styless.inforAvatar} style={{ marginTop: '30px', color: '#000', textAlign: 'left' }}>
-                <span style={{ fontWeight: 'bold' }}>{address === constants.NFT_ADDR ? 'Admin' : ''}</span>
-                <br />
-                <span>{getEllipsisTxt(ownerOf ? ownerOf : '')}</span>
+                <Avatar src="/img/avatar.png" className={styless.avatar} size={60} />
+                <div className={styless.inforAvatarDetail}>
+                  <span>Owner by</span>
+                  <br />
+                  <span>{getEllipsisTxt(ownerOf ? ownerOf : '')}</span>
+                </div>
               </div>
             </Col>
           </Row>
@@ -63,7 +53,7 @@ const CreatorBox = ({ name, ownerOf, address }: CreatorBoxParams) => {
             <Col span={20}>
               <div className={styless.infoBottom} style={{ marginLeft: '-30px' }}>
                 <div className={styless.titleCollection}>1988 Dragon</div>
-                <p style={{ color: '#000' }}>1988 Dragon Marketplace</p>
+                <p>1988 Dragon Marketplace</p>
               </div>
             </Col>
           </Row>

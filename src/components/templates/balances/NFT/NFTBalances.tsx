@@ -20,12 +20,15 @@ const NFTBalances = () => {
       <Heading size="lg" marginBottom={6}>
         NFT Balances
       </Heading>
+
       {nfts?.length ? (
-        <Grid style={{ placeItems: 'center' }} templateColumns="repeat(auto-fit, minmax(280px, 1fr))" gap={6}>
-          {nfts.map((nft, key) => (
-            <NFTCard nft={nft} key={key} />
-          ))}
-        </Grid>
+        <div className="nft">
+          <Grid className="NFT">
+            {nfts.map((nft, key) => (
+              <NFTCard nft={nft} key={key} />
+            ))}
+          </Grid>
+        </div>
       ) : (
         <Box>Looks like you do not have any NFTs</Box>
       )}

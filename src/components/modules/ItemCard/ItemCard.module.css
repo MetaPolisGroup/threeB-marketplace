@@ -51,7 +51,7 @@
   transition: 0.5s ease-in-out;
 }
 
-.featured-card1:hover .card-overlay {
+.featured-img:hover .card-overlay {
   opacity: 1;
   transform: translateY(0);
 }
@@ -72,4 +72,9 @@
   color: #ffffff;
   background: #f539f8;
   border-radius: 39px;
+  border: none;
+}
+
+.bottom-footer-card:hover {
+  color: white !important;
 }

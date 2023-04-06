@@ -18,17 +18,18 @@ import { useAccount, useDisconnect } from 'wagmi';
 interface LinkItemProps {
   name: string;
   src: string;
+  path: string;
 }
 
 const LinkItemsNFT: Array<LinkItemProps> = [
-  { name: 'Explore', src: '/icons/explore.png' },
-  { name: 'My Collection', src: '/icons/collection.png' },
-  { name: 'Activities', src: '/icons/history.png' },
+  { name: 'Explore', src: '/icons/explore.png', path: '/' },
+  { name: 'My Collection', src: '/icons/collection.png', path: '/my-collection/nft' },
+  { name: 'Activities', src: '/icons/history.png', path: '/history/nft' },
 ];
 
 const LinkItemsDex: Array<LinkItemProps> = [
-  { name: 'My Wallet', src: '/icons/wallet.png' },
-  { name: 'History', src: '/icons/history.png' },
+  { name: 'My Wallet', src: '/icons/wallet.png', path: '/my-collection/erc20' },
+  { name: 'History', src: '/icons/history.png', path: '/history/erc20' },
 ];
 
 export default function SimpleSidebar({ children }: { children: ReactNode }) {
@@ -127,7 +128,7 @@ const RenderItemNav: React.FC<{
     <React.Fragment>
       <p style={{ fontSize: 20, color: '#5356FB', fontWeight: 700, marginTop: 50 }}>{title}</p>
       {list.map((link) => (
-        <NavItem key={link.name} src={link.src} style={{ gap: 13 }}>
+        <NavItem key={link.name} src={link.src} style={{ gap: 13 }} path={link.path}>
           <span style={{ fontWeight: 400, fontSize: 18 }}>{link.name}</span>
         </NavItem>
       ))}
