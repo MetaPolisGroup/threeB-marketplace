@@ -30,8 +30,6 @@ const ItemCard: FC<ItemCardParams> = ({ nft: { tokenAddress, result, metadata } 
     setPrice(priceString);
   }
 
-  console.log({ result });
-
   useEffect(() => {
     getPrice();
   }, [tokenAddress]);

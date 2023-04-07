@@ -14,14 +14,21 @@
   text-align: center;
 }
 
+.id {
+  text-align: left;
+  padding: 10px 0;
+  color: var(--color-purle);
+  font-size: 20px;
+  font-weight: 700;
+}
+
 .accountName {
-  color: var(--color-grey);
+  color: var(--color-white);
   font-size: 40px;
-  padding: 10px;
+
   font-weight: bold;
   text-align: left;
   margin-bottom: 5px;
-  border-bottom: solid 1px gray;
 }
 
 .viewArea {
@@ -32,6 +39,7 @@
 .inforAvatar {
   display: flex;
   align-items: center;
+  gap: 20px;
 }
 
 .inforAvatarDetail span:nth-child(1) {
@@ -55,12 +63,11 @@
 
 .description {
   font-size: 16px;
-  padding: 10px;
-  font-weight: 300;
+  font-weight: 400;
   text-align: left;
+  padding: 10px 0;
   margin-top: 5px;
-  border-top: solid 1px gray;
-  border-bottom: solid 1px gray;
+  text-align: justify;
 }
 
 .avatarCollection:global(.ant-avatar) {
@@ -126,14 +133,6 @@
 }
 
 @media screen and (max-width: 500px) {
-  .wrapperAvatar {
-    margin-left: 20px !important;
-  }
-
-  .inforAvatar {
-    margin-left: 20px !important;
-  }
-
   .infoBottom {
     margin-left: 20px !important;
   }

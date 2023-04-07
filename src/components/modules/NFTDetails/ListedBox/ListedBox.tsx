@@ -8,6 +8,7 @@ import constants from '../../../../../constants';
 import { failureModal, successModal } from '../../../../../helpers/modal';
 import { useRouter } from 'next/router';
 import { getExplorer } from '../../../../../helpers/networks';
+import Image from 'next/image';
 
 interface ListedBoxParams {
   address: string | undefined;
@@ -22,8 +23,6 @@ const ListedBox = ({ address, price, item, tokenAddress }: ListedBoxParams) => {
   const router = useRouter();
   const [loadingBuy, setLoadingBuy] = useState<boolean>(false);
 
-  console.log({ item });
-
   const buyItem = async () => {
     if (signer) {
       try {
@@ -36,6 +35,7 @@ const ListedBox = ({ address, price, item, tokenAddress }: ListedBoxParams) => {
         successModal();
         router.push('/my-collection/nft');
       } catch (e) {
+        setLoadingBuy(false);
         console.log('Error', e);
       }
     } else {
@@ -48,19 +48,15 @@ const ListedBox = ({ address, price, item, tokenAddress }: ListedBoxParams) => {
     <div className={styless.cardListedbox}>
       <div className={styless.description}>
         Contract by:
-        <br />
-        <a className={styless.viewAddress} style={{ color: '#000', fontWeight: 'bold' }}>
+        <a className={styless.viewAddress} style={{ color: '#fff', fontWeight: 'bold', marginLeft: '10px' }}>
           {getEllipsisTxt(address ? address : '')}
         </a>
       </div>
-      <div
-        className={styless.prices}
-        style={{
-          borderTop: 'solid 1px gray',
-          borderBottom: 'solid 1px gray',
-        }}
-      >
-        {price === '0.0' ? '--' : price} <span style={{ fontSize: '50%' }}> BNB </span>
+      <div className={styless.prices}>
+        <Image src="/images/BnbPrice.png" width={30} height={30} />
+        <span style={{ marginLeft: '15px' }}>
+          {price === '0.0' ? '--' : price} <span style={{ fontSize: '50%' }}>BNB</span>
+        </span>
       </div>
       <div className={styless.content}>
         <Row justify="space-between" gutter={16}>

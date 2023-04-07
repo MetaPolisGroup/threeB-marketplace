@@ -92,9 +92,12 @@ const NFTDetails = () => {
           <CreatorBox
             name={metadata ? (metadata as { name?: string })?.name : ''}
             ownerOf={nftData?.owner_of}
+            creator={nftData?.minter_address}
+            description={metadata ? (metadata as { description?: string })?.description : ''}
             address={address}
+            tokenId={nftData?.token_id}
           />
-          <br />
+
           <ListedBox address={address} price={price} item={item} tokenAddress={nftData?.token_address} />
         </Col>
       </Row>

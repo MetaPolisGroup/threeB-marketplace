@@ -69,8 +69,8 @@
   align-items: center;
   padding: 10px 16px;
   gap: 10px;
-  color: #ffffff;
-  background: #f539f8;
+  color: var(--color-white);
+  background: var(--color-violet);
   border-radius: 39px;
   border: none;
 }
