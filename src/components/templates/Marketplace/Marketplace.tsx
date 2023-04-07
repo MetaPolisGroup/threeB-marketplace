@@ -7,21 +7,20 @@ import { useEvmWalletNFTs } from '@moralisweb3/next';
 import constants from '../../../../constants';
 import { useEffect, useState } from 'react';
 import { EvmNft } from 'moralis/common-evm-utils';
-import css from './index.module.css'
+import css from './index.module.css';
 import { Search2Icon } from '@chakra-ui/icons';
 import React from 'react';
 import { Home } from '../home';
 
 enum EStatus {
   EXPLORE = 0,
-  Featured
-
+  Featured,
 }
 
 const Marketplace = () => {
   // const { Search } = Input;
   const color1 = useColorModeValue('#000', '#fff');
-  const [toggle, setToggle] = React.useState<EStatus>(EStatus.EXPLORE)
+  const [toggle, setToggle] = React.useState<EStatus>(EStatus.EXPLORE);
   const { data: items } = useEvmWalletNFTs({
     address: constants.MRKPLACE_ADDR,
     chain: constants.CHAIN.bscChain.id,
@@ -41,25 +40,33 @@ const Marketplace = () => {
     setCollectionItems(items?.filter((item) => item?.tokenAddress.format() !== dragonAddress));
   }, [items]);
 
-  const styleBtnLeft = toggle === EStatus.EXPLORE ? {
-    color: '#F539F8', borderBottom: '1px solid'
-  } : undefined
-  const styleBtnRight = toggle === EStatus.Featured ? {
-    color: '#F539F8', borderBottom: '1px solid'
-  } : undefined
+  const styleBtnLeft =
+    toggle === EStatus.EXPLORE
+      ? {
+          color: '#F539F8',
+          borderBottom: '1px solid',
+        }
+      : undefined;
+  const styleBtnRight =
+    toggle === EStatus.Featured
+      ? {
+          color: '#F539F8',
+          borderBottom: '1px solid',
+        }
+      : undefined;
   return (
     <div className="metaportal_fn_mintpage">
-      <div className={css["wrapper-header-content"]}>
+      <div className={css['wrapper-header-content']}>
         <div className={css['header-content']}>
-          <div className={css["leftBlock"]}>
+          <div className={css['leftBlock']}>
             <button onClick={() => setToggle(EStatus.EXPLORE)} style={styleBtnLeft}>
               Explore
             </button>
             <button onClick={() => setToggle(EStatus.Featured)} style={styleBtnRight}>
-              Featured  Collection
+              Featured Collection
             </button>
           </div>
-          <div className={css["rightBlock"]}>
+          <div className={css['rightBlock']}>
             <div style={{ borderRight: '1px solid #37455799', paddingRight: 5 }}>
               <Space style={{ height: 15, display: 'flex', alignItems: 'center' }}>
                 <Search2Icon w={4} height={4} />
@@ -105,18 +112,21 @@ const Marketplace = () => {
           </div>
         </div>
         <div className="nft">
-          {toggle === EStatus.EXPLORE ? <Grid
-            templateColumns='repeat(auto-fill, 400px)'
-            rowGap={5}
-          >
-            {collectionItems ? (
-              collectionItems.map((item, key) => <GridItem>
-                <ItemCard nft={item} key={key} />
-              </GridItem>)
-            ) : (
-              <p style={{ color: `${color1}` }}>No NFT</p>
-            )}
-          </Grid> : <Home />}
+          {toggle === EStatus.EXPLORE ? (
+            <Grid templateColumns="repeat(auto-fill, 400px)" rowGap={5}>
+              {collectionItems ? (
+                collectionItems.map((item, key) => (
+                  <GridItem key={key}>
+                    <ItemCard nft={item} key={key} />
+                  </GridItem>
+                ))
+              ) : (
+                <p style={{ color: `${color1}` }}>No NFT</p>
+              )}
+            </Grid>
+          ) : (
+            <Home />
+          )}
         </div>
       </div>
     </div>

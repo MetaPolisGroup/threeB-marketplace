@@ -79,9 +79,6 @@ const NFTDetails = () => {
     return <Image src={media1988Dragon()} alt={'nft'} minH="260px" minW="260px" boxSize="100%" objectFit="fill" />;
   };
 
-  console.log({ nftData });
-  console.log({ metadata });
-
   return (
     <div style={{ margin: '50px 0' }}>
       <Row gutter={[16, 16]}>
