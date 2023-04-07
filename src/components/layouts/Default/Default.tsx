@@ -5,7 +5,6 @@ import Sidebar from 'components/elements/navigation/NavBar/SideBar';
 import { Layout } from 'antd';
 import Content from 'components/modules/Content';
 
-
 const Default: FC<{ children: ReactNode; pageName: string }> = ({ children, pageName }) => (
   <Layout>
     <Head>

@@ -2,10 +2,9 @@ import { useColorModeValue } from '@chakra-ui/react';
 
 const Footer = () => {
   const color1 = useColorModeValue('#000', '#fff');
-  const bg = useColorModeValue('rgb(204 204 204)', '#000');
 
   return (
-    <footer style={{ background: `${bg}` }} id="footer">
+    <footer style={{ background: '#1D1F2F' }} id="footer">
       <div className="container">
         <div className="footer">
           <div className="left_part">

@@ -62,16 +62,17 @@ function CreateNFT() {
     let result = false;
     // .JPG, .PNG, .MP4, .MP3, .WAV.
     const fileExtension = file.name.slice(-4).toLowerCase();
-    const filesize = file.size;
+    // eslint-disable-next-line etc/no-commented-out-code
+    // const filesize = file.size;
 
     if (
-      (fileExtension === '.jpg' ||
-        fileExtension === 'jpeg' ||
-        fileExtension === '.png' ||
-        fileExtension === '.mp4' ||
-        fileExtension === '.mp3' ||
-        fileExtension === '.wav') &&
-      filesize <= 52428800
+      fileExtension === '.jpg' ||
+      fileExtension === 'jpeg' ||
+      fileExtension === '.png' ||
+      fileExtension === '.mp4' ||
+      fileExtension === '.mp3' ||
+      fileExtension === '.wav'
+      //  && filesize <= 52428800
     ) {
       result = true;
     }
@@ -93,8 +94,8 @@ function CreateNFT() {
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const onChangeImage = async (e: any) => {
-    const file = e.target.files[0];
-    console.log(e);
+    const { file } = e;
+
     if (file === undefined) {
       return;
     }
@@ -117,15 +118,14 @@ function CreateNFT() {
 
     setFileName(file.name);
     setFileType(file.type);
-    await uploadImageData(e);
+    await uploadImageData(file);
   };
 
-  const uploadImageData = async (e: any) => {
-    const file = e.target.files[0];
-    setPreviewFile(file);
+  const uploadImageData = async (file: any) => {
     setLoadingImage(true);
+
     try {
-      const added = await client.add(file, {
+      const added = await client.add(file.originFileObj, {
         progress: (prog) => console.log(`received: ${prog}`),
       });
       const url = `ipfs://${added.path}`;
@@ -276,7 +276,7 @@ function CreateNFT() {
             style={{ marginTop: '10px' }}
             className={styles.dragger}
             accept=".jpg,.jpeg,.mp4,.mp3,.png,.wav"
-            onChange={(data) => console.log({ data })}
+            onChange={onChangeImage}
           >
             <p className="ant-upload-drag-icon">
               <Image src={'/img/createNFT/cloud.svg'} alt="" width={71} height={51} />
@@ -467,6 +467,7 @@ function CreateNFT() {
 
   const CreatBtn = () => {
     let textStatusCreate: string;
+
     if (loading) {
       textStatusCreate = 'Creating';
     } else {
@@ -536,7 +537,7 @@ function CreateNFT() {
                     <label>Description</label>
                     <Input.TextArea
                       className={styles.textArea}
-                      placeholder="provide a detailed description of your item."
+                      placeholder="Provide a detailed description of your item."
                       rows={5}
                       style={{ whiteSpace: 'pre-wrap' }}
                       value={formInput.description}
@@ -567,7 +568,7 @@ function CreateNFT() {
             <div className={styles.footerForm}>
               <div>Cancel</div>
               {md && <CreatBtn />}
-              {/* {!md && <CreatBtn />} */}
+              {!md && <CreatBtn />}
             </div>
           </Row>
         </Form>

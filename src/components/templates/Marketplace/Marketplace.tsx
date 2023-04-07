@@ -43,16 +43,16 @@ const Marketplace = () => {
   const styleBtnLeft =
     toggle === EStatus.EXPLORE
       ? {
-        color: '#F539F8',
-        borderBottom: '1px solid',
-      }
+          color: '#F539F8',
+          borderBottom: '1px solid',
+        }
       : undefined;
   const styleBtnRight =
     toggle === EStatus.Featured
       ? {
-        color: '#F539F8',
-        borderBottom: '1px solid',
-      }
+          color: '#F539F8',
+          borderBottom: '1px solid',
+        }
       : undefined;
   return (
     <div className="metaportal_fn_mintpage">
@@ -113,7 +113,7 @@ const Marketplace = () => {
         </div>
         <div className="nft">
           {toggle === EStatus.EXPLORE ? (
-            <Grid templateColumns="repeat(auto-fill, 400px)" rowGap={5} justifyItems='center'>
+            <Grid templateColumns="repeat(auto-fill, 400px)" rowGap={5} justifyItems="center">
               {collectionItems ? (
                 collectionItems.map((item, key) => (
                   <GridItem key={key}>
