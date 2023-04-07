@@ -3,6 +3,7 @@ export interface NFTDetailsTypes {
   image?: string;
   contract_type?: string;
   metadata: string;
+  minter_address?: string;
   name?: string;
   information?: object;
   owner_of?: string;

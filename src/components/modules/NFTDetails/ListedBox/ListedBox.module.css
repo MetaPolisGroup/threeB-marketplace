@@ -1,24 +1,22 @@
 .cardListedbox {
   padding: 14px;
-  background: #ffffff;
   border-radius: 20px;
   border: 2px solid transparent;
   width: auto;
   cursor: pointer;
   transition: box-shadow 0.3s, border-color 0.3s;
-  width: 550px;
   margin: auto;
   padding: 10px;
 }
 
 .prices {
   font-size: 40px;
-  color: #000;
-  padding: 10px;
+  color: var(--color-white);
+  padding: 10px 0;
   font-weight: bold;
 }
 .exploreBtn:global(.ant-btn) {
-  background: #000;
+  background: transparent;
   border-radius: 10px;
   width: 100%;
   border-color: #fff;
@@ -27,7 +25,7 @@
 
 .exploreBtn:global(.ant-btn:hover) {
   color: #ffffff;
-  background: linear-gradient(180deg, #000 0%, #000 100%);
+  background: var(--color-violet);
   border: none;
 }
 
@@ -51,14 +49,14 @@
   background: #ffffff;
   border-radius: 10px;
   width: 100%;
-  border-color: #fea013;
+
   margin-bottom: 40px;
 }
 .btnInfo:global(.ant-btn) {
-  background: #000 !important;
+  background: var(--color-violet);
+
   border-radius: 10px;
   width: 100%;
-  border-color: #fea013;
   margin-bottom: 40px;
 }
 
@@ -66,13 +64,14 @@
 :global(.ant-btn).btnInfo:active,
 :global(.ant-btn).btnInfo:hover,
 .btnInfo:global(.ant-btn) {
-  background: linear-gradient(to bottom, #fea013, #fea013) border-box;
+  background: var(--color-violet);
+
   border: 1px solid transparent;
   color: white;
 }
 
 :global(.ant-btn).btnInfo:hover {
-  background: linear-gradient(180deg, #fea013 0%, #fea013 100%);
+  background: var(--color-violet);
   color: white;
   border: none;
   box-shadow: rgb(4 17 29 / 25%) 0px 0px 10px 0px;
@@ -212,7 +211,6 @@
 
 @media only screen and (min-width: 250px) and (max-width: 300px) {
   .cardListedbox {
-    width: 250px;
     margin: auto;
   }
 
@@ -223,7 +221,6 @@
 
 @media only screen and (min-width: 300px) and (max-width: 400px) {
   .cardListedbox {
-    width: 300px;
     margin: auto;
   }
   .viewAddress {
@@ -233,7 +230,6 @@
 
 @media only screen and (min-width: 400px) and (max-width: 500px) {
   .cardListedbox {
-    width: 400px;
     margin: auto;
   }
 
@@ -245,13 +241,11 @@
 @media only screen and (min-width: 1800px) and (max-width: 2000px) {
   .cardListedbox {
     padding: 14px;
-    background: #ffffff;
     border-radius: 20px;
     border: 2px solid transparent;
     width: auto;
     cursor: pointer;
     transition: box-shadow 0.3s, border-color 0.3s;
-    width: 850px;
     margin: auto;
     padding: 10px;
   }
@@ -266,13 +260,11 @@
 @media only screen and (min-width: 1550px) and (max-width: 1800px) {
   .cardListedbox {
     padding: 14px;
-    background: #ffffff;
     border-radius: 20px;
     border: 2px solid transparent;
     width: auto;
     cursor: pointer;
     transition: box-shadow 0.3s, border-color 0.3s;
-    width: 750px;
     margin: auto;
     padding: 10px;
   }
@@ -281,13 +273,11 @@
 @media only screen and (min-width: 1450px) and (max-width: 1550px) {
   .cardListedbox {
     padding: 14px;
-    background: #ffffff;
     border-radius: 20px;
     border: 2px solid transparent;
     width: auto;
     cursor: pointer;
     transition: box-shadow 0.3s, border-color 0.3s;
-    width: 700px;
     margin: auto;
     padding: 10px;
   }
@@ -296,13 +286,11 @@
 @media only screen and (min-width: 1350px) and (max-width: 1450px) {
   .cardListedbox {
     padding: 14px;
-    background: #ffffff;
     border-radius: 20px;
     border: 2px solid transparent;
     width: auto;
     cursor: pointer;
     transition: box-shadow 0.3s, border-color 0.3s;
-    width: 650px;
     margin: auto;
     padding: 10px;
   }
