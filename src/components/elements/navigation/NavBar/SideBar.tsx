@@ -14,6 +14,7 @@ import css from './index.module.css';
 import MobileNav from './MobileSideBar';
 import NavItem from './SideBarItem';
 import { useAccount, useDisconnect } from 'wagmi';
+import { useRouter } from 'next/router';
 
 interface LinkItemProps {
   name: string;
@@ -80,6 +81,7 @@ interface SidebarProps extends BoxProps {
 
 const SidebarContent = ({ onClose, isConnected, onLogoutHandler, ...rest }: SidebarProps) => {
   const [isConnect, setIsConnect] = useState(false);
+  const router = useRouter();
   useEffect(() => {
     setIsConnect(isConnected);
   }, [isConnected]);
@@ -94,16 +96,16 @@ const SidebarContent = ({ onClose, isConnected, onLogoutHandler, ...rest }: Side
       h="100vh"
       {...rest}
     >
-      <Flex alignItems="center" marginBottom={5} margin="8px 0px 0px 61px" gap="10px" justifyContent='space-between'>
-        <Flex alignItems='center' gap='10px'>
+      <Flex alignItems="center" marginBottom={5} margin="8px 0px 0px 61px" gap="10px" justifyContent="space-between">
+        <Flex alignItems="center" gap="10px">
           <Image src="/images/logo.png" alt="asd" width={58} height={56} />
           <h2 style={{ fontWeight: 700, color: 'white' }}>Logo</h2>
         </Flex>
-        <CloseButton display={{ base: 'flex', md: 'none' }} margin='10px' onClick={onClose} />
+        <CloseButton display={{ base: 'flex', md: 'none' }} margin="10px" onClick={onClose} />
       </Flex>
       <div style={{ padding: '10px 60px' }}>
         <RenderItemNav list={LinkItemsNFT} title="NFT Marketplace" />
-        <button className={css['slidebar-button']}>
+        <button className={css['slidebar-button']} onClick={() => router.push('/createnft')}>
           <span>Create</span>
         </button>
 

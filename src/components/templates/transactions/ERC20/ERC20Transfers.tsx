@@ -1,16 +1,16 @@
 import { TableContainer, Table, Thead, Tr, Th, Tbody, Td, Heading, Box, useColorModeValue } from '@chakra-ui/react';
 import { useEvmWalletTokenTransfers } from '@moralisweb3/next';
-import { useSession } from 'next-auth/react';
+
 import { useEffect } from 'react';
 import { getEllipsisTxt } from 'utils/format';
-import { useNetwork } from 'wagmi';
+import { useAccount, useNetwork } from 'wagmi';
 
 const ERC20Transfers = () => {
   const hoverTrColor = useColorModeValue('gray.100', 'gray.700');
-  const { data } = useSession();
+  const { address } = useAccount();
   const { chain } = useNetwork();
   const { data: transfers } = useEvmWalletTokenTransfers({
-    address: data?.user?.address,
+    address: address ? address : '',
     chain: chain?.id,
   });
 

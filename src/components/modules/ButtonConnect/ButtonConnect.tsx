@@ -40,8 +40,10 @@ const ButtonConnect = () => {
               }
               return (
                 <HStack onClick={openAccountModal} cursor={'pointer'}>
-                  <Avatar size="xs" />
-                  <Text fontWeight="medium">{account.displayName}</Text>
+                  <Avatar size="md" />
+                  <Text fontWeight="medium" color={'white'} fontSize="lg">
+                    {account.displayName}
+                  </Text>
                 </HStack>
               );
             })()}

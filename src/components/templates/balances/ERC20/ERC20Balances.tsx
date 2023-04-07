@@ -6,7 +6,6 @@ import {
   Th,
   Tbody,
   Td,
-  Tfoot,
   VStack,
   Heading,
   Box,
@@ -15,18 +14,18 @@ import {
   HStack,
   useColorModeValue,
 } from '@chakra-ui/react';
+
 import { useEvmWalletTokenBalances } from '@moralisweb3/next';
-import { useSession } from 'next-auth/react';
 import { useEffect } from 'react';
 import { getEllipsisTxt } from 'utils/format';
-import { useNetwork } from 'wagmi';
+import { useAccount, useNetwork } from 'wagmi';
 
 const ERC20Balances = () => {
   const hoverTrColor = useColorModeValue('gray.100', 'gray.700');
-  const { data } = useSession();
+  const { address } = useAccount();
   const { chain } = useNetwork();
   const { data: tokenBalances } = useEvmWalletTokenBalances({
-    address: data?.user?.address,
+    address: address ? address : '',
     chain: chain?.id,
   });
 
@@ -67,13 +66,13 @@ const ERC20Balances = () => {
                   </Tr>
                 ))}
               </Tbody>
-              <Tfoot>
+              {/* <Tfoot>
                 <Tr>
                   <Th>Token</Th>
                   <Th>Value</Th>
                   <Th isNumeric>Address</Th>
                 </Tr>
-              </Tfoot>
+              </Tfoot> */}
             </Table>
           </TableContainer>
         </Box>
