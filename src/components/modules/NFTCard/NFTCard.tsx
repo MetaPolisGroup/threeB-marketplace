@@ -14,7 +14,6 @@ import { useRouter } from 'next/router';
 import { getExplorer } from '../../../../helpers/networks';
 
 export interface NFTCardParams {
-  key: number;
   nft: EvmNft;
 }
 
