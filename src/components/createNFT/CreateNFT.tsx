@@ -1,4 +1,4 @@
-import { Button, Col, Form, Grid, Input, Row, Select, Typography, Spin } from 'antd';
+import { Button, Col, Form, Grid, Input, Row, Select, Spin, Upload } from 'antd';
 import React, { useState } from 'react';
 import styles from './CreateNFT.module.css';
 import { create as ipfsHttpClient } from 'ipfs-http-client';
@@ -7,6 +7,11 @@ import constants from '../../../constants';
 import { useSigner } from 'wagmi';
 import { failureModal, successModal } from '../../../helpers/modal';
 import { Buffer } from 'buffer';
+
+import { Switch } from 'antd';
+import Image from 'next/image';
+import { DownOutlined } from '@ant-design/icons';
+const { Dragger } = Upload;
 
 const { useBreakpoint } = Grid;
 
@@ -49,6 +54,10 @@ function CreateNFT() {
   const [fileDataURL, setFileDataURL] = useState(null);
   const { data: signer } = useSigner();
   const nftMarketplace = new ethers.Contract(constants.MRKPLACE_ADDR, constants.MRKPLACE_ABI, signer as Signer);
+
+  const [marketplace, setMarketplace] = useState<string>('fixedPrice');
+  const [collection, setCollection] = useState<string>('collection1');
+
   function checkValidType(file: { name: string; size: number | string }) {
     let result = false;
     // .JPG, .PNG, .MP4, .MP3, .WAV.
@@ -82,6 +91,7 @@ function CreateNFT() {
     return format.test(_name) ? false : true;
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const onChangeImage = async (e: any) => {
     const file = e.target.files[0];
     console.log(e);
@@ -260,60 +270,198 @@ function CreateNFT() {
       errorMessage = 'Please remove the special character in the filename';
     }
     return (
-      <Col span={24} md={12} order={0}>
+      <Col span={24} md={10} order={0} className={styles.borderR}>
         <Form.Item>
-          <label style={{ color: '#fff' }}>Image</label>
-          <Input allowClear type="file" accept=".jpg,.jpeg,.mp4,.mp3,.png,.wav" onChange={onChangeImage} />
-          {loadingImage ? <Spin /> : <PreviewHTML />}
+          <Dragger
+            style={{ marginTop: '10px' }}
+            className={styles.dragger}
+            accept=".jpg,.jpeg,.mp4,.mp3,.png,.wav"
+            onChange={(data) => console.log({ data })}
+          >
+            <p className="ant-upload-drag-icon">
+              <Image src={'/img/createNFT/cloud.svg'} alt="" width={71} height={51} />
+            </p>
+            <p className="ant-upload-text">
+              Drop files to upload
+              <br /> or <span>Browse</span>
+            </p>
+          </Dragger>
           <div style={{ color: 'red' }}>{errorMessage}</div>
-          <div style={{ color: 'red', fontSize: '12px', marginTop: '5px', fontWeight: 'bold' }}>
-            supports JPG,JPEG,PNG,GIF,SVG,MPEG,MPG,MPEG3,MP3,MP4 files no larger than 40M
-          </div>
+          {loadingImage ? <Spin /> : <PreviewHTML />}
+          <p className={styles.subTitle}>Atwork Cover</p>
         </Form.Item>
       </Col>
     );
   };
 
-  const CollectionField = () => (
+  const MarketplaceField = () => {
+    const listOption = [
+      {
+        id: 'option1',
+        name: 'Fixed price',
+        img: '/img/createNFT/marketplace1.svg',
+        value: 'fixedPrice',
+      },
+      {
+        id: 'option2',
+        name: 'Open for bids',
+        img: '/img/createNFT/marketplace2.svg',
+        value: 'openBids',
+      },
+      {
+        id: 'option3',
+        name: 'Timed auction',
+        img: '/img/createNFT/marketplace3.svg',
+        value: 'timedAuction',
+      },
+    ];
+
+    const handleChangeMarketplace = (data: string) => {
+      return setMarketplace(data);
+    };
+
+    return (
+      <Form.Item>
+        <label>Put on marketplace</label>
+        <p className={styles.explain}>Enter price to allow users instantly purchase your NFT</p>
+        <div className={styles.listOption}>
+          {listOption?.map?.((item) => (
+            <div
+              key={item?.id}
+              className={marketplace === item.value ? styles.active : ''}
+              onClick={() => handleChangeMarketplace(item?.value)}
+            >
+              <div>
+                <div className={styles.boxImg}>
+                  <Image src={item?.img} alt="" width={68} height={73} />
+                </div>
+                <div className={styles.name}>{item?.name}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </Form.Item>
+    );
+  };
+
+  const CollectionField = () => {
+    const listCollectionDefault = [
+      {
+        id: 'collection1',
+        img: '/img/createNFT/collection1.svg',
+        title: 'Name 1',
+      },
+      {
+        id: 'collection2',
+        img: '/img/createNFT/collection2.svg',
+        title: 'Name 2',
+      },
+      {
+        id: 'collection3',
+        img: '/img/createNFT/collection3.svg',
+        title: 'Name 3',
+      },
+    ];
+
+    return (
+      <div className={styles.collection}>
+        <label>Choose collection</label>
+        <div className={styles.collectionList}>
+          <div>
+            <div>
+              <Image src={'/img/createNFT/plus.svg'} alt="" width={25} height={25} />
+              <div>Crteate</div>
+            </div>
+          </div>
+
+          {listCollectionDefault?.map?.((item) => (
+            <div
+              key={item?.id}
+              className={collection === item.id ? styles.active : ''}
+              onClick={() => setCollection(item?.id)}
+            >
+              <div>
+                <Image src={item?.img} alt="" width={50} height={50} />
+                <div>{item?.title}</div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    );
+  };
+
+  const SalePriceField = () => (
     <Form.Item>
-      <label style={{ color: '#fff' }}>Collection</label>
-      <Select
-        style={{ width: '100%' }}
-        defaultValue="Shared Collection"
-        options={[
-          {
-            value: 'Shared Collection',
-          },
-        ]}
-      />
+      <label>Instant sale price</label>
+      <div className={styles.boxETH}>
+        <div>
+          ETH <DownOutlined />
+        </div>
+        <Select
+          className={styles.select}
+          defaultValue="enter the price for which the item will be instantly sold"
+          options={[
+            {
+              value: 'enter the price for which the item will be instantly sold',
+            },
+          ]}
+        />
+      </div>
+      <p className={styles.dec}>
+        Service fee : <span>1.5%</span>
+      </p>
+      <p className={styles.dec}>
+        You will Receive : <span>.29 ETH $120.56</span>
+      </p>
+    </Form.Item>
+  );
+
+  const Royalties = () => (
+    <Form.Item>
+      <label>Royalties</label>
+      <Input placeholder="0%" />
+      <p className={styles.dec}>Suggested: 10%, 20%, 30%</p>
+    </Form.Item>
+  );
+
+  const Properties = () => (
+    <Form.Item>
+      <label>Properties</label>{' '}
+      <span style={{ marginLeft: '10px' }} className={styles.dec}>
+        (Optional)
+      </span>
+      <div className={styles.properties}>
+        <div>
+          <Input placeholder="Enter key" />
+        </div>
+        <div>
+          <Input placeholder="Enter Value" />
+        </div>
+      </div>
     </Form.Item>
   );
 
   const UnlockableField = () => (
     <Form.Item>
-      <label style={{ color: '#fff' }}>Unlockable(Optional)</label>
-      <br />
-      <Typography.Text type="secondary" style={{ color: '#fff' }}>
-        The work is available to its owner only.
-      </Typography.Text>
-      <Input.TextArea
-        className={styles.textArea}
-        placeholder="You can add links and text description."
-        rows={5}
-        style={{ whiteSpace: 'pre-wrap' }}
-      />
-    </Form.Item>
-  );
-
-  const CopyrightField = () => (
-    <Form.Item>
-      <label style={{ color: '#fff' }}>Copyright(Optional)</label>
-      <Input.TextArea
-        className={styles.textArea}
-        placeholder="The creator has the copyright or use right to this work. You may not modify, copy, reproduce, transmit, or in anyway exploit any such content, without the authorization and consent of the creator. The creator reserve the right to take legal action against any infringement. "
-        rows={5}
-        style={{ whiteSpace: 'pre-wrap' }}
-      />
+      <div className={styles.boxLock}>
+        <div>
+          <div>
+            <Image src={'/img/createNFT/lock.svg'} alt="" width={60} height={60} />
+          </div>
+          <div>
+            <label>Unlock once purchased</label>
+            <p className={styles.dec}>Unlockable content, only revealed by the owner of the item.</p>
+          </div>
+        </div>
+        <div>
+          <Switch
+            onChange={(checked: boolean) => {
+              console.log(`switch to ${checked}`);
+            }}
+          />
+        </div>
+      </div>
     </Form.Item>
   );
 
@@ -322,10 +470,10 @@ function CreateNFT() {
     if (loading) {
       textStatusCreate = 'Creating';
     } else {
-      textStatusCreate = 'Create';
+      textStatusCreate = 'Create Now';
     }
     return (
-      <Col span={24} style={{ display: 'flex', justifyContent: 'center' }}>
+      <Col style={{ display: 'flex', justifyContent: 'center' }}>
         <Button
           size="large"
           type="primary"
@@ -342,66 +490,88 @@ function CreateNFT() {
   };
 
   return (
-    <div className={styles.CreateWrapper}>
-      <Form form={form} layout="vertical">
-        <Row gutter={32}>
-          <ColRight />
-          <Col span={24} md={12}>
-            <Row>
-              <Typography.Title level={3} style={{ color: '#fff' }}>
-                Create Works
-              </Typography.Title>
-              <Col span={24}>
-                <Form.Item>
-                  <label style={{ color: '#fff' }}>Work Name</label>
-                  <Input
-                    placeholder="Enter the name of the work"
-                    style={{ border: '1px solid #d9d9d9', backgroundColor: '#fff' }}
-                    value={formInput.name}
-                    onChange={(e) => {
-                      handleInputName(e.target.value);
-                    }}
-                  />
-                  <div style={{ color: 'red' }}>
-                    {!formInput.name && formValid.nameErr
-                      ? 'Please input your asset name'
-                      : formInput.name && !nameValid
-                      ? 'English only'
-                      : ''}
-                  </div>
-                </Form.Item>
-              </Col>
-              <Col span={24}>
-                <CollectionField />
-              </Col>
-              <Col span={24}>
-                <Form.Item>
-                  <label style={{ color: '#fff' }}>Work Description</label>
-                  <Input.TextArea
-                    className={styles.textArea}
-                    placeholder="Add description to the work"
-                    rows={5}
-                    style={{ whiteSpace: 'pre-wrap' }}
-                    value={formInput.description}
-                    onChange={(e) => {
-                      handleInputDesc(e.target.value);
-                    }}
-                  />
-                  <div style={{ color: 'red' }}>{errorDesField()}</div>
-                </Form.Item>
-              </Col>
-              <Col span={24}>
-                <UnlockableField />
-              </Col>
-              <Col span={24}>
-                <CopyrightField />
-              </Col>
-            </Row>
-            {md && <CreatBtn />}
-          </Col>
-          {!md && <CreatBtn />}
-        </Row>
-      </Form>
+    <div className={styles.CreateNFT}>
+      <h1>Create new item</h1>
+      <div className={styles.CreateWrapper}>
+        <h2>Image,Video,Audio or 3D Model</h2>
+        <p>File types suppported: JPG, PNG, GIP, SVG, MP4, MP3, WEBM, OGG, GLB, GLTF. Max Size : 100 MB</p>
+        <Form form={form} layout="vertical">
+          <Row gutter={32}>
+            <ColRight />
+            <Col span={24} md={14}>
+              <Row>
+                <Col span={24}>
+                  <MarketplaceField />
+                </Col>
+                <Col span={24}>
+                  <Form.Item>
+                    <label>Item Name</label>
+                    <Input
+                      placeholder="Enter the name of the work"
+                      value={formInput.name}
+                      onChange={(e) => {
+                        handleInputName(e.target.value);
+                      }}
+                    />
+                    <div style={{ color: 'red' }}>
+                      {!formInput.name && formValid.nameErr
+                        ? 'Please input your asset name'
+                        : formInput.name && !nameValid
+                        ? 'English only'
+                        : ''}
+                    </div>
+                  </Form.Item>
+                </Col>
+                <Col span={24}>
+                  <Form.Item>
+                    <label>Exter link</label>
+                    <Input placeholder="Enter the Exter link" />
+                  </Form.Item>
+                </Col>
+                {/* <Col span={24}>
+                  <CollectionField />
+                </Col> */}
+                <Col span={24}>
+                  <Form.Item>
+                    <label>Description</label>
+                    <Input.TextArea
+                      className={styles.textArea}
+                      placeholder="provide a detailed description of your item."
+                      rows={5}
+                      style={{ whiteSpace: 'pre-wrap' }}
+                      value={formInput.description}
+                      onChange={(e) => {
+                        handleInputDesc(e.target.value);
+                      }}
+                    />
+                    <div style={{ color: 'red' }}>{errorDesField()}</div>
+                  </Form.Item>
+                </Col>
+                <Col span={24}>
+                  <SalePriceField />
+                </Col>
+                <Col span={24}>
+                  <Royalties />
+                </Col>
+                <Col span={24}>
+                  <Properties />
+                </Col>
+                <Col span={24}>
+                  <CollectionField />
+                </Col>
+                <Col span={24}>
+                  <UnlockableField />
+                </Col>
+              </Row>
+            </Col>
+            <div className={styles.footerForm}>
+              <div>Cancel</div>
+              {md && <CreatBtn />}
+              {/* {!md && <CreatBtn />} */}
+            </div>
+          </Row>
+        </Form>
+      </div>
     </div>
   );
 }
