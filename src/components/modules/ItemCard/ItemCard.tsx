@@ -13,7 +13,6 @@ import { useRouter } from 'next/router';
 import css from './ItemCard.module.css';
 
 export interface ItemCardParams {
-  key: number;
   nft: EvmNft;
 }
 

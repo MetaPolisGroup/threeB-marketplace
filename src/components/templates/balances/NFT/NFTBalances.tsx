@@ -1,4 +1,4 @@
-import { Grid, Heading } from '@chakra-ui/react';
+import { Grid, GridItem, Heading } from '@chakra-ui/react';
 import { NFTCard } from 'components/modules';
 import { useEvmWalletNFTs } from '@moralisweb3/next';
 import { useAccount, useNetwork } from 'wagmi';
@@ -6,8 +6,8 @@ import { useEffect } from 'react';
 import { Box } from '@chakra-ui/react';
 
 const NFTBalances = () => {
-  const { address } = useAccount();
   const { chain } = useNetwork();
+  const { address } = useAccount();
   const { data: nfts } = useEvmWalletNFTs({
     address: address ? address : '',
     chain: chain?.id,
@@ -17,15 +17,18 @@ const NFTBalances = () => {
 
   return (
     <>
-      <Heading size="lg" marginBottom={6}>
+      <Heading size="lg" marginBottom={6} margin={["20px 0px", ""]}>
         NFT Balances
       </Heading>
 
       {nfts?.length ? (
         <div className="nft">
-          <Grid className="NFT">
+          <Grid templateColumns="repeat(auto-fill, 350px)" rowGap={5} justifyItems='center'
+          >
             {nfts.map((nft, key) => (
-              <NFTCard nft={nft} key={key} />
+              <GridItem key={key}>
+                <NFTCard nft={nft} />
+              </GridItem>
             ))}
           </Grid>
         </div>

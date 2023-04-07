@@ -1,5 +1,5 @@
 import { Default } from 'components/layouts/Default';
-import { Marketplace } from 'components/templates/Marketplace';
+import Marketplace from 'components/templates/Marketplace/Marketplace';
 
 const MarketPlacePage = () => {
   return (
