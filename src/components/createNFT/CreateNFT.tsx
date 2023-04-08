@@ -300,18 +300,21 @@ function CreateNFT() {
         id: 'option1',
         name: 'Fixed price',
         img: '/img/createNFT/marketplace1.svg',
+        imgActive: '/img/createNFT/marketplaceAct1.svg',
         value: 'fixedPrice',
       },
       {
         id: 'option2',
         name: 'Open for bids',
         img: '/img/createNFT/marketplace2.svg',
+        imgActive: '/img/createNFT/marketplaceAct2.svg',
         value: 'openBids',
       },
       {
         id: 'option3',
         name: 'Timed auction',
         img: '/img/createNFT/marketplace3.svg',
+        imgActive: '/img/createNFT/marketplaceAct3.svg',
         value: 'timedAuction',
       },
     ];
@@ -333,7 +336,11 @@ function CreateNFT() {
             >
               <div>
                 <div className={styles.boxImg}>
-                  <Image src={item?.img} alt="" width={68} height={73} />
+                  {marketplace === item.value ? (
+                    <Image src={item?.imgActive} alt="" width={68} height={73} />
+                  ) : (
+                    <Image src={item?.img} alt="" width={68} height={73} />
+                  )}
                 </div>
                 <div className={styles.name}>{item?.name}</div>
               </div>
