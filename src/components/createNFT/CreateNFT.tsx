@@ -8,7 +8,6 @@ import { useSigner } from 'wagmi';
 import { failureModal, successModal } from '../../../helpers/modal';
 import { Buffer } from 'buffer';
 
-import { Switch } from 'antd';
 import Image from 'next/image';
 import { DownOutlined } from '@ant-design/icons';
 const { Dragger } = Upload;
@@ -49,12 +48,15 @@ function CreateNFT() {
   const [isValidType, setIsValidType] = useState(true);
   const [mediaSrc, setMediaSrc] = useState<string>('');
   const [isValidFileName, setValidFileName] = useState(true);
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [previewFile, setPreviewFile] = useState(null);
   const [fileUrl, setFileUrl] = useState<string>('');
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [fileDataURL, setFileDataURL] = useState(null);
   const { data: signer } = useSigner();
   const nftMarketplace = new ethers.Contract(constants.MRKPLACE_ADDR, constants.MRKPLACE_ABI, signer as Signer);
 
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [marketplace, setMarketplace] = useState<string>('fixedPrice');
   const [collection, setCollection] = useState<string>('collection1');
 
@@ -248,11 +250,13 @@ function CreateNFT() {
       return (
         <img
           alt=""
-          src={fileDataURL ? fileDataURL : ''}
+          // src={fileDataURL ? fileDataURL : ''}
+          src={fileUrl}
           style={{
-            margin: '10px 0 10px 0',
-            width: '210px',
-            height: '210px',
+            margin: 'auto',
+            width: '300px',
+            height: 'auto',
+            maxHeight: '300px',
           }}
           width="350"
         />
@@ -278,16 +282,24 @@ function CreateNFT() {
             accept=".jpg,.jpeg,.mp4,.mp3,.png,.wav"
             onChange={onChangeImage}
           >
-            <p className="ant-upload-drag-icon">
-              <Image src={'/img/createNFT/cloud.svg'} alt="" width={71} height={51} />
-            </p>
-            <p className="ant-upload-text">
-              Drop files to upload
-              <br /> or <span>Browse</span>
-            </p>
+            {fileUrl === '' ? (
+              <>
+                <p className="ant-upload-drag-icon">
+                  <Image src={'/img/createNFT/cloud.svg'} alt="" width={71} height={51} />
+                </p>
+                <p className="ant-upload-text">
+                  Drop files to upload
+                  <br /> or <span>Browse</span>
+                </p>
+              </>
+            ) : loadingImage ? (
+              <Spin />
+            ) : (
+              <PreviewHTML />
+            )}
           </Dragger>
           <div style={{ color: 'red' }}>{errorMessage}</div>
-          {loadingImage ? <Spin /> : <PreviewHTML />}
+
           <p className={styles.subTitle}>Atwork Cover</p>
         </Form.Item>
       </Col>
@@ -319,10 +331,6 @@ function CreateNFT() {
       },
     ];
 
-    const handleChangeMarketplace = (data: string) => {
-      return setMarketplace(data);
-    };
-
     return (
       <Form.Item>
         <label>Put on marketplace</label>
@@ -332,7 +340,7 @@ function CreateNFT() {
             <div
               key={item?.id}
               className={marketplace === item.value ? styles.active : ''}
-              onClick={() => handleChangeMarketplace(item?.value)}
+              // onClick={() => setMarketplace(item?.value)}
             >
               <div>
                 <div className={styles.boxImg}>
@@ -356,17 +364,7 @@ function CreateNFT() {
       {
         id: 'collection1',
         img: '/img/createNFT/collection1.svg',
-        title: 'Name 1',
-      },
-      {
-        id: 'collection2',
-        img: '/img/createNFT/collection2.svg',
-        title: 'Name 2',
-      },
-      {
-        id: 'collection3',
-        img: '/img/createNFT/collection3.svg',
-        title: 'Name 3',
+        title: 'Shared Collection',
       },
     ];
 
@@ -403,7 +401,7 @@ function CreateNFT() {
       <label>Instant sale price</label>
       <div className={styles.boxETH}>
         <div>
-          ETH <DownOutlined />
+          BNB <DownOutlined />
         </div>
         <Select
           className={styles.select}
@@ -419,56 +417,8 @@ function CreateNFT() {
         Service fee : <span>1.5%</span>
       </p>
       <p className={styles.dec}>
-        You will Receive : <span>.29 ETH $120.56</span>
+        You will Receive : <span>.29 BNB $120.56</span>
       </p>
-    </Form.Item>
-  );
-
-  const Royalties = () => (
-    <Form.Item>
-      <label>Royalties</label>
-      <Input placeholder="0%" />
-      <p className={styles.dec}>Suggested: 10%, 20%, 30%</p>
-    </Form.Item>
-  );
-
-  const Properties = () => (
-    <Form.Item>
-      <label>Properties</label>{' '}
-      <span style={{ marginLeft: '10px' }} className={styles.dec}>
-        (Optional)
-      </span>
-      <div className={styles.properties}>
-        <div>
-          <Input placeholder="Enter key" />
-        </div>
-        <div>
-          <Input placeholder="Enter Value" />
-        </div>
-      </div>
-    </Form.Item>
-  );
-
-  const UnlockableField = () => (
-    <Form.Item>
-      <div className={styles.boxLock}>
-        <div>
-          <div>
-            <Image src={'/img/createNFT/lock.svg'} alt="" width={60} height={60} />
-          </div>
-          <div>
-            <label>Unlock once purchased</label>
-            <p className={styles.dec}>Unlockable content, only revealed by the owner of the item.</p>
-          </div>
-        </div>
-        <div>
-          <Switch
-            onChange={(checked: boolean) => {
-              console.log(`switch to ${checked}`);
-            }}
-          />
-        </div>
-      </div>
     </Form.Item>
   );
 
@@ -530,12 +480,6 @@ function CreateNFT() {
                     </div>
                   </Form.Item>
                 </Col>
-                <Col span={24}>
-                  <Form.Item>
-                    <label>Exter link</label>
-                    <Input placeholder="Enter the Exter link" />
-                  </Form.Item>
-                </Col>
                 {/* <Col span={24}>
                   <CollectionField />
                 </Col> */}
@@ -559,16 +503,7 @@ function CreateNFT() {
                   <SalePriceField />
                 </Col>
                 <Col span={24}>
-                  <Royalties />
-                </Col>
-                <Col span={24}>
-                  <Properties />
-                </Col>
-                <Col span={24}>
                   <CollectionField />
-                </Col>
-                <Col span={24}>
-                  <UnlockableField />
                 </Col>
               </Row>
             </Col>
