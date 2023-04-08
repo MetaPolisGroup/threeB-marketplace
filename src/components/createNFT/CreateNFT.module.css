@@ -265,6 +265,15 @@
   color: #5356fb !important;
 }
 
+.dragger video {
+  margin: auto;
+}
+
+.dragger .boxMp3 {
+  color: #ffffff !important;
+  font-size: 18px;
+}
+
 .subTitle {
   font-weight: 700;
   font-size: 26px;

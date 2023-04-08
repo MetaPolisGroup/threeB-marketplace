@@ -71,6 +71,7 @@ function CreateNFT() {
       fileExtension === '.jpg' ||
       fileExtension === 'jpeg' ||
       fileExtension === '.png' ||
+      fileExtension === '.svg' ||
       fileExtension === '.mp4' ||
       fileExtension === '.mp3' ||
       fileExtension === '.wav'
@@ -268,6 +269,41 @@ function CreateNFT() {
   const ColRight = () => {
     let errorMessage: string | undefined;
 
+    const renderFile = () => {
+      if (fileUrl === '') {
+        return (
+          <>
+            <p className="ant-upload-drag-icon">
+              <Image src={'/img/createNFT/cloud.svg'} alt="" width={71} height={51} />
+            </p>
+            <p className="ant-upload-text">
+              Drop files to upload
+              <br /> or <span>Browse</span>
+            </p>
+          </>
+        );
+      }
+
+      if (loadingImage) {
+        return <Spin />;
+      }
+
+      if (fileType === 'video/mp4') {
+        return (
+          <video width="300px" height="auto" controls>
+            <source src={fileUrl} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        );
+      }
+
+      if (fileType === 'audio/mpeg') {
+        return <div className={styles.boxMp3}>{fileName}</div>;
+      }
+
+      return <PreviewHTML />;
+    };
+
     if (!fileName && formValid.fileErr) {
       errorMessage = 'Please upload your NFT file';
     } else if (!isValidFileName) {
@@ -279,24 +315,10 @@ function CreateNFT() {
           <Dragger
             style={{ marginTop: '10px' }}
             className={styles.dragger}
-            accept=".jpg,.jpeg,.mp4,.mp3,.png,.wav"
+            accept=".jpg,.jpeg,.mp4,.mp3,.png,.wav,.svg"
             onChange={onChangeImage}
           >
-            {fileUrl === '' ? (
-              <>
-                <p className="ant-upload-drag-icon">
-                  <Image src={'/img/createNFT/cloud.svg'} alt="" width={71} height={51} />
-                </p>
-                <p className="ant-upload-text">
-                  Drop files to upload
-                  <br /> or <span>Browse</span>
-                </p>
-              </>
-            ) : loadingImage ? (
-              <Spin />
-            ) : (
-              <PreviewHTML />
-            )}
+            {renderFile()}
           </Dragger>
           <div style={{ color: 'red' }}>{errorMessage}</div>
 
@@ -480,9 +502,6 @@ function CreateNFT() {
                     </div>
                   </Form.Item>
                 </Col>
-                {/* <Col span={24}>
-                  <CollectionField />
-                </Col> */}
                 <Col span={24}>
                   <Form.Item>
                     <label>Description</label>
