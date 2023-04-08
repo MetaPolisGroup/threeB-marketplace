@@ -2,25 +2,28 @@ import { Grid, GridItem, Heading } from '@chakra-ui/react';
 import { NFTCard } from 'components/modules';
 import { useEvmWalletNFTs } from '@moralisweb3/next';
 import { useAccount, useNetwork } from 'wagmi';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { Box } from '@chakra-ui/react';
 import Profile from 'components/templates/profile';
 
 const NFTBalances = () => {
   const { chain } = useNetwork();
   const { address, isConnected } = useAccount();
+  const [isAuth, setIsAuth] = useState<boolean>(false);
   const { data: nfts } = useEvmWalletNFTs({
     address: address ? address : '',
     chain: chain?.id,
   });
 
   useEffect(() => {
-    console.log('nfts: ', nfts);
+    if (isConnected) {
+      setIsAuth(isConnected);
+    }
   }, [nfts]);
 
   return (
     <>
-      {isConnected ? <Profile /> : null}
+      {isAuth ? <Profile /> : null}
       <Heading size="lg" marginBottom={6} margin={['20px 0px', '']}>
         NFT Balances
       </Heading>
