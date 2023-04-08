@@ -10,6 +10,8 @@ import { Buffer } from 'buffer';
 
 import Image from 'next/image';
 import { DownOutlined } from '@ant-design/icons';
+import { useAppSelector } from 'store/hooks';
+import { RootState } from 'store';
 const { Dragger } = Upload;
 
 const { useBreakpoint } = Grid;
@@ -55,6 +57,8 @@ function CreateNFT() {
   const [fileDataURL, setFileDataURL] = useState(null);
   const { data: signer } = useSigner();
   const nftMarketplace = new ethers.Contract(constants.MRKPLACE_ADDR, constants.MRKPLACE_ABI, signer as Signer);
+
+  const { isAuth } = useAppSelector((state: RootState) => state.user);
 
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [marketplace, setMarketplace] = useState<string>('fixedPrice');
@@ -214,7 +218,7 @@ function CreateNFT() {
   };
 
   async function handleCreateClicked() {
-    if (signer) {
+    if (signer && isAuth) {
       if (!nameValid) {
         setFormValid({ ...formValid, nameErr: true });
         return;

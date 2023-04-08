@@ -4,22 +4,22 @@ import { useEvmWalletNFTs } from '@moralisweb3/next';
 import { useNetwork } from 'wagmi';
 
 import { Box } from '@chakra-ui/react';
-import { useAppSelector } from 'store/hooks';
-import { RootState } from 'store';
+
 import Profile from 'components/templates/profile';
+import { useSession } from 'next-auth/react';
 
 const NFTBalances = () => {
   const { chain } = useNetwork();
+  const { data, status } = useSession();
 
-  const { address, isAuth } = useAppSelector((state: RootState) => state.user);
   const { data: nfts } = useEvmWalletNFTs({
-    address: address ? address : '',
+    address: data?.user?.address,
     chain: chain?.id,
   });
 
   return (
     <>
-      {isAuth ? <Profile /> : null}
+      {status === 'authenticated' ? <Profile /> : null}
       <Heading size="lg" marginBottom={6} margin={['20px 0px', '']}>
         NFT Balances
       </Heading>
