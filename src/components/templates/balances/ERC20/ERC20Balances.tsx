@@ -16,16 +16,17 @@ import {
 } from '@chakra-ui/react';
 
 import { useEvmWalletTokenBalances } from '@moralisweb3/next';
+import { useSession } from 'next-auth/react';
 import { useEffect } from 'react';
 import { getEllipsisTxt } from 'utils/format';
-import { useAccount, useNetwork } from 'wagmi';
+import { useNetwork } from 'wagmi';
 
 const ERC20Balances = () => {
   const hoverTrColor = useColorModeValue('gray.100', 'gray.700');
-  const { address } = useAccount();
+  const { data } = useSession();
   const { chain } = useNetwork();
   const { data: tokenBalances } = useEvmWalletTokenBalances({
-    address: address ? address : '',
+    address: data?.user.address,
     chain: chain?.id,
   });
 
