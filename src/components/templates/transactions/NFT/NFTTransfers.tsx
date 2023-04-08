@@ -18,14 +18,16 @@ const NFTTransfers = () => {
   const hoverTrColor = useColorModeValue('gray.100', 'gray.700');
   // eslint-disable-next-line etc/no-commented-out-code
   // const borderTrColor = useColorModeValue('#edf2f7', '#2d3748');
+
   const { address } = useAccount();
   const { chain } = useNetwork();
+
   // eslint-disable-next-line etc/no-commented-out-code
   // const { data: signer } = useSigner();
 
   const { data: transactions } = useEvmWalletTransactions({
-    address: address ? address : '0x3aA092adBa58847b614dCaA64E6bAf3bea851C2d',
-    chain: 97,
+    address: address ? address : '',
+    chain: chain?.id,
   });
 
   // const handleDelete = async (nftContract?: string, tokenId?: string) => {
