@@ -15,6 +15,9 @@ import MobileNav from './MobileSideBar';
 import NavItem from './SideBarItem';
 import { useAccount, useDisconnect } from 'wagmi';
 import { NextRouter, useRouter } from 'next/router';
+import { signOut } from 'next-auth/react';
+import { useAppDispatch } from 'store/hooks';
+import { clearUserInfo } from 'store/slice/user-slice';
 
 interface LinkItemProps {
   name: string;
@@ -26,11 +29,13 @@ export default function SimpleSidebar({ children }: { children: ReactNode }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { disconnectAsync } = useDisconnect();
   const { isConnected } = useAccount();
-
-
+  const dispatch = useAppDispatch();
 
   const handleDisconnect = async () => {
     await disconnectAsync();
+    signOut({ redirect: false });
+    dispatch(clearUserInfo());
+    window.localStorage.removeItem('address');
   };
   return (
     <Box bg={useColorModeValue('gray.100', 'gray.900')}>
@@ -76,13 +81,29 @@ const SidebarContent = ({ onClose, isConnected, onLogoutHandler, ...rest }: Side
 
   const LinkItemsNFT: Array<LinkItemProps> = [
     { name: 'Explore', src: router.pathname === '/' ? '/icons/explore-active.png' : '/icons/explore.png', path: '/' },
-    { name: 'My Collection', src: router.pathname === '/my-collection/nft' ? '/icons/collection-active.png' : '/icons/collection.png', path: '/my-collection/nft' },
-    { name: 'Activities', src: router.pathname === '/history/nft' ? '/icons/history-active.png' : '/icons/history.png', path: '/history/nft' },
+    {
+      name: 'My Collection',
+      src: router.pathname === '/my-collection/nft' ? '/icons/collection-active.png' : '/icons/collection.png',
+      path: '/my-collection/nft',
+    },
+    {
+      name: 'Activities',
+      src: router.pathname === '/history/nft' ? '/icons/history-active.png' : '/icons/history.png',
+      path: '/history/nft',
+    },
   ];
 
   const LinkItemsDex: Array<LinkItemProps> = [
-    { name: 'My Wallet', src: router.pathname === '/my-collection/erc20' ? '/icons/wallet-active.png' : '/icons/wallet.png', path: '/my-collection/erc20' },
-    { name: 'History', src: router.pathname === '/history/erc20' ? '/icons/history-active.png' : '/icons/history.png', path: '/history/erc20' },
+    {
+      name: 'My Wallet',
+      src: router.pathname === '/my-collection/erc20' ? '/icons/wallet-active.png' : '/icons/wallet.png',
+      path: '/my-collection/erc20',
+    },
+    {
+      name: 'History',
+      src: router.pathname === '/history/erc20' ? '/icons/history-active.png' : '/icons/history.png',
+      path: '/history/erc20',
+    },
   ];
 
   useEffect(() => {
@@ -131,14 +152,16 @@ const SidebarContent = ({ onClose, isConnected, onLogoutHandler, ...rest }: Side
 const RenderItemNav: React.FC<{
   title: string;
   list: LinkItemProps[];
-  router: NextRouter
+  router: NextRouter;
 }> = ({ list, title, router }) => {
   return (
     <React.Fragment>
       <p style={{ fontSize: 20, color: '#5356FB', fontWeight: 700, marginTop: 50 }}>{title}</p>
       {list.map((link) => (
         <NavItem key={link.name} src={link.src} style={{ gap: 13 }} path={link.path}>
-          <span style={{ fontWeight: 400, fontSize: 18, color: router.pathname === link.path ? '#5356FB' : '' }}>{link.name}</span>
+          <span style={{ fontWeight: 400, fontSize: 18, color: router.pathname === link.path ? '#5356FB' : '' }}>
+            {link.name}
+          </span>
         </NavItem>
       ))}
     </React.Fragment>

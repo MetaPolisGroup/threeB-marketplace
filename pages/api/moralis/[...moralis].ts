@@ -3,7 +3,9 @@ import { MoralisNextApi } from '@moralisweb3/next';
 export default MoralisNextApi({
   apiKey: process.env.MORALIS_API_KEY || '',
   authentication: {
-    domain: 'explore.1988dragon.com',
+    // eslint-disable-next-line etc/no-commented-out-code
+    // domain: 'explore.1988dragon.com',
+    domain: 'localhost:3000',
     uri: process.env.NEXTAUTH_URL || '',
     timeout: 120,
   },
