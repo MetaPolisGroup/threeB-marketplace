@@ -22,21 +22,12 @@ interface LinkItemProps {
   path: string;
 }
 
-const LinkItemsNFT: Array<LinkItemProps> = [
-  { name: 'Explore', src: '/icons/explore.png', path: '/' },
-  { name: 'My Collection', src: '/icons/collection.png', path: '/my-collection/nft' },
-  { name: 'Activities', src: '/icons/history.png', path: '/history/nft' },
-];
-
-const LinkItemsDex: Array<LinkItemProps> = [
-  { name: 'My Wallet', src: '/icons/wallet.png', path: '/my-collection/erc20' },
-  { name: 'History', src: '/icons/history.png', path: '/history/erc20' },
-];
-
 export default function SimpleSidebar({ children }: { children: ReactNode }) {
   const { isOpen, onOpen, onClose } = useDisclosure();
   const { disconnectAsync } = useDisconnect();
   const { isConnected } = useAccount();
+
+
 
   const handleDisconnect = async () => {
     await disconnectAsync();
@@ -82,6 +73,18 @@ interface SidebarProps extends BoxProps {
 const SidebarContent = ({ onClose, isConnected, onLogoutHandler, ...rest }: SidebarProps) => {
   const [isConnect, setIsConnect] = useState(false);
   const router = useRouter();
+
+  const LinkItemsNFT: Array<LinkItemProps> = [
+    { name: 'Explore', src: router.pathname === '/' ? '/icons/explore-active.png' : '/icons/explore.png', path: '/' },
+    { name: 'My Collection', src: router.pathname === '/my-collection/nft' ? '/icons/collection-active.png' : '/icons/collection.png', path: '/my-collection/nft' },
+    { name: 'Activities', src: router.pathname === '/history/nft' ? '/icons/history-active.png' : '/icons/history.png', path: '/history/nft' },
+  ];
+
+  const LinkItemsDex: Array<LinkItemProps> = [
+    { name: 'My Wallet', src: router.pathname === '/my-collection/erc20' ? '/icons/wallet-active.png' : '/icons/wallet.png', path: '/my-collection/erc20' },
+    { name: 'History', src: router.pathname === '/history/erc20' ? '/icons/history-active.png' : '/icons/history.png', path: '/history/erc20' },
+  ];
+
   useEffect(() => {
     setIsConnect(isConnected);
   }, [isConnected]);
