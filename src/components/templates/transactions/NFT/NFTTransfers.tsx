@@ -18,8 +18,10 @@ const NFTTransfers = () => {
   const hoverTrColor = useColorModeValue('gray.100', 'gray.700');
   // eslint-disable-next-line etc/no-commented-out-code
   // const borderTrColor = useColorModeValue('#edf2f7', '#2d3748');
+
   const { address } = useAccount();
   const { chain } = useNetwork();
+
   // eslint-disable-next-line etc/no-commented-out-code
   // const { data: signer } = useSigner();
 
