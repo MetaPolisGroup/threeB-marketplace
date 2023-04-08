@@ -2,10 +2,11 @@
 // import { DeleteIcon } from '@chakra-ui/icons';
 import { TableContainer, Table, Thead, Tr, Th, Tbody, Td, Heading, Box, useColorModeValue } from '@chakra-ui/react';
 import { useEvmWalletTransactions } from '@moralisweb3/next';
+import { useSession } from 'next-auth/react';
 
 import { useEffect } from 'react';
 import { getEllipsisTxt } from 'utils/format';
-import { useAccount, useNetwork } from 'wagmi';
+import { useNetwork } from 'wagmi';
 // eslint-disable-next-line etc/no-commented-out-code
 // import { ethers, Signer } from 'ethers';
 // import { failureModal, successModal } from '../../../../../helpers/modal';
@@ -19,14 +20,14 @@ const NFTTransfers = () => {
   // eslint-disable-next-line etc/no-commented-out-code
   // const borderTrColor = useColorModeValue('#edf2f7', '#2d3748');
 
-  const { address } = useAccount();
+  const { data } = useSession();
   const { chain } = useNetwork();
 
   // eslint-disable-next-line etc/no-commented-out-code
   // const { data: signer } = useSigner();
 
   const { data: transactions } = useEvmWalletTransactions({
-    address: address ? address : '',
+    address: data?.user?.address,
     chain: chain?.id,
   });
 
@@ -97,7 +98,7 @@ const NFTTransfers = () => {
   // };
 
   useEffect(() => {
-    if (chain && address) {
+    if (chain && data?.user.address) {
       console.log(transactions);
     }
   }, []);
