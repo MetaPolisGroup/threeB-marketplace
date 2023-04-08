@@ -24,8 +24,8 @@ const NFTTransfers = () => {
   // const { data: signer } = useSigner();
 
   const { data: transactions } = useEvmWalletTransactions({
-    address: address ? address : '',
-    chain: chain?.id,
+    address: address ? address : '0x3aA092adBa58847b614dCaA64E6bAf3bea851C2d',
+    chain: 97,
   });
 
   // const handleDelete = async (nftContract?: string, tokenId?: string) => {

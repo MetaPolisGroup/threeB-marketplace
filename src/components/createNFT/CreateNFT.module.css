@@ -368,8 +368,9 @@
 
 .boxETH > div:first-child {
   position: absolute;
-  top: 7px;
+  top: 52%;
   right: 25px;
+  transform: translateY(-50%);
   color: #ffffff !important;
   font-weight: 400;
   font-size: 16px;
