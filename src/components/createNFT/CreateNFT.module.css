@@ -182,7 +182,7 @@
 }
 
 .CreateNFT {
-  padding: 43px 24px 23px;
+  padding: 0px 24px 23px;
 }
 
 .CreateNFT h1 {
@@ -288,13 +288,13 @@
 }
 
 .listOption > div {
+  opacity: 0.4;
   width: 120px;
   background: #11131f;
   border-radius: 4px;
   text-align: center;
   padding: 12px 8px;
   color: white;
-  cursor: pointer;
 }
 
 .listOption .boxImg {
@@ -308,6 +308,7 @@
 }
 
 .listOption .active {
+  opacity: 1 !important;
   background-image: linear-gradient(to right bottom, #f539f8, #5356fb);
   border-radius: 4px;
   padding: 1px;
@@ -319,15 +320,6 @@
   background-color: #11131f;
   padding: 11px 7px;
   border-radius: 4px;
-}
-
-.properties {
-  display: flex;
-  justify-content: space-between;
-}
-
-.properties > div {
-  width: 47%;
 }
 
 .dec {
@@ -414,27 +406,6 @@
   height: 100%;
   padding: 12px 4px;
   background: #11131f;
-}
-
-.boxLock {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  color: #ffffff !important;
-}
-
-.boxLock > div:first-child {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.boxLock :global(.ant-switch-handle)::before {
-  background-color: #f539f8;
-}
-
-.boxLock :global(.ant-switch-inner) {
-  background: #ffffff;
 }
 
 .footerForm {
