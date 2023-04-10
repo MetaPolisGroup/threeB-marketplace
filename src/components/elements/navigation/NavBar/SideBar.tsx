@@ -18,6 +18,7 @@ import { NextRouter, useRouter } from 'next/router';
 import { signOut } from 'next-auth/react';
 import { useAppDispatch } from 'store/hooks';
 import { clearUserInfo } from 'store/slice/user-slice';
+import { MoralisLogo } from 'components/elements/MoralisLogo';
 
 interface LinkItemProps {
   name: string;
@@ -123,8 +124,7 @@ const SidebarContent = ({ onClose, isConnected, onLogoutHandler, ...rest }: Side
     >
       <Flex alignItems="center" marginBottom={5} margin="8px 0px 0px 61px" gap="10px" justifyContent="space-between">
         <Flex alignItems="center" gap="10px">
-          <Image src="/images/logo.png" alt="asd" width={58} height={56} />
-          <h2 style={{ fontWeight: 700, color: 'white' }}>Logo</h2>
+          <MoralisLogo />
         </Flex>
         <CloseButton display={{ base: 'flex', md: 'none' }} margin="10px" onClick={onClose} />
       </Flex>

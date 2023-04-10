@@ -48,7 +48,7 @@ const ListedBox = ({ address, price, item, tokenAddress }: ListedBoxParams) => {
     <div className={styless.cardListedbox}>
       <div className={styless.description}>
         Contract by:
-        <a className={styless.viewAddress} style={{ color: '#fff', fontWeight: 'bold', marginLeft: '10px' }}>
+        <a className={styless.viewAddress} style={{ color: '#000', fontWeight: 'bold', marginLeft: '10px' }}>
           {getEllipsisTxt(address ? address : '')}
         </a>
       </div>

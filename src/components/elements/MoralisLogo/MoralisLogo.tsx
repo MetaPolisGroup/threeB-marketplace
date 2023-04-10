@@ -6,13 +6,13 @@ const MoralisLogo = () => {
   const { colorMode } = useColorMode();
 
   return (
-    <Link href={'https://1988dragon.com/'}>
+    <Link href={'/'}>
       <Image
         className="logo1988"
-        src={colorMode === 'dark' ? '/1988dragon_logo_w-01.png' : '/1988dragon_logo_b-01.png'}
+        src={colorMode === 'dark' ? '/logo_ThreeB.svg' : '/logo_ThreeB.svg'}
         height={90}
         width={180}
-        alt="Moralis"
+        alt="Three B Logo"
         style={{ cursor: 'pointer' }}
       />
     </Link>

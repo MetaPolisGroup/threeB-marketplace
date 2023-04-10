@@ -6,7 +6,7 @@
   transition: box-shadow 0.3s, border-color 0.3s;
   margin: auto;
   padding: 10px;
-  color: var(--color-grey);
+  background-color: var(--color-white);
 }
 
 .content {
@@ -23,9 +23,9 @@
 }
 
 .accountName {
-  color: var(--color-white);
   font-size: 40px;
-
+  color: #000;
+  border-bottom: solid 1px gray;
   font-weight: bold;
   text-align: left;
   margin-bottom: 5px;
@@ -68,15 +68,17 @@
   padding: 10px 0;
   margin-top: 5px;
   text-align: justify;
+  border-top: solid 1px gray;
+  border-bottom: solid 1px gray;
 }
 
-.avatarCollection:global(.ant-avatar) {
+/* .avatarCollection:global(.ant-avatar) {
   bottom: -5px;
   left: 30%;
   transform: translate(-50%, 0px);
   border: 2px solid white;
   background-color: #fea013;
-}
+} */
 
 .titleCollection {
   font-weight: bold;
@@ -130,6 +132,10 @@
     font-weight: bold;
     font-size: 20px !important;
   }
+}
+
+.infoBottom {
+  margin-left: 20px;
 }
 
 @media screen and (max-width: 500px) {

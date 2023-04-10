@@ -9,10 +9,10 @@ const Footer = () => {
         <div className="footer">
           <div className="left_part">
             <p style={{ color: `${color1}` }}>
-              Copyright 2022 —
+              Copyright 2023 —
               <a style={{ color: `${color1}` }} href="" rel="noreferrer">
                 {' '}
-                1988Dragon
+                ThreeB
               </a>
             </p>
           </div>
