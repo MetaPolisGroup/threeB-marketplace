@@ -279,7 +279,7 @@ const Mint: FC<IMint> = () => {
         <div className="metaportal_fn_mint_top">
           <div className="mint_left">
             <div className="img">
-              <div className="img_in" style={{ backgroundImage: `url(${COLLECTIONS[1] && COLLECTIONS[1].image})` }}>
+              <div className="img_in" style={{ backgroundImage: `url(${COLLECTIONS[0] && COLLECTIONS[0].image})` }}>
                 <Image width={500} height={500} src="/img/1x1.jpg" alt="" />
               </div>
             </div>
@@ -296,17 +296,17 @@ const Mint: FC<IMint> = () => {
                 </Link>
                 <span className="separator">/</span>
                 <span style={{ color: `${color1}` }} className="current">
-                  {COLLECTIONS[1] && COLLECTIONS[1].title}
+                  {COLLECTIONS[0] && COLLECTIONS[0].title}
                 </span>
               </p>
             </div>
             <h3
               style={{ color: `${color1}` }}
               className="fn__maintitle"
-              data-text={COLLECTIONS[1] && COLLECTIONS[1].title}
+              data-text={COLLECTIONS[0] && COLLECTIONS[0].title}
               data-align="left"
             >
-              {COLLECTIONS[1] && COLLECTIONS[1].title}
+              {COLLECTIONS[0] && COLLECTIONS[0].title}
             </h3>
             <div className="desc">
               <p style={{ color: `${color1}` }}>
@@ -389,7 +389,7 @@ const Mint: FC<IMint> = () => {
                     <h4 style={{ color: `${color1}` }}>Total Price</h4>
                     <h3>
                       <span style={{ color: `${color1}` }} className="total_price">
-                        {(Number(COLLECTIONS[1].price) * quantity).toFixed(2)}
+                        {(Number(COLLECTIONS[0].price) * quantity).toFixed(2)}
                       </span>
                       <span style={{ color: `${color1}` }}> {currentUnit ? currentUnit : 'BNB'} + GAS</span>
                     </h3>
