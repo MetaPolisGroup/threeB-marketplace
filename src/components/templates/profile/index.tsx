@@ -20,7 +20,7 @@ const Profile = () => {
           </Box>
         </div>
         <div className={css['btn-right']}>
-          <Link href="/">
+          <Link href="/profile">
             <a>Edit Profile</a>
           </Link>
         </div>
