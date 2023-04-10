@@ -87,13 +87,19 @@ const NFTDetails = () => {
             <MedHTML />
           </div>
           <br />
+          <div className={styless.cardbox}>
+            <div className={styless.description} style={{ borderTop: 'solid 1px gray', fontFamily: 'none' }}>
+              <p style={{ fontFamily: 'GILROY', color: '#000' }}>
+                {metadata ? (metadata as { description?: string })?.description : ''}
+              </p>
+            </div>
+          </div>
         </Col>
         <Col xs={{ span: 24 }} md={{ span: 24 }} xl={{ span: 12 }}>
           <CreatorBox
             name={metadata ? (metadata as { name?: string })?.name : ''}
             ownerOf={nftData?.owner_of}
             creator={nftData?.minter_address}
-            description={metadata ? (metadata as { description?: string })?.description : ''}
             address={address}
             tokenId={nftData?.token_id}
           />

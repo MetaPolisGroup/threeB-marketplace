@@ -7,37 +7,40 @@
   transition: box-shadow 0.3s, border-color 0.3s;
   margin: auto;
   padding: 10px;
+  margin-top: 30px;
+
+  background-color: var(--color-white);
 }
 
 .prices {
   font-size: 40px;
-  color: var(--color-white);
   padding: 10px 0;
   font-weight: bold;
+  color: #000;
 }
 .exploreBtn:global(.ant-btn) {
   background: transparent;
   border-radius: 10px;
   width: 100%;
-  border-color: #fff;
+  border-color: #000;
   margin-bottom: 40px;
 }
 
 .exploreBtn:global(.ant-btn:hover) {
-  color: #ffffff;
+  color: var(--color-white) !important;
   background: var(--color-violet);
   border: none;
 }
 
 .exploreBtn:global(.ant-btn:hover) span {
-  background: -webkit-linear-gradient(#ffffff, #ffffff);
+  background: -webkit-linear-gradient(#000, #000);
   background-clip: text;
   -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
+  -webkit-text-fill-color: var(--color-white);
 }
 .exploreBtn span {
   font-weight: 700;
-  background: -webkit-linear-gradient(#fff, #fff);
+  background: -webkit-linear-gradient(#000, #000);
   background-clip: text;
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
@@ -211,7 +214,7 @@
 
 @media only screen and (min-width: 250px) and (max-width: 300px) {
   .cardListedbox {
-    margin: auto;
+    margin-top: 30px;
   }
 
   .viewAddress {
@@ -221,7 +224,7 @@
 
 @media only screen and (min-width: 300px) and (max-width: 400px) {
   .cardListedbox {
-    margin: auto;
+    margin-top: 30px;
   }
   .viewAddress {
     font-size: 11px;
@@ -230,7 +233,7 @@
 
 @media only screen and (min-width: 400px) and (max-width: 500px) {
   .cardListedbox {
-    margin: auto;
+    margin-top: 30px;
   }
 
   .viewAddress {
@@ -246,7 +249,8 @@
     width: auto;
     cursor: pointer;
     transition: box-shadow 0.3s, border-color 0.3s;
-    margin: auto;
+    margin-top: 30px;
+
     padding: 10px;
   }
 }
@@ -265,7 +269,8 @@
     width: auto;
     cursor: pointer;
     transition: box-shadow 0.3s, border-color 0.3s;
-    margin: auto;
+    margin-top: 30px;
+
     padding: 10px;
   }
 }
@@ -278,7 +283,8 @@
     width: auto;
     cursor: pointer;
     transition: box-shadow 0.3s, border-color 0.3s;
-    margin: auto;
+    margin-top: 30px;
+
     padding: 10px;
   }
 }
@@ -291,7 +297,7 @@
     width: auto;
     cursor: pointer;
     transition: box-shadow 0.3s, border-color 0.3s;
-    margin: auto;
+    margin-top: 30px;
     padding: 10px;
   }
 }

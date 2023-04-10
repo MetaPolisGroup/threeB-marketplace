@@ -7,6 +7,7 @@
   transition: box-shadow 0.3s, border-color 0.3s;
   margin: auto;
   padding: 10px;
+  background-color: var(--color-white);
 }
 
 .image {
@@ -29,14 +30,12 @@
   width: auto;
   cursor: pointer;
   transition: box-shadow 0.3s, border-color 0.3s;
-  width: 550px;
   margin: auto;
   padding: 10px;
 }
 
 @media only screen and (min-width: 250px) and (max-width: 300px) {
   .cardbox {
-    width: 250px;
     margin: auto;
   }
 
@@ -44,12 +43,12 @@
     width: 250px;
     height: 250px;
     margin: auto;
+    background-color: var(--color-white);
   }
 }
 
 @media only screen and (min-width: 300px) and (max-width: 400px) {
   .cardbox {
-    width: 300px;
     margin: auto;
   }
 
@@ -57,18 +56,19 @@
     width: 300px;
     height: 300px;
     margin: auto;
+    background-color: var(--color-white);
   }
 }
 
 @media only screen and (min-width: 400px) and (max-width: 500px) {
   .cardbox {
-    width: 400px;
     margin: auto;
   }
   .cardimgbox {
     width: 400px;
     height: 400px;
     margin: auto;
+    background-color: var(--color-white);
   }
 }
 
@@ -81,7 +81,6 @@
     width: auto;
     cursor: pointer;
     transition: box-shadow 0.3s, border-color 0.3s;
-    width: 850px;
     margin: auto;
     padding: 10px;
   }
@@ -89,6 +88,7 @@
   .cardimgbox {
     padding: 14px;
 
+    background-color: var(--color-white);
     border-radius: 20px;
     border: 2px solid transparent;
     width: auto;
@@ -108,13 +108,13 @@
     width: auto;
     cursor: pointer;
     transition: box-shadow 0.3s, border-color 0.3s;
-    width: 750px;
     margin: auto;
     padding: 10px;
   }
 
   .cardimgbox {
     padding: 14px;
+    background-color: var(--color-white);
 
     border-radius: 20px;
     border: 2px solid transparent;
@@ -135,13 +135,13 @@
     width: auto;
     cursor: pointer;
     transition: box-shadow 0.3s, border-color 0.3s;
-    width: 700px;
     margin: auto;
     padding: 10px;
   }
 
   .cardimgbox {
     padding: 14px;
+    background-color: var(--color-white);
 
     border-radius: 20px;
     border: 2px solid transparent;
@@ -162,13 +162,13 @@
     width: auto;
     cursor: pointer;
     transition: box-shadow 0.3s, border-color 0.3s;
-    width: 650px;
     margin: auto;
     padding: 10px;
   }
 
   .cardimgbox {
     padding: 14px;
+    background-color: var(--color-white);
 
     border-radius: 20px;
     border: 2px solid transparent;
