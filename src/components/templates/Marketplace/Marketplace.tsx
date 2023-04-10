@@ -2,7 +2,7 @@
 /* eslint-disable etc/no-commented-out-code */
 import { Grid, GridItem, useColorModeValue } from '@chakra-ui/react';
 import { ItemCard } from 'components/modules';
-import { Input, Select, Space } from 'antd';
+import { Col, Input, Row, Select, Space } from 'antd';
 import { useEvmWalletNFTs } from '@moralisweb3/next';
 import constants from '../../../../constants';
 import { useEffect, useState } from 'react';
@@ -113,18 +113,20 @@ const Marketplace = () => {
         </div>
         <div className="nft">
           {toggle === EStatus.EXPLORE ? (
-            <Grid templateColumns="repeat(auto-fill, 400px)" rowGap={5} justifyItems="center">
+            // <Grid templateColumns="repeat(auto-fill, 400px)" rowGap={5} justifyItems="center">
+            <Row gutter={[16, 16]}>
               {collectionItems ? (
                 collectionItems.map((item, key) => (
-                  <GridItem key={key}>
+                  <Col span={8} key={key}>
                     <ItemCard nft={item} />
-                  </GridItem>
+                  </Col>
                 ))
               ) : (
                 <p style={{ color: `${color1}` }}>No NFT</p>
               )}
-            </Grid>
+            </Row>
           ) : (
+            // </Grid>
             <Home />
           )}
         </div>
