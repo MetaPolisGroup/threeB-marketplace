@@ -1,4 +1,4 @@
-import { Button, Col, Form, Grid, Input, Row, Select, Spin, Upload } from 'antd';
+import { Button, Col, Form, Grid, Input, Row, Spin, Upload } from 'antd';
 import React, { useState } from 'react';
 import styles from './CreateNFT.module.css';
 import { create as ipfsHttpClient } from 'ipfs-http-client';
@@ -9,7 +9,6 @@ import { failureModal, successModal } from '../../../helpers/modal';
 import { Buffer } from 'buffer';
 
 import Image from 'next/image';
-import { DownOutlined } from '@ant-design/icons';
 import { useAppSelector } from 'store/hooks';
 import { RootState } from 'store';
 const { Dragger } = Upload;
@@ -395,7 +394,7 @@ function CreateNFT() {
     const listCollectionDefault = [
       {
         id: 'collection1',
-        img: '/img/createNFT/collection1.svg',
+        img: '/img/drops/1988Dragon_cover-04.png',
         title: 'Shared Collection',
       },
     ];
@@ -404,13 +403,6 @@ function CreateNFT() {
       <div className={styles.collection}>
         <label>Choose collection</label>
         <div className={styles.collectionList}>
-          <div>
-            <div>
-              <Image src={'/img/createNFT/plus.svg'} alt="" width={25} height={25} />
-              <div>Crteate</div>
-            </div>
-          </div>
-
           {listCollectionDefault?.map?.((item) => (
             <div
               key={item?.id}
@@ -427,32 +419,6 @@ function CreateNFT() {
       </div>
     );
   };
-
-  const SalePriceField = () => (
-    <Form.Item>
-      <label>Instant sale price</label>
-      <div className={styles.boxETH}>
-        <div>
-          BNB <DownOutlined />
-        </div>
-        <Select
-          className={styles.select}
-          defaultValue="enter the price for which the item will be instantly sold"
-          options={[
-            {
-              value: 'enter the price for which the item will be instantly sold',
-            },
-          ]}
-        />
-      </div>
-      <p className={styles.dec}>
-        Service fee : <span>1.5%</span>
-      </p>
-      <p className={styles.dec}>
-        You will Receive : <span>.29 BNB $120.56</span>
-      </p>
-    </Form.Item>
-  );
 
   const CreatBtn = () => {
     let textStatusCreate: string;
@@ -528,9 +494,7 @@ function CreateNFT() {
                     <div style={{ color: 'red' }}>{errorDesField()}</div>
                   </Form.Item>
                 </Col>
-                <Col span={24}>
-                  <SalePriceField />
-                </Col>
+
                 <Col span={24}>
                   <CollectionField />
                 </Col>

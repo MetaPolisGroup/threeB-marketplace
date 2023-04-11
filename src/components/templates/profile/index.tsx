@@ -11,7 +11,7 @@ const Profile = () => {
     <div className={css['wrapper-profile']}>
       <div style={{ position: 'relative' }}>
         <div className={css['image-cover']}>
-          <Image src={BANNER_DEFAULT} alt="" width={1175} height={312} />
+          <Image src={BANNER_DEFAULT} alt="" layout="fill" className={css['custome-img']} />
         </div>
         <div className={css['wrapper-avatar']}>
           <div className={css['avatar']}>
