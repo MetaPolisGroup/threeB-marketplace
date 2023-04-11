@@ -19,6 +19,8 @@ const Home = () => {
                         <div className="nft__item">
                           <div className="img_holder">
                             <img src={collection.image} alt="" />
+                            <img src={collection.image} alt="" />
+                            <img src={collection.image} alt="" />
                             <Link href={`/${collection.link}`}>
                               <a className="full_link" />
                             </Link>
