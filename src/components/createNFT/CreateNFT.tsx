@@ -261,6 +261,7 @@ function CreateNFT() {
             width: '300px',
             height: 'auto',
             maxHeight: '300px',
+            objectFit: 'cover',
           }}
           width="350"
         />
@@ -273,38 +274,43 @@ function CreateNFT() {
     let errorMessage: string | undefined;
 
     const renderFile = () => {
-      if (fileUrl === '') {
-        return (
-          <>
-            <p className="ant-upload-drag-icon">
-              <Image src={'/img/createNFT/cloud.svg'} alt="" width={71} height={51} />
-            </p>
-            <p className="ant-upload-text">
-              Drop files to upload
-              <br /> or <span>Browse</span>
-            </p>
-          </>
-        );
-      }
+      const rendercontentFile = () => {
+        if (fileUrl === '') {
+          return (
+            <>
+              <p className="ant-upload-drag-icon">
+                <Image src={'/img/createNFT/cloud.svg'} alt="" width={71} height={51} />
+              </p>
+              <p className="ant-upload-text">
+                Drop files to upload
+                <br /> or <span>Browse</span>
+              </p>
+            </>
+          );
+        }
 
-      if (loadingImage) {
-        return <Spin />;
-      }
+        if (fileType === 'video/mp4') {
+          return (
+            <video width="300px" height="auto" controls>
+              <source src={fileUrl} type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
+          );
+        }
 
-      if (fileType === 'video/mp4') {
-        return (
-          <video width="300px" height="auto" controls>
-            <source src={fileUrl} type="video/mp4" />
-            Your browser does not support the video tag.
-          </video>
-        );
-      }
+        if (fileType === 'audio/mpeg') {
+          return <div className={styles.boxMp3}>{fileName}</div>;
+        }
 
-      if (fileType === 'audio/mpeg') {
-        return <div className={styles.boxMp3}>{fileName}</div>;
-      }
+        return <PreviewHTML />;
+      };
 
-      return <PreviewHTML />;
+      return (
+        <div>
+          <div style={loadingImage ? { display: 'none' } : {}}>{rendercontentFile()}</div>
+          {loadingImage ? <Spin /> : null}
+        </div>
+      );
     };
 
     if (!fileName && formValid.fileErr) {
@@ -325,7 +331,7 @@ function CreateNFT() {
           </Dragger>
           <div style={{ color: 'red' }}>{errorMessage}</div>
 
-          <p className={styles.subTitle}>Atwork Cover</p>
+          <p className={styles.subTitle}>Artwork Cover</p>
         </Form.Item>
       </Col>
     );
