@@ -8,7 +8,6 @@ import constants from '../../../../constants';
 import { useEffect, useState } from 'react';
 import { EvmNft } from 'moralis/common-evm-utils';
 import css from './index.module.css';
-import { Search2Icon } from '@chakra-ui/icons';
 import React from 'react';
 import { Home } from '../home';
 
@@ -69,18 +68,16 @@ const Marketplace = () => {
           <div className={css['rightBlock']}>
             <div style={{ borderRight: '1px solid #37455799', paddingRight: 5 }}>
               <Space style={{ height: 15, display: 'flex', alignItems: 'center' }}>
-                <Search2Icon w={4} height={4} />
-                <span style={{ display: 'flex', justifyItems: 'center' }}>Search</span>
                 {/* <Search placeholder="Search Token ID" allowClear size="small" onChange={filterHandle} /> */}
               </Space>
             </div>
             <div style={{ paddingLeft: 5 }}>
-              <span>All Categories</span>
-              {/* <Select
+              <span>All Categories </span>
+              <Select
                 showSearch
                 style={{
                   width: 200,
-                  backgroundColor: 'transparent'
+                  backgroundColor: 'transparent',
                 }}
                 className="filter-sec"
                 placeholder="Recently listed"
@@ -107,7 +104,7 @@ const Marketplace = () => {
                     label: 'Highest fixed price',
                   },
                 ]}
-              /> */}
+              />
             </div>
           </div>
         </div>

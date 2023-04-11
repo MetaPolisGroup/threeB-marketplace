@@ -12,6 +12,11 @@
   border-bottom: 1px solid rgba(83, 86, 251, 0.16);
 }
 
+.boxAvatar img {
+  border-radius: 50%;
+  object-fit: cover;
+}
+
 .boxAvatar > div {
   display: flex;
   flex-wrap: nowrap;
