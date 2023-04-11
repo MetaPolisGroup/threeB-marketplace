@@ -401,10 +401,6 @@
   color: #a7a9b5 !important ;
 }
 
-.collectionList > div:first-child {
-  padding-top: 24px;
-}
-
 .collectionList .active {
   background-image: linear-gradient(to right bottom, #f539f8, #5356fb);
   border-radius: 4px;

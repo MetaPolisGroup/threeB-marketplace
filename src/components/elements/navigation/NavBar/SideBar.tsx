@@ -96,6 +96,11 @@ const SidebarContent = ({ onClose, isConnected, onLogoutHandler, ...rest }: Side
 
   const LinkItemsDex: Array<LinkItemProps> = [
     {
+      name: 'Swap',
+      src: router.pathname === '/my-collection/erc20' ? '/icons/wallet-active.png' : '/icons/wallet.png',
+      path: '/dex',
+    },
+    {
       name: 'My Wallet',
       src: router.pathname === '/my-collection/erc20' ? '/icons/wallet-active.png' : '/icons/wallet.png',
       path: '/my-collection/erc20',
