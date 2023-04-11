@@ -94,23 +94,24 @@ const SidebarContent = ({ onClose, isConnected, onLogoutHandler, ...rest }: Side
     },
   ];
 
-  const LinkItemsDex: Array<LinkItemProps> = [
-    {
-      name: 'Swap',
-      src: router.pathname === '/my-collection/erc20' ? '/icons/wallet-active.png' : '/icons/wallet.png',
-      path: '/dex',
-    },
-    {
-      name: 'My Wallet',
-      src: router.pathname === '/my-collection/erc20' ? '/icons/wallet-active.png' : '/icons/wallet.png',
-      path: '/my-collection/erc20',
-    },
-    {
-      name: 'History',
-      src: router.pathname === '/history/erc20' ? '/icons/history-active.png' : '/icons/history.png',
-      path: '/history/erc20',
-    },
-  ];
+  // eslint-disable-next-line etc/no-commented-out-code
+  // const LinkItemsDex: Array<LinkItemProps> = [
+  //   {
+  //     name: 'Swap',
+  //     src: router.pathname === '/my-collection/erc20' ? '/icons/wallet-active.png' : '/icons/wallet.png',
+  //     path: '/dex',
+  //   },
+  //   {
+  //     name: 'My Wallet',
+  //     src: router.pathname === '/my-collection/erc20' ? '/icons/wallet-active.png' : '/icons/wallet.png',
+  //     path: '/my-collection/erc20',
+  //   },
+  //   {
+  //     name: 'History',
+  //     src: router.pathname === '/history/erc20' ? '/icons/history-active.png' : '/icons/history.png',
+  //     path: '/history/erc20',
+  //   },
+  // ];
 
   useEffect(() => {
     setIsConnect(isConnected);
@@ -139,7 +140,13 @@ const SidebarContent = ({ onClose, isConnected, onLogoutHandler, ...rest }: Side
           <span>Create</span>
         </button>
 
-        <RenderItemNav list={LinkItemsDex} title="DEX" router={router} />
+        <a
+          href="https://dex.threeb.ai/dex"
+          style={{ display: 'block', fontSize: 20, color: '#5356FB', fontWeight: 700, marginTop: 50 }}
+        >
+          DEX
+        </a>
+        {/* <RenderItemNav list={LinkItemsDex} title="DEX" router={router} /> */}
 
         <p style={{ fontSize: 20, color: '#5356FB', fontWeight: 700, margin: '30px 0' }}>Prediction</p>
         <p style={{ fontSize: 20, color: '#5356FB', fontWeight: 700 }}>AI Trading Bot</p>
