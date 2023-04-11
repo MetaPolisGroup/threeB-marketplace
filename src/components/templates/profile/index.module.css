@@ -6,8 +6,15 @@
   margin-bottom: 300px;
 }
 
+.image-cover img {
+  width: 100%;
+  height: 312px !important;
+  object-fit: cover;
+  border-radius: 16px;
+}
+
 .wrapper-avatar {
-  top: 65%;
+  top: 60%;
   left: 3%;
   position: absolute;
 }
@@ -18,6 +25,11 @@
   background: #c4c4c4;
   border: 10px solid #ffffff;
   border-radius: 100%;
+}
+
+.wrapper-avatar > .avatar img {
+  border-radius: 50%;
+  object-fit: cover;
 }
 
 .wrapper-avatar > h2 {

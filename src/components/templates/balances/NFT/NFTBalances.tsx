@@ -19,7 +19,7 @@ const NFTBalances = () => {
 
   return (
     <>
-      {status === 'authenticated' ? <Profile /> : null}
+      {status !== 'authenticated' ? <Profile /> : null}
       <Heading size="lg" marginBottom={6} margin={['20px 0px', '']}>
         NFT Balances
       </Heading>

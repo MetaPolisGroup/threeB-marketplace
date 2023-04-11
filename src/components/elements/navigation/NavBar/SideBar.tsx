@@ -92,6 +92,11 @@ const SidebarContent = ({ onClose, isConnected, onLogoutHandler, ...rest }: Side
       src: router.pathname === '/history/nft' ? '/icons/history-active.png' : '/icons/history.png',
       path: '/history/nft',
     },
+    {
+      name: 'Profile',
+      src: router.pathname === '/history/nft' ? '/icons/history-active.png' : '/icons/history.png',
+      path: '/profile',
+    },
   ];
 
   const LinkItemsDex: Array<LinkItemProps> = [

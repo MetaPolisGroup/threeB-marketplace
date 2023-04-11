@@ -5,7 +5,7 @@ import { Form, Input } from 'antd';
 import classes from './profileForm.module.css';
 import { ClusterOutlined } from '@ant-design/icons';
 
-import DEFAULT_AVATER from '../../../../public/img/avatar.png';
+import DEFAULT_AVATER from '../../../../public/img/profile&cover-01.png';
 
 interface TForm {
   referral: string | undefined;
