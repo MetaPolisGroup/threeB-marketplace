@@ -7,8 +7,6 @@ import Link from 'next/link';
 import { FC, useEffect, useState } from 'react';
 import { resolveIPFSByPinata, resolveIPFSByPublicGateway } from 'utils/resolveIPFS';
 import constants from '../../../../constants';
-import { AiFillHeart } from 'react-icons/ai';
-import { BsThreeDotsVertical } from 'react-icons/bs';
 import { useRouter } from 'next/router';
 import css from './ItemCard.module.css';
 
@@ -115,15 +113,6 @@ const ItemCard: FC<ItemCardParams> = ({ nft: { tokenAddress, result, metadata } 
           >
             Active
           </span>
-          <div style={{ position: 'absolute', top: '20%', right: '40px', display: 'flex', gap: 10 }}>
-            <p style={{ background: 'white', padding: 9, borderRadius: '100%' }}>
-              <AiFillHeart />
-            </p>
-            <p style={{ background: 'white', padding: 9, borderRadius: '100%' }}>
-              {' '}
-              <BsThreeDotsVertical />
-            </p>
-          </div>
           <MedHTML />
           <div className={css['card-overlay']}>
             <Link href={`/nft/${tokenAddress.format()}/${result.tokenId}`}>
