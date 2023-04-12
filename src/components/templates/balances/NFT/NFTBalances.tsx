@@ -17,6 +17,8 @@ const NFTBalances = () => {
     chain: chain?.id,
   });
 
+  console.log(nfts);
+
   return (
     <>
       {status === 'authenticated' ? <Profile /> : null}
