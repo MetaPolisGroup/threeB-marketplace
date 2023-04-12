@@ -212,9 +212,11 @@ function CreateNFT() {
         const added = await client.add(data);
         const url = `ipfs://${added.path}`;
         /* after metadata is uploaded to IPFS, return the URL to use it in the transaction */
+        console.log({ url });
         const createLoading = await nftMarketplace.createToken(url);
         await createLoading.wait();
         successModal('Success', 'Create NFT successfully');
+        console.log(data);
         router.push('my-collection/nft');
       } catch (error) {
         console.log('Error uploading file: ', error);
