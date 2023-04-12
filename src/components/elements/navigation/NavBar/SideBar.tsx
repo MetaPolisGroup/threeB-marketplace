@@ -94,7 +94,7 @@ const SidebarContent = ({ onClose, isConnected, onLogoutHandler, ...rest }: Side
     },
     {
       name: 'Profile',
-      src: router.pathname === '/history/nft' ? '/icons/history-active.png' : '/icons/history.png',
+      src: router.pathname === '/profile' ? '/icons/profile-active.svg' : '/icons/profile.svg',
       path: '/profile',
     },
   ];
@@ -153,10 +153,16 @@ const SidebarContent = ({ onClose, isConnected, onLogoutHandler, ...rest }: Side
         </a>
         {/* <RenderItemNav list={LinkItemsDex} title="DEX" router={router} /> */}
 
-        <p style={{ fontSize: 20, color: '#5356FB', fontWeight: 700, margin: '30px 0', cursor: 'pointer' }}>
+        <a
+          href="https://app.threeb.io/"
+          style={{ display: 'block', fontSize: 20, color: '#5356FB', fontWeight: 700, marginTop: 30 }}
+        >
+          AI Trading Bot
+        </a>
+
+        <a href="#" style={{ display: 'block', fontSize: 20, color: '#5356FB', fontWeight: 700, marginTop: 30 }}>
           Prediction
-        </p>
-        <p style={{ fontSize: 20, color: '#5356FB', fontWeight: 700, cursor: 'pointer' }}>AI Trading Bot</p>
+        </a>
         {isConnect && (
           <button className={css['slidebar-button-signout']} onClick={onLogoutHandler}>
             <Image width={39} height={39} src="/icons/signout.png" />

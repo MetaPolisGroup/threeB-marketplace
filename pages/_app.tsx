@@ -75,7 +75,7 @@ const MyApp = ({ Component, pageProps }: AppProps) => {
                 {/* Style */}
                 <link type="text/css" rel="stylesheet" href="/css/plugins.css?ver=4.1" />
                 <link type="text/css" rel="stylesheet" href="/css/style.css?ver=4.1" />
-                <link rel="shortcut icon" href="/logo_ThreeB.svg" />
+                <link rel="shortcut icon" href="/threeB_favicon-01.svg" />
                 <link
                   rel="stylesheet"
                   href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"
