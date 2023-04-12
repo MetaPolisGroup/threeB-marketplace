@@ -23,7 +23,7 @@
 .author > img {
   height: 46px;
   width: 46px;
-  border-radius: 0px;
+  border-radius: 50%;
 }
 
 .meta {
