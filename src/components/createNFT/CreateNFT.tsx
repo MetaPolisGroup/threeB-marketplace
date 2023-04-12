@@ -11,6 +11,7 @@ import { Buffer } from 'buffer';
 import Image from 'next/image';
 import { useAppSelector } from 'store/hooks';
 import { RootState } from 'store';
+import { useRouter } from 'next/router';
 const { Dragger } = Upload;
 
 const { useBreakpoint } = Grid;
@@ -54,6 +55,9 @@ function CreateNFT() {
   const [fileUrl, setFileUrl] = useState<string>('');
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [fileDataURL, setFileDataURL] = useState(null);
+
+  const router = useRouter();
+
   const { data: signer } = useSigner();
   const nftMarketplace = new ethers.Contract(constants.MRKPLACE_ADDR, constants.MRKPLACE_ABI, signer as Signer);
 
@@ -211,6 +215,7 @@ function CreateNFT() {
         const createLoading = await nftMarketplace.createToken(url);
         await createLoading.wait();
         successModal('Success', 'Create NFT successfully');
+        router.push('my-collection/nft');
       } catch (error) {
         console.log('Error uploading file: ', error);
       }
