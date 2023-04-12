@@ -113,7 +113,7 @@ const Marketplace = () => {
             <Row gutter={[16, 16]} className={css.boxListCard}>
               {collectionItems ? (
                 collectionItems.map((item, key) => (
-                  <Col span={8} key={key} md={24}>
+                  <Col span={8} key={key}>
                     <ItemCard nft={item} />
                   </Col>
                 ))
