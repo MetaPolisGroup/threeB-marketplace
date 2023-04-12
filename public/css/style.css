@@ -3805,13 +3805,9 @@ a.metaportal_fn_videobutton:hover .fn__svg,
   flex-wrap: wrap;
   gap: 10px;
 }
-.nft__item .img_holder img:first-child {
-  width: 100%;
-  max-height: 160px;
-}
 .nft__item .img_holder img {
-  width: 48%;
-  max-height: 90px;
+  width: 100%;
+  max-height: 300px;
   border-radius: 12px;
   object-fit: cover;
 }
