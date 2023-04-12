@@ -19,7 +19,7 @@ enum EStatus {
 const Marketplace = () => {
   // const { Search } = Input;
   const color1 = useColorModeValue('#000', '#fff');
-  const [toggle, setToggle] = React.useState<EStatus>(EStatus.EXPLORE);
+  const [toggle, setToggle] = React.useState<EStatus>(EStatus.Featured);
   const { data: items } = useEvmWalletNFTs({
     address: constants.MRKPLACE_ADDR,
     chain: constants.CHAIN.bscChain.id,
@@ -58,11 +58,11 @@ const Marketplace = () => {
       <div className={css['wrapper-header-content']}>
         <div className={css['header-content']}>
           <div className={css['leftBlock']}>
-            <button onClick={() => setToggle(EStatus.EXPLORE)} style={styleBtnLeft}>
-              Explore
-            </button>
             <button onClick={() => setToggle(EStatus.Featured)} style={styleBtnRight}>
               Featured Collection
+            </button>
+            <button onClick={() => setToggle(EStatus.EXPLORE)} style={styleBtnLeft}>
+              Explore
             </button>
           </div>
           <div className={css['rightBlock']}>
