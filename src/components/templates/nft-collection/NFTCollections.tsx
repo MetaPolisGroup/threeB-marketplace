@@ -233,7 +233,7 @@ const NFTCollections: FC<IParamsNFTCollections> = ({ address, collections }) => 
         </div> */}
 
         <div className="nft">
-          <Row gutter={[16, 16]}>
+          <Row gutter={[16, 16]} className="boxNFTs">
             {nfts?.map((obj: NFTMetadata) => {
               console.log(obj.normalized_metadata.image);
               return (

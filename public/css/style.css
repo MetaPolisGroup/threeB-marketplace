@@ -3125,7 +3125,7 @@ a.metaportal_fn_videobutton:hover .fn__svg,
   display: -ms-flex;
   display: -o-flex;
   display: flex;
-  padding: 180px 0 80px;
+  padding: 0 0 80px;
 }
 .metaportal_fn_mint_top .mint_left:after {
   content: '';
@@ -5508,9 +5508,6 @@ a.metaportal_fn_videobutton:hover .fn__svg,
   .metaportal_fn_search.hold {
     transform: translateX(300px);
   }
-  .metaportal_fn_mint_top {
-    padding-top: 150px;
-  }
   #home {
     padding-top: 150px;
   }
@@ -5941,6 +5938,19 @@ a.metaportal_fn_videobutton:hover .fn__svg,
 .nft {
   margin: 50px 0px;
 }
+
+.boxNFTs {
+  display: flex !important;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.boxNFTs > div {
+  width: 280px;
+  max-width: 280px;
+}
+
 .ant-tabs-nav-list {
   gap: 150px;
   text-align: center;
