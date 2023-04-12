@@ -36,7 +36,7 @@ const NFTDetails = () => {
 
   useEffect(() => {
     if (address && tokenId) {
-      fetch(`https://deep-index.moralis.io/api/v2/nft/${address}/${tokenId}?chain=bsc%20testnet`, {
+      fetch(`https://deep-index.moralis.io/api/v2/nft/${address}/${tokenId}?chain=bsc`, {
         headers: {
           'Content-Type': 'application/json',
           'X-API-Key': `${process.env.NEXT_PUBLIC_MORALIS_API_KEY}`,
