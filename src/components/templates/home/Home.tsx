@@ -18,9 +18,10 @@ const Home = () => {
                       <li className={`${collection.type} ${collection.special} ${collection.clothing}`} key={i}>
                         <div className="nft__item">
                           <div className="img_holder">
-                            <img src={collection.image} alt="" />
-                            <img src={collection.image} alt="" />
-                            <img src={collection.image} alt="" />
+                            {collection.images.map((item) => (
+                              <img src={item.image} alt="" />
+                            ))}
+
                             <Link href={`/${collection.link}`}>
                               <a className="full_link" />
                             </Link>
