@@ -99,19 +99,6 @@ const SidebarContent = ({ onClose, isConnected, onLogoutHandler, ...rest }: Side
     },
   ];
 
-  const LinkItemsDex: Array<LinkItemProps> = [
-    {
-      name: 'My Wallet',
-      src: router.pathname === '/my-collection/erc20' ? '/icons/wallet-active.png' : '/icons/wallet.png',
-      path: '/my-collection/erc20',
-    },
-    {
-      name: 'History',
-      src: router.pathname === '/history/erc20' ? '/icons/history-active.png' : '/icons/history.png',
-      path: '/history/erc20',
-    },
-  ];
-
   useEffect(() => {
     setIsConnect(isConnected);
   }, [isConnected]);
@@ -139,10 +126,13 @@ const SidebarContent = ({ onClose, isConnected, onLogoutHandler, ...rest }: Side
           <span>Create</span>
         </button>
 
-        <RenderItemNav list={LinkItemsDex} title="DEX" router={router} />
+        {/* <RenderItemNav list={LinkItemsDex} title="DEX" router={router} /> */}
 
-        <p style={{ fontSize: 20, color: '#5356FB', fontWeight: 700, margin: '30px 0' }}>Prediction</p>
-        <p style={{ fontSize: 20, color: '#5356FB', fontWeight: 700 }}>AI Trading Bot</p>
+        <p style={{ fontSize: 20, color: '#5356FB', fontWeight: 700, margin: '30px 0', cursor: 'pointer' }}>DEX</p>
+        <p style={{ fontSize: 20, color: '#5356FB', fontWeight: 700, margin: '30px 0', cursor: 'pointer' }}>
+          Prediction
+        </p>
+        <p style={{ fontSize: 20, color: '#5356FB', fontWeight: 700, cursor: 'pointer' }}>AI Trading Bot</p>
         {isConnect && (
           <button className={css['slidebar-button-signout']} onClick={onLogoutHandler}>
             <Image width={39} height={39} src="/icons/signout.png" />

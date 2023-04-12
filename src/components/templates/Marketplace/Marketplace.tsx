@@ -72,7 +72,6 @@ const Marketplace = () => {
               </Space>
             </div>
             <div style={{ paddingLeft: 5 }}>
-              <span>All Categories </span>
               <Select
                 showSearch
                 style={{
@@ -80,7 +79,7 @@ const Marketplace = () => {
                   backgroundColor: 'transparent',
                 }}
                 className="filter-sec"
-                placeholder="Recently listed"
+                placeholder="All Categories"
                 optionFilterProp="children"
                 filterOption={(input, option) => (option?.label ?? '').includes(input)}
                 filterSort={(optionA, optionB) =>
