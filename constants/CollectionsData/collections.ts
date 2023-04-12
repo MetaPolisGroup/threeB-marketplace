@@ -1,20 +1,20 @@
 export const COLLECTIONS = [
-  {
-    id: 0,
-    images: [
-      {
-        image_id: 0,
-        image: '/img/drops/1988dragon.jpg',
-      },
-    ],
-    title: '1988 Dragon Collection',
-    price: '1',
-    quantity: 1,
-    type: 'spirit',
-    special: 'fox-fire',
-    clothing: 'light-kimono',
-    link: 'mint',
-  },
+  // {
+  //   id: 0,
+  //   images: [
+  //     {
+  //       image_id: 0,
+  //       image: '/img/drops/1988dragon.jpg',
+  //     },
+  //   ],
+  //   title: '1988 Dragon Collection',
+  //   price: '1',
+  //   quantity: 1,
+  //   type: 'spirit',
+  //   special: 'fox-fire',
+  //   clothing: 'light-kimono',
+  //   link: 'mint',
+  // },
   {
     id: 1,
     images: [

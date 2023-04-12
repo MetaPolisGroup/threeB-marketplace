@@ -7,7 +7,7 @@ const PomeriumPage = () => {
   console.log(COLLECTIONS[2]);
   return (
     <Default pageName="Pomerium">
-      <NFTCollections address={'0x119aaf82f1f3784233Dd3f8e914f8C16527c3A4B'} collections={COLLECTIONS[2]} />
+      <NFTCollections address={'0x119aaf82f1f3784233Dd3f8e914f8C16527c3A4B'} collections={COLLECTIONS[1]} />
     </Default>
   );
 };

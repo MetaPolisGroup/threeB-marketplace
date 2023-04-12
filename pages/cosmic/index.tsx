@@ -6,7 +6,7 @@ import React from 'react';
 const CosmicPage = () => {
   return (
     <Default pageName="Cosmic">
-      <NFTCollections address="0xB3E3a5211f81f0c5eCfAcacFc5027eD628fE7011" collections={COLLECTIONS[1]} />
+      <NFTCollections address="0xB3E3a5211f81f0c5eCfAcacFc5027eD628fE7011" collections={COLLECTIONS[0]} />
     </Default>
   );
 };

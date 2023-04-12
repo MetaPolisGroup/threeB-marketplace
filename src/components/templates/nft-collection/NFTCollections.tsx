@@ -27,6 +27,7 @@ interface IParamsNFTCollections {
 
 const NFTCollections: FC<IParamsNFTCollections> = ({ address, collections }) => {
   const color1 = useColorModeValue('#000', '#fff');
+  const color = useColorModeValue('#fff', '#000');
   const [nfts, setNFTs] = useState([]);
 
   useEffect(() => {
@@ -84,11 +85,11 @@ const NFTCollections: FC<IParamsNFTCollections> = ({ address, collections }) => 
           </div>
         </div>
 
-        {/* <div className="metaportal_fn_mintbox">
+        <div className="metaportal_fn_mintbox">
           <div className="mint_right">
             <Card
               hoverable
-              cover={<Image className="imageBox" width={600} height={425} alt="example" src="./1988dragon_box.gif" />}
+              cover={<Image className="imageBox" width={600} height={425} alt="example" src="./box.gif" />}
             ></Card>
           </div>
           <div className="mint_left">
@@ -102,7 +103,7 @@ const NFTCollections: FC<IParamsNFTCollections> = ({ address, collections }) => 
                     <h4 style={{ color: `${color1}` }}>Price</h4>
                     <div className="price-sec">
                       <span>1</span>
-                      <select style={{ border: 'none' }} onChange={selectCurrent}>
+                      <select style={{ border: 'none' }}>
                         <option value="BNB">BNB</option>
                         <option value="BUSD">BUSD</option>
                         <option value="USDT">USDT</option>
@@ -113,16 +114,14 @@ const NFTCollections: FC<IParamsNFTCollections> = ({ address, collections }) => 
                 <li>
                   <div className="item">
                     <h4 style={{ color: `${color1}` }}>Remaining</h4>
-                    <h3 style={{ color: `${color1}` }}>{1988 - +totalSupply}/1988</h3>
+                    <h3 style={{ color: `${color1}` }}>999/9,999</h3>
                   </div>
                 </li>
                 <li>
                   <div className="item">
                     <h4 style={{ color: `${color1}` }}>Quantity</h4>
                     <div className="qnt">
-                      <span className="decrease" onClick={() => updateQuantity('-')}>
-                        -
-                      </span>
+                      <span className="decrease">-</span>
                       <input
                         style={{
                           margin: '0 10px',
@@ -136,13 +135,9 @@ const NFTCollections: FC<IParamsNFTCollections> = ({ address, collections }) => 
                         type="number"
                         pattern="[0-9]*"
                         min={0}
-                        onChange={handleChange}
-                        value={quantity}
                       />
 
-                      <span className="increase" onClick={() => updateQuantity('+')}>
-                        +
-                      </span>
+                      <span className="increase">+</span>
                     </div>
                   </div>
                 </li>
@@ -150,10 +145,8 @@ const NFTCollections: FC<IParamsNFTCollections> = ({ address, collections }) => 
                   <div className="item">
                     <h4 style={{ color: `${color1}` }}>Total Price</h4>
                     <h3>
-                      <span style={{ color: `${color1}` }} className="total_price">
-                        {(Number(COLLECTIONS[0].price) * quantity).toFixed(2)}
-                      </span>
-                      <span style={{ color: `${color1}` }}> {currentUnit ? currentUnit : 'BNB'} + GAS</span>
+                      <span style={{ color: `${color1}` }} className="total_price"></span>
+                      <span style={{ color: `${color1}` }}> + GAS</span>
                     </h3>
                   </div>
                 </li>
@@ -161,11 +154,9 @@ const NFTCollections: FC<IParamsNFTCollections> = ({ address, collections }) => 
             </div>
             <div className="mint_desc" style={{ display: 'flex', justifyContent: 'space-between' }}>
               <button
-                onClick={handleClick}
                 className="metaportal_fn_button"
                 style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}
               >
-                {loadingMint ? <Spinner color={color1} size="md" label="" /> : <></>}
                 <span style={{ color: `${color1}`, margin: '0 10px' }}>UNBOX</span>
               </button>
               <p style={{ color: `${color1}`, marginTop: '0', marginLeft: '20px' }}>
@@ -182,7 +173,7 @@ const NFTCollections: FC<IParamsNFTCollections> = ({ address, collections }) => 
             </div>
           </div>
         </div>
-        <div className="rightBlock">
+        {/* <div className="rightBlock">
           <div>
             <Select
               showSearch
@@ -239,8 +230,7 @@ const NFTCollections: FC<IParamsNFTCollections> = ({ address, collections }) => 
               ]}
             />
           </div>
-        </div>
-            */}
+        </div> */}
 
         <div className="nft">
           <Row gutter={[16, 16]}>
