@@ -23,3 +23,20 @@
   background-color: transparent !important;
   color: white;
 }
+
+.boxListCard {
+  display: flex;
+  flex-wrap: wrap !important;
+  gap: 12px;
+}
+
+.boxListCard > div {
+  width: 372px !important;
+  max-width: 372px !important;
+}
+
+@media screen and (max-width: 768px) {
+  .boxListCard div {
+    width: 100% !important;
+  }
+}

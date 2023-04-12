@@ -110,10 +110,10 @@ const Marketplace = () => {
         <div className="nft">
           {toggle === EStatus.EXPLORE ? (
             // <Grid templateColumns="repeat(auto-fill, 400px)" rowGap={5} justifyItems="center">
-            <Row gutter={[16, 16]}>
+            <Row gutter={[16, 16]} className={css.boxListCard}>
               {collectionItems ? (
                 collectionItems.map((item, key) => (
-                  <Col span={8} key={key}>
+                  <Col span={8} key={key} md={24}>
                     <ItemCard nft={item} />
                   </Col>
                 ))

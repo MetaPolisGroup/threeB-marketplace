@@ -12,3 +12,15 @@
   left: 10px;
   top: 5px;
 }
+
+@media screen and (max-width: 1024px) {
+  .wrapper-input-header {
+    margin-bottom: 10px;
+  }
+}
+
+@media screen and (max-width: 420px) {
+  .wrapper-input-header {
+    width: 300px;
+  }
+}
