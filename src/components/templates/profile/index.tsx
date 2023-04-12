@@ -17,7 +17,7 @@ const Profile = () => {
           <div className={css['avatar']}>
             <Image src={AVATAR_DEFAULT} alt="" width={210} height={210} />
           </div>
-          <h2>Rayhan Khan Shovo</h2>
+          <h2>User</h2>
           <Box width={['100%', '30%', '50%', '60%']}>
             <Text noOfLines={5}>
               Discover and own valuable NFTs from this unique collection. Exciting privileges await collectors!
