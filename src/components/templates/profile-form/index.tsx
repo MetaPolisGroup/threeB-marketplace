@@ -3,7 +3,6 @@ import React from 'react';
 import Image from 'next/image';
 import { Form, Input } from 'antd';
 import classes from './profileForm.module.css';
-import { ClusterOutlined } from '@ant-design/icons';
 
 import DEFAULT_AVATER from '../../../../public/img/profile&cover-01.png';
 
@@ -32,26 +31,6 @@ const ProfileForm: React.FC = () => {
         </div>
         <div className={classes.formContent}>
           <h4>Your Information</h4>
-          <Form.Item name="referral">
-            <div className={classes.boxForm}>
-              <label>Referral</label>
-              <Input className={classes.ipReferral} placeholder="Enter your referral" />
-              <button className={classes.btnIcon}>
-                <ClusterOutlined />
-              </button>
-            </div>
-          </Form.Item>
-          <Form.Item>
-            <div className={classes.boxForm}>
-              <label>Rewards</label>
-              <div>
-                0 BNB{' '}
-                <button>
-                  <ClusterOutlined /> Claim
-                </button>
-              </div>
-            </div>
-          </Form.Item>
           <Form.Item name="name" rules={[{ required: true, message: 'Please input your username!' }]}>
             <div className={classes.boxForm}>
               <label>Name *</label>
