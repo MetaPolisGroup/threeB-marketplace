@@ -9,6 +9,7 @@ import { resolveIPFSByPinata, resolveIPFSByPublicGateway } from 'utils/resolveIP
 import constants from '../../../../constants';
 import { useRouter } from 'next/router';
 import css from './ItemCard.module.css';
+import { getEllipsisTxt } from 'utils/format';
 
 export interface ItemCardParams {
   nft: EvmNft;
@@ -93,7 +94,7 @@ const ItemCard: FC<ItemCardParams> = ({ nft: { tokenAddress, result, metadata } 
             </div>
             <div style={{ display: 'flex', flexDirection: 'column' }}>
               <span>Owned by</span>
-              <span style={{ color: 'white' }}>Rrayak John</span>
+              <span style={{ color: 'white' }}>{getEllipsisTxt(result.tokenAddress.checksum)}</span>
             </div>
           </div>
         </div>
