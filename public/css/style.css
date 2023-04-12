@@ -3744,7 +3744,7 @@ a.metaportal_fn_videobutton:hover .fn__svg,
   padding-left: 40px;
   margin-bottom: 40px;
 }
-.metaportal_fn_drops .grid > li:nth-child(3) a,
+/* .metaportal_fn_drops .grid > li:nth-child(3) a,
 .metaportal_fn_drops .grid > li:nth-child(4) a,
 .metaportal_fn_drops .grid > li:nth-child(5) a,
 .metaportal_fn_drops .grid > li:nth-child(6) a,
@@ -3761,7 +3761,7 @@ a.metaportal_fn_videobutton:hover .fn__svg,
 .metaportal_fn_drops .grid > li:nth-child(17) a,
 .metaportal_fn_drops .grid > li:nth-child(18) a {
   pointer-events: none;
-}
+} */
 
 .nft__item {
   width: 100%;

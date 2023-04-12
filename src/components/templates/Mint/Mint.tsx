@@ -279,7 +279,10 @@ const Mint: FC<IMint> = () => {
         <div className="metaportal_fn_mint_top">
           <div className="mint_left">
             <div className="img">
-              <div className="img_in" style={{ backgroundImage: `url(${COLLECTIONS[0] && COLLECTIONS[0].image})` }}>
+              <div
+                className="img_in"
+                style={{ backgroundImage: `url(${COLLECTIONS[0] && COLLECTIONS[0].images[0].image})` }}
+              >
                 <Image width={500} height={500} src="/img/1x1.jpg" alt="" />
               </div>
             </div>
@@ -506,7 +509,9 @@ const Mint: FC<IMint> = () => {
                       <li key={nft.id}>
                         <div className="nft__item">
                           <div className="img_holder">
-                            <Image width={350} height={350} src={nft.image} alt="" />
+                            {nft.images.map((item) => (
+                              <Image width={350} height={350} src={item.image} alt="" />
+                            ))}
                             <Link href={`/${nft.link}`}>
                               <a className="full_link"></a>
                             </Link>
