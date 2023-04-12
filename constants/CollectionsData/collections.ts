@@ -1,4 +1,5 @@
 export const COLLECTIONS = [
+  // eslint-disable-next-line etc/no-commented-out-code
   // {
   //   id: 0,
   //   images: [
