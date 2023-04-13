@@ -15,12 +15,12 @@
 
 @media screen and (max-width: 1024px) {
   .wrapper-input-header {
-    margin-bottom: 10px;
+    width: 100%;
   }
 }
 
 @media screen and (max-width: 420px) {
   .wrapper-input-header {
-    width: 300px;
+    width: 100%;
   }
 }

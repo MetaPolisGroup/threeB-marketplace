@@ -15,6 +15,7 @@ import Head from 'next/head';
 import '../styles/globals.css';
 import store from 'store';
 import { Provider } from 'react-redux';
+import '../node_modules/antd/dist/reset.css';
 
 const { provider, webSocketProvider, chains } = configureChains(
   [constants.CHAIN.bscChain as Chain],
