@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import Image from 'next/image';
 import { Form, Input, Upload } from 'antd';
 import classes from './profileForm.module.css';
 
 import DEFAULT_AVATER from '../../../../public/img/profile&cover-01.png';
+import { useSession } from 'next-auth/react';
 
 interface TForm {
   referral: string | undefined;
@@ -15,16 +16,37 @@ interface TForm {
 }
 
 const ProfileForm: React.FC = () => {
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [imagesImport, setImagesImport] = useState();
+  const { data } = useSession();
+  const domain = process.env.NODE_ENV === 'production' ? 'https://nft.threeb.ai' : 'http://localhost:3000';
 
   const onSubmit = (values: TForm) => {
-    console.log('Dataform:', values);
+    fetch(`${domain}/api/user`, {
+      method: 'POST',
+      body: JSON.stringify({
+        wallet_address: data?.user?.address,
+        name: values?.name,
+        email: values?.email,
+        phone: values?.phone,
+      }),
+    })
+      .then((response) => response.json())
+      .then((response) => console.log(response))
+      .catch((err) => console.error(err));
   };
 
-  const handleUploadFile = (file: any) => {
-    console.log({ file });
-    setImagesImport(file?.file?.name);
+  const handleUploadFile = async (file: any, type: string) => {
+    console.log({ type });
+    // eslint-disable-next-line no-undef
+    const formdata = new FormData();
+    formdata.append('image', file);
+
+    fetch(`${domain}/api/upload-image`, {
+      method: 'POST',
+      body: formdata,
+    })
+      .then((response) => response.json())
+      .then((response) => console.log(response))
+      .catch((err) => console.error(err));
   };
 
   return (
@@ -33,10 +55,12 @@ const ProfileForm: React.FC = () => {
         <div className={classes.boxAvatar}>
           <Image src={DEFAULT_AVATER} alt="" width={60} height={60} />
           <div>
-            <Upload showUploadList={false} onChange={handleUploadFile}>
+            <Upload showUploadList={false} beforeUpload={(file) => handleUploadFile(file, 'AVATAR')}>
               <button type="button">Upload Avatar</button>
             </Upload>
-            <button type="button">Upload Background</button>
+            <Upload showUploadList={false} beforeUpload={(file) => handleUploadFile(file, 'BACKGROUND')}>
+              <button type="button">Upload Background</button>
+            </Upload>
           </div>
         </div>
         <div className={classes.formContent}>
@@ -47,7 +71,7 @@ const ProfileForm: React.FC = () => {
               <Input placeholder="Enter your name" />
             </div>
           </Form.Item>
-          <Form.Item name="email" rules={[{ required: true, message: 'Please input your email!' }]}>
+          <Form.Item name="email" rules={[{ required: true, type: 'email', message: 'Please input your email!' }]}>
             <div className={classes.boxForm}>
               <label>Email *</label>
               <Input placeholder="Enter your mail" />
