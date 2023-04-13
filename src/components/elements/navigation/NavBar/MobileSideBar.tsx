@@ -1,4 +1,5 @@
 import { Flex, FlexProps, IconButton, useColorModeValue } from '@chakra-ui/react';
+import { ButtonConnect } from 'components/modules/ButtonConnect';
 import Image from 'next/image';
 import { FiMenu } from 'react-icons/fi';
 interface MobileProps extends FlexProps {
@@ -14,17 +15,23 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
       bg={useColorModeValue('white', 'gray.900')}
       borderBottomWidth="1px"
       borderBottomColor={useColorModeValue('gray.200', 'gray.700')}
-      justifyContent="flex-start"
+      justifyContent="space-between"
+      padding="0 10px"
       {...rest}
     >
-      <IconButton
-        variant="outline"
-        onClick={onOpen}
-        aria-label="open menu"
-        icon={<FiMenu />}
-        style={{ marginRight: '10px' }}
-      />
-      <Image src="/logo_ThreeB.svg" alt="asd" width={120} height={60} />
+      <div style={{ display: 'flex', alignItems: 'center', gap: '10px' }}>
+        <IconButton
+          variant="outline"
+          onClick={onOpen}
+          aria-label="open menu"
+          icon={<FiMenu />}
+          style={{ marginRight: '10px' }}
+        />
+        <Image src="/logo_ThreeB.svg" alt="asd" width={120} height={60} />
+      </div>
+      <div>
+        <ButtonConnect />
+      </div>
     </Flex>
   );
 };

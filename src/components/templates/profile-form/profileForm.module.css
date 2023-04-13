@@ -28,8 +28,13 @@
   margin-top: 12px;
 }
 
-.boxAvatar > div button {
+.boxAvatar > div > span {
   width: 47%;
+}
+
+.boxAvatar > div > span :global(.ant-upload-select),
+.boxAvatar > div > span button {
+  width: 100%;
 }
 
 .profile button {
