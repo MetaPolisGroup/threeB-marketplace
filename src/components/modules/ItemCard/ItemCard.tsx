@@ -89,7 +89,7 @@ const ItemCard: FC<ItemCardParams> = ({ nft: { tokenAddress, result, metadata } 
         <div className={css['featured-content']}>
           <div className={css['meta']} style={{ marginBottom: '16px' }}>
             <div className={css['author']}>
-              <img src="/img/author-details.png" alt="author" />
+              <img src="/img/profile&cover-01.png" alt="author" />
               {/* <p style={{ color: `${color1}` }}>{getEllipsisTxt(tokenAddress.format())}</p> */}
             </div>
             <div style={{ display: 'flex', flexDirection: 'column' }}>
