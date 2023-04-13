@@ -1,6 +1,20 @@
 import { initializeApp } from 'firebase/app';
-import { getDatabase, ref, set, onValue } from 'firebase/database';
-import { getFirestore } from 'firebase/firestore';
+import {
+  getFirestore,
+  doc,
+  setDoc,
+  getDoc,
+  collection,
+  query,
+  WhereFilterOp,
+  where,
+  getDocs,
+  QueryConstraint,
+  QuerySnapshot,
+  DocumentData,
+} from 'firebase/firestore';
+import { getStorage, ref, uploadBytes } from 'firebase/storage';
+import { CollectionType, Collection } from '../../constants/Entities/index.entity';
 
 const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
@@ -11,42 +25,78 @@ const firebaseConfig = {
   messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
   appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
 };
-
 const app = initializeApp(firebaseConfig);
 
-const db = getDatabase(app);
-
-export const dbFS = getFirestore(app);
-interface Data {
-  dna: string;
-  edition: number;
-  name: string;
-  tokenId: number;
-  description: string;
-  image: string;
-  price: string;
-}
-
-export const saveData = async (data: Data) => {
+// Firestore Database
+const db = getFirestore(app);
+export async function getCollection(
+  col: Collection,
+  conditions: { field: string; operator: WhereFilterOp; value: string }[],
+) {
   try {
-    set(ref(db, '/data/'.concat(data.tokenId.toString())), data);
+    const colRef = collection(db, col);
+    let querySnapshot: QuerySnapshot<DocumentData>;
+    if (conditions.length > 0) {
+      const queryArr: QueryConstraint[] = [];
+      conditions.map((condition) => queryArr.push(where(condition.field, condition.operator, condition.value)));
+      querySnapshot = await getDocs(query(colRef, ...queryArr));
+    } else {
+      querySnapshot = await getDocs(colRef);
+    }
+
+    if (!querySnapshot.empty) {
+      const results: {
+        id: string;
+        data: DocumentData;
+      }[] = [];
+      querySnapshot.forEach((doc) => {
+        results.push({
+          id: doc.id,
+          data: doc.data(),
+        });
+      });
+      return results;
+    } else {
+      console.log(`Collection ${col} is empty`);
+      return null;
+    }
   } catch (error) {
     console.log(error);
   }
-};
+}
+export async function getDocument(col: Collection, documentId: string) {
+  try {
+    const docRef = doc(db, col, documentId);
+    const doccument = await getDoc(docRef);
+    if (document) {
+      return doccument;
+    } else {
+      console.log(`Document ${documentId} not found`);
+      return null;
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
+export async function upsert(col: Collection, documentId: string, data: CollectionType) {
+  try {
+    const docRef = doc(db, col, documentId);
+    await setDoc(docRef, data, { merge: true });
+    return true;
+  } catch (error) {
+    console.log(error);
+  }
+}
 
-export const getData = async (): Promise<any> => {
-  return new Promise((resolve, reject) => {
-    const reference = ref(db, 'data');
-    onValue(
-      reference,
-      (snapshot) => {
-        const data = snapshot.val();
-        resolve(data);
-      },
-      (error) => {
-        reject(error);
-      },
-    );
-  });
-};
+// Storage Firebase
+export async function uploadImage(file: Blob) {
+  const storage = getStorage();
+  const storageRef = ref(storage, 'some-child');
+
+  const result = await uploadBytes(storageRef, file);
+
+  console.log(result.ref);
+  console.log(result.metadata);
+
+  return result.ref;
+}
