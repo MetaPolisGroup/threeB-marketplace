@@ -3,7 +3,7 @@ import React from 'react';
 import css from './index.module.css';
 const SearchComponent = () => {
   return (
-    <div>
+    <div className={css['search']}>
       <InputGroup className={css['wrapper-input-header']}>
         <Input placeholder="Search items , collections...." variant="unstyled" />
       </InputGroup>

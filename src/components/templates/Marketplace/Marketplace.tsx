@@ -72,7 +72,7 @@ const Marketplace = () => {
               </Space>
             </div>
             <div style={{ paddingLeft: 5 }}>
-              <Select
+              {/* <Select
                 showSearch
                 style={{
                   width: 200,
@@ -103,7 +103,7 @@ const Marketplace = () => {
                     label: 'Highest fixed price',
                   },
                 ]}
-              />
+              /> */}
             </div>
           </div>
         </div>

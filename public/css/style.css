@@ -6943,3 +6943,13 @@ a.metaportal_fn_videobutton:hover .fn__svg,
     color: #fff;
   }
 }
+
+.viewDesktop {
+  display: block;
+}
+
+@media screen and (max-width: 768px) {
+  .viewDesktop {
+    display: none;
+  }
+}

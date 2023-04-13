@@ -1,7 +1,7 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import Image from 'next/image';
-import { Form, Input } from 'antd';
+import { Form, Input, Upload } from 'antd';
 import classes from './profileForm.module.css';
 
 import DEFAULT_AVATER from '../../../../public/img/profile&cover-01.png';
@@ -15,8 +15,16 @@ interface TForm {
 }
 
 const ProfileForm: React.FC = () => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [imagesImport, setImagesImport] = useState();
+
   const onSubmit = (values: TForm) => {
     console.log('Dataform:', values);
+  };
+
+  const handleUploadFile = (file: any) => {
+    console.log({ file });
+    setImagesImport(file?.file?.name);
   };
 
   return (
@@ -25,8 +33,10 @@ const ProfileForm: React.FC = () => {
         <div className={classes.boxAvatar}>
           <Image src={DEFAULT_AVATER} alt="" width={60} height={60} />
           <div>
-            <button>Upload Avatar</button>
-            <button>Upload Background</button>
+            <Upload showUploadList={false} onChange={handleUploadFile}>
+              <button type="button">Upload Avatar</button>
+            </Upload>
+            <button type="button">Upload Background</button>
           </div>
         </div>
         <div className={classes.formContent}>
@@ -56,7 +66,9 @@ const ProfileForm: React.FC = () => {
             </div>
           </Form.Item>
           <Form.Item>
-            <button className={classes.btnSubmit}>Update</button>
+            <button className={classes.btnSubmit} type="submit">
+              Update
+            </button>
           </Form.Item>
         </div>
       </Form>
