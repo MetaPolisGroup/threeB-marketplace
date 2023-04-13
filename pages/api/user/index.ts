@@ -1,18 +1,23 @@
 import { NextApiRequest, NextApiResponse } from 'next';
+import * as firebase from '../../../src/lib/firebaseConfig';
 
-export default function handler(req: NextApiRequest, res: NextApiResponse) {
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   switch (req?.method) {
     case 'GET': {
       res.status(200).json('');
       break;
     }
+    case 'POST': {
+      const { data } = req.body;
+      if (data) {
+        if (!data.wallet_address || !data.name || !data.email || !data.phone) {
+          res.status(400).json('Missing main fields');
+        } else {
+          const result = await firebase.upsert('moralis', data.wallet_address, data);
+          res.status(200).json({ result });
+        }
+      }
+      break;
+    }
   }
-  const body = req.body;
-  // const { index } = req.query;
-  return new Response(JSON.stringify(body), {
-    status: 200,
-    headers: {
-      'content-type': 'application/json',
-    },
-  });
 }
