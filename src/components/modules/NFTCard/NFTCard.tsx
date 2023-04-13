@@ -2,7 +2,7 @@
 import { Eth } from '@web3uikit/icons';
 import { ethers, Signer } from 'ethers';
 
-import React, { useState, FC } from 'react';
+import React, { useState, FC, useEffect } from 'react';
 import { Button, Input, Modal } from 'antd';
 import { Box, HStack, Image, SimpleGrid, useColorModeValue } from '@chakra-ui/react';
 import { EvmNft } from '@moralisweb3/common-evm-utils';
@@ -12,6 +12,7 @@ import { useSigner, useAccount } from 'wagmi';
 import { failureModal, successModal } from '../../../../helpers/modal';
 import { useRouter } from 'next/router';
 import { getExplorer } from '../../../../helpers/networks';
+import { resyncNFTMetadata } from 'lib/resyncNFTmetadata';
 
 export interface NFTCardParams {
   nft: EvmNft;
@@ -37,6 +38,10 @@ const NFTCard: FC<NFTCardParams> = ({ nft: { amount, contractType, symbol, metad
   const { data: signer } = useSigner();
   const { address } = useAccount();
   const marketPlace = new ethers.Contract(constants.MRKPLACE_ADDR, constants.MRKPLACE_ABI, signer as Signer);
+
+  useEffect(() => {
+    resyncNFTMetadata(tokenAddress.checksum, result.tokenId);
+  }, []);
 
   const txHash = `${getExplorer(constants.CHAIN.bscChain.id)}address/${tokenAddress.format()}`;
   const onChangePrice = (e: React.ChangeEvent<HTMLInputElement>) => {
