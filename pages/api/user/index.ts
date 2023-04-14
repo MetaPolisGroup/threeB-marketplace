@@ -5,8 +5,8 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   switch (req?.method) {
     case 'GET': {
       const data = await firebase.getCollection('user', []);
-      console.log(data);
-      res.status(200).json('GET');
+      // console.log(data);
+      res.status(200).json(data);
       break;
     }
     case 'POST': {
