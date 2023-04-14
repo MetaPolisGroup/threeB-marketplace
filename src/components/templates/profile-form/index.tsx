@@ -47,14 +47,12 @@ const ProfileForm: React.FC = () => {
       .catch((err) => console.error(err));
   };
 
-  const handleUploadFile = async (file: Blob, type: string) => {
+  const handleUploadFile = async (file: any, type: string) => {
     console.log({ type });
     // eslint-disable-next-line no-undef
     const formdata = new FormData();
     formdata.append('image', file);
     await firebase.uploadImage(file, file.text.toString());
-    const imageUrl = firebase.getImage(file.text.toString());
-    return imageUrl;
   };
 
   return (
