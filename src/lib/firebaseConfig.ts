@@ -100,3 +100,5 @@ export async function uploadImage(file: Blob) {
 
   return result.ref;
 }
+
+export const dbFS = getFirestore(app);

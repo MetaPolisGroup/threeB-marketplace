@@ -9,6 +9,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
     }
     case 'POST': {
       const { data } = req.body;
+      console.log(data);
       if (data) {
         if (!data.wallet_address || !data.name || !data.email || !data.phone) {
           res.status(400).json('Wallet Address | Name | Email | Phone is undefined');
