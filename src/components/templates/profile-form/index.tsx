@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 
 import Image from 'next/image';
 import { Form, Input, Upload } from 'antd';
@@ -16,6 +16,12 @@ interface TForm {
 }
 
 const ProfileForm: React.FC = () => {
+  // eslint-disable-next-line @typescript-eslint/no-unused-vars
+  const [imageUrl, setImageUrl] = useState<{ avatar: string | undefined; background: string | undefined }>({
+    avatar: undefined,
+    background: undefined,
+  });
+
   const { data } = useSession();
   const domain = process.env.NODE_ENV === 'production' ? 'https://nft.threeb.ai' : 'http://localhost:3000';
 
@@ -23,10 +29,15 @@ const ProfileForm: React.FC = () => {
     fetch(`${domain}/api/user`, {
       method: 'POST',
       body: JSON.stringify({
-        wallet_address: data?.user?.address,
-        name: values?.name,
-        email: values?.email,
-        phone: values?.phone,
+        data: {
+          wallet_address: data?.user?.address,
+          name: values?.name,
+          email: values?.email,
+          phone: values?.phone,
+          bio: values?.bio,
+          avatar_image: imageUrl?.avatar,
+          background_image: imageUrl?.background,
+        },
       }),
     })
       .then((response) => response.json())
