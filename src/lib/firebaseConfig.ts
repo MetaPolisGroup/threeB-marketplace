@@ -13,7 +13,7 @@ import {
   QuerySnapshot,
   DocumentData,
 } from 'firebase/firestore';
-import { getStorage, ref, uploadBytes } from 'firebase/storage';
+import { getBytes, getStorage, ref, uploadBytes } from 'firebase/storage';
 import { CollectionType, Collection } from '../../constants/Entities/index.entity';
 
 const firebaseConfig = {
@@ -89,16 +89,22 @@ export async function upsert(col: Collection, documentId: string, data: Collecti
 }
 
 // Storage Firebase
-export async function uploadImage(file: Blob) {
+export async function uploadImage(file: Blob, name: string) {
   const storage = getStorage();
-  const storageRef = ref(storage, 'some-child');
+  const storageRef = ref(storage, name);
 
   const result = await uploadBytes(storageRef, file);
 
-  console.log(result.ref);
-  console.log(result.metadata);
+  return result;
+}
 
-  return result.ref;
+export async function getImage(name: string) {
+  const storage = getStorage();
+  const storageRef = ref(storage, name);
+
+  const result = await getBytes(storageRef);
+
+  return result;
 }
 
 export const dbFS = getFirestore(app);

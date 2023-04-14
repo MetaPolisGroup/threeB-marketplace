@@ -8,8 +8,10 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       break;
     }
     case 'POST': {
-      const data = JSON.parse(req.body);
-      const blob = new Blob(data.image, { type: 'image/png' });
+      // const { image } = JSON.parse(req.body);
+      const { image } = JSON.parse(req.body);
+      console.log(typeof image);
+      const blob = new Blob(image, { type: 'image/png' });
       const imageUrl = await firebase.uploadImage(blob);
       res.status(200).json({ imageUrl });
       break;
