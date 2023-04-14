@@ -17,5 +17,17 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       }
       break;
     }
+    case 'POST': {
+      const { data } = req.body;
+      if (data) {
+        if (!data.wallet_address || !data.name || !data.email || !data.phone) {
+          res.status(400).json('Missing main fields');
+        } else {
+          const result = await firebase.upsert('moralis', data.wallet_address, data);
+          res.status(200).json({ result });
+        }
+      }
+      break;
+    }
   }
 }

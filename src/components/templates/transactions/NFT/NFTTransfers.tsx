@@ -177,7 +177,7 @@ const NFTTransfers = () => {
                             >
                               Pending
                             </span>
-                          ) : nftTrx?.status === 'CONFIRMED' ? (
+                          ) : nftTrx?.status === 'SOLD' ? (
                             <span
                               style={{
                                 margin: '10px 0 0 10px',
@@ -188,7 +188,7 @@ const NFTTransfers = () => {
                                 color: '#00c9a7',
                               }}
                             >
-                              Confirmed
+                              SOLD
                             </span>
                           ) : (
                             <span
