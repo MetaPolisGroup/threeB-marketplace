@@ -8,13 +8,12 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       break;
     }
     case 'POST': {
-      const { data } = req.body;
-      console.log(data);
+      const { data } = JSON.parse(req.body);
       if (data) {
         if (!data.wallet_address || !data.name || !data.email || !data.phone) {
           res.status(400).json('Wallet Address | Name | Email | Phone is undefined');
         } else {
-          const result = await firebase.upsert('moralis', data.wallet_address, data);
+          const result = await firebase.upsert('user', data.wallet_address, data);
           res.status(200).json({ result });
         }
       }
