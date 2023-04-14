@@ -4,7 +4,8 @@ import * as firebase from '../../../src/lib/firebaseConfig';
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   switch (req?.method) {
     case 'GET': {
-      res.status(200).json('GET');
+      const data = await firebase.getCollection('user', []);
+      res.status(200).json(data);
       break;
     }
     case 'POST': {

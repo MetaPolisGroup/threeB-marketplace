@@ -13,7 +13,7 @@ import {
   QuerySnapshot,
   DocumentData,
 } from 'firebase/firestore';
-import { getStorage, ref, uploadBytes } from 'firebase/storage';
+import { getBytes, getStorage, ref, uploadBytes } from 'firebase/storage';
 import { CollectionType, Collection } from '../../constants/Entities/index.entity';
 
 const firebaseConfig = {
@@ -29,6 +29,7 @@ const app = initializeApp(firebaseConfig);
 
 // Firestore Database
 const db = getFirestore(app);
+// eslint-disable-next-line consistent-return
 export async function getCollection(
   col: Collection,
   conditions: { field: string; operator: WhereFilterOp; value: string }[],
@@ -49,6 +50,7 @@ export async function getCollection(
         id: string;
         data: DocumentData;
       }[] = [];
+      // eslint-disable-next-line @typescript-eslint/no-shadow
       querySnapshot.forEach((doc) => {
         results.push({
           id: doc.id,
@@ -56,28 +58,29 @@ export async function getCollection(
         });
       });
       return results;
-    } else {
-      console.log(`Collection ${col} is empty`);
-      return null;
     }
+    console.log(`Collection ${col} is empty`);
+    return null;
   } catch (error) {
     console.log(error);
   }
 }
+// eslint-disable-next-line consistent-return
 export async function getDocument(col: Collection, documentId: string) {
   try {
     const docRef = doc(db, col, documentId);
     const doccument = await getDoc(docRef);
+    // eslint-disable-next-line no-undef
     if (document) {
       return doccument;
-    } else {
-      console.log(`Document ${documentId} not found`);
-      return null;
     }
+    console.log(`Document ${documentId} not found`);
+    return null;
   } catch (error) {
     console.log(error);
   }
 }
+// eslint-disable-next-line consistent-return
 export async function upsert(col: Collection, documentId: string, data: CollectionType) {
   try {
     const docRef = doc(db, col, documentId);
@@ -89,16 +92,23 @@ export async function upsert(col: Collection, documentId: string, data: Collecti
 }
 
 // Storage Firebase
-export async function uploadImage(file: Blob) {
+// eslint-disable-next-line no-undef
+export async function uploadImage(file: Blob, name: string) {
   const storage = getStorage();
-  const storageRef = ref(storage, 'some-child');
+  const storageRef = ref(storage, name);
 
   const result = await uploadBytes(storageRef, file);
 
-  console.log(result.ref);
-  console.log(result.metadata);
+  return result;
+}
 
-  return result.ref;
+export async function getImage(name: string) {
+  const storage = getStorage();
+  const storageRef = ref(storage, name);
+
+  const result = await getBytes(storageRef);
+
+  return result;
 }
 
 export const dbFS = getFirestore(app);

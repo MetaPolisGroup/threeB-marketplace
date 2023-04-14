@@ -1,5 +1,4 @@
 import { NextApiRequest, NextApiResponse } from 'next';
-import * as firebase from '../../../src/lib/firebaseConfig';
 
 export default async function handler(req: NextApiRequest, res: NextApiResponse) {
   switch (req?.method) {
@@ -8,10 +7,7 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       break;
     }
     case 'POST': {
-      const data = JSON.parse(req.body);
-      const blob = new Blob(data.image, { type: 'image/png' });
-      const imageUrl = await firebase.uploadImage(blob);
-      res.status(200).json({ imageUrl });
+      res.status(200).json('POST');
       break;
     }
   }
