@@ -30,7 +30,9 @@ const ListedBox = ({ address, price, item, tokenAddress }: ListedBoxParams) => {
         setLoadingBuy(true);
         const transferPrice = ethers.utils.parseEther(price as string);
         console.log(address, item, { value: transferPrice });
+        console.log({ marketplace });
         const createSale = await marketplace.createMarketSale(address, item, { value: transferPrice });
+        console.log({ createSale });
         const tx = await createSale.wait();
         console.log('Tx', tx.events);
         setLoadingBuy(false);
