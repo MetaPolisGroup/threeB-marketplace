@@ -25,9 +25,11 @@ const ListedBox = ({ address, price, item, tokenAddress }: ListedBoxParams) => {
 
   const buyItem = async () => {
     if (signer) {
+      console.log('first');
       try {
         setLoadingBuy(true);
         const transferPrice = ethers.utils.parseEther(price as string);
+        console.log(address, item, { value: transferPrice });
         const createSale = await marketplace.createMarketSale(address, item, { value: transferPrice });
         const tx = await createSale.wait();
         console.log('Tx', tx.events);
