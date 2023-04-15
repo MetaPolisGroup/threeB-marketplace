@@ -39,7 +39,7 @@ export const COLLECTIONS = [
     images: [
       {
         image_id: 0,
-        image: '/images/pomerium.avif',
+        image: '/images/pomerium.webp',
       },
     ],
     title: 'Pome Survival Companion Pet',
@@ -56,7 +56,7 @@ export const COLLECTIONS = [
     images: [
       {
         image_id: 0,
-        image: '/images/YuliOriginGenOne.avif',
+        image: '/images/YuliOriginGenOne.webp',
       },
     ],
     title: 'YuliOriginGenOne',
@@ -74,7 +74,7 @@ export const COLLECTIONS = [
     images: [
       {
         image_id: 0,
-        image: 'images/PGNFTCLUBLEGENDARYDRAGON.avif',
+        image: 'images/PGNFTCLUBLEGENDARYDRAGON.webp',
       },
     ],
     title: 'PGNFT CLUB LEGENDARY DRAGON',
@@ -110,7 +110,7 @@ export const COLLECTIONS = [
     images: [
       {
         image_id: 0,
-        image: '/images/HeroesAndEmpiresHeroes.avif',
+        image: '/images/HeroesAndEmpiresHeroes.webp',
       },
     ],
     title: 'Heroes & Empires Heroes',
