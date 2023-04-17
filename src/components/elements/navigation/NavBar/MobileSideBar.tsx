@@ -1,6 +1,7 @@
 import { Flex, FlexProps, IconButton, useColorModeValue } from '@chakra-ui/react';
 import { ButtonConnect } from 'components/modules/ButtonConnect';
 import Image from 'next/image';
+import Link from 'next/link';
 import { FiMenu } from 'react-icons/fi';
 interface MobileProps extends FlexProps {
   onOpen: () => void;
@@ -27,7 +28,9 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
           icon={<FiMenu />}
           style={{ marginRight: '10px' }}
         />
-        <Image src="/logo_ThreeB.svg" alt="asd" width={120} height={60} />
+        <Link href={'/'}>
+          <Image src="/logo_ThreeB.svg" alt="asd" width={120} height={60} />
+        </Link>
       </div>
       <div>
         <ButtonConnect />
