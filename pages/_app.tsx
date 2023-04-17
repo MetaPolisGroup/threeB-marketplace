@@ -16,7 +16,6 @@ import '../styles/globals.css';
 import store from 'store';
 import { Provider } from 'react-redux';
 import '../node_modules/antd/dist/reset.css';
-import { prefixer } from 'stylis';
 
 const { provider, webSocketProvider, chains } = configureChains(
   [constants.CHAIN.bscChain as Chain],
@@ -25,7 +24,6 @@ const { provider, webSocketProvider, chains } = configureChains(
 const emotionCache = createCache({
   key: 'emotion-css-cache',
   nonce: 'emotion-nonce-value',
-  stylisPlugins: [prefixer],
   prepend: true,
 });
 
