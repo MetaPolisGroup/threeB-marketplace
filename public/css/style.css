@@ -7379,3 +7379,26 @@ body {
 .NavBar_slidebar-button__9VTOh {
   height: unset !important;
 }
+
+.emotion-css-cache-1ldzmgq {
+  width: 372px;
+  background-color: var(--chakra-colors-gray-700);
+  padding: var(--chakra-space-3);
+  border-radius: var(--chakra-radii-xl);
+  border-width: 1px;
+  border-color: rgb(30, 30, 30);
+  height: 426px;
+  display: flex;
+  -webkit-box-pack: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.emotion-css-cache-1nh5xiu {
+  object-fit: cover;
+  min-height: 236px;
+  min-width: 332px;
+  width: 100%;
+  height: 100%;
+}

@@ -109,3 +109,20 @@
   margin-top: 30px;
   width: 100%;
 }
+
+@media screen and (max-width: 1024px) {
+  .profile {
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .boxAvatar > div {
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+
+  .boxAvatar > div > span {
+    width: 100%;
+  }
+}

@@ -132,6 +132,7 @@ const SidebarContent = ({ onClose, isConnected, onLogoutHandler, ...rest }: Side
       pos="absolute"
       h="100vh"
       {...rest}
+      overflow="scroll"
     >
       <Flex alignItems="center" marginBottom={5} margin="8px 0px 0px 61px" gap="10px" justifyContent="space-between">
         <Flex alignItems="center" gap="10px">
