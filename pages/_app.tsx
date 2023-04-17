@@ -23,6 +23,7 @@ const { provider, webSocketProvider, chains } = configureChains(
 );
 const emotionCache = createCache({
   key: 'emotion-css-cache',
+  nonce: 'emotion-nonce-value',
   prepend: true,
 });
 
