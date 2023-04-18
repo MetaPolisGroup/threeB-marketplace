@@ -145,10 +145,7 @@ const SidebarContent = ({ onClose, isConnected, onLogoutHandler, ...rest }: Side
           <span>Create</span>
         </button>
 
-        <a
-          href="https://dex.threeb.ai/dex"
-          style={{ display: 'block', fontSize: 20, color: '#5356FB', fontWeight: 700, marginTop: 50 }}
-        >
+        <a href="/" style={{ display: 'block', fontSize: 20, color: '#5356FB', fontWeight: 700, marginTop: 50 }}>
           DEX
         </a>
         {/* <RenderItemNav list={LinkItemsDex} title="DEX" router={router} /> */}
