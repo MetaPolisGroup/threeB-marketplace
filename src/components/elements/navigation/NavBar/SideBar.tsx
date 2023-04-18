@@ -147,7 +147,7 @@ const SidebarContent = ({ onClose, isConnected, onLogoutHandler, ...rest }: Side
         </button>
 
         <a
-          href="/"
+          href="https://dex.threeb.ai/dex"
           style={{ display: 'block', fontSize: 20, color: '#5356FB', fontWeight: 700, marginTop: 50 }}
         >
           DEX
