@@ -43,7 +43,7 @@ const LayoutItemContent: FC<metadata> = ({ image, title, date, tokenId }) => {
 
   function handleChangeTimeCountDown(time: countdownValueType | undefined) {
     if (time) {
-      if (time <= 60 * 60 * 24 * 1000) {
+      if ((time.valueOf() as number) <= 60 * 60 * 24 * 1000) {
         setFormat('H [hours] m [minutes] s [seconds]');
       }
     }

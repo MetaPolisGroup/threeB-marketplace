@@ -4,10 +4,9 @@ import { useAccount, useDisconnect, useSignMessage } from 'wagmi';
 import { Text, HStack, Avatar, useToast } from '@chakra-ui/react';
 import { useAuthRequestChallengeEvm } from '@moralisweb3/next';
 import classes from './ButtonConnect.module.css';
-import { useEffect } from 'react';
 import constants from '../../../../constants';
-import { EvmAddressish } from 'moralis/common-evm-utils';
 import { useAppDispatch } from 'store/hooks';
+import { EvmAddressish } from 'moralis/common-evm-utils';
 import { clearUserInfo, setUserInfo } from 'store/slice/user-slice';
 
 const ButtonConnect = () => {
@@ -44,12 +43,6 @@ const ButtonConnect = () => {
     }
   };
 
-  useEffect(() => {
-    if (isConnected === true && !data?.user?.address && !window.localStorage.getItem('address')) {
-      handleAuth();
-    }
-  }, [isConnected, address]);
-
   const handleDisconnect = async () => {
     await disconnectAsync();
     signOut({ redirect: false });
@@ -59,12 +52,11 @@ const ButtonConnect = () => {
 
   return (
     <ConnectButton.Custom>
-      {({ account, chain, openChainModal, openConnectModal, authenticationStatus, mounted }) => {
+      {({ account, chain, openChainModal, openConnectModal, mounted }) => {
         // Note: If your app doesn't use authentication, you
         // can remove all 'authenticationStatus' checks
-        const ready = mounted && authenticationStatus !== 'loading';
-        const connected =
-          ready && account && chain && (!authenticationStatus || authenticationStatus === 'authenticated');
+        const ready = mounted;
+        const connected = ready && account && chain;
 
         return (
           <div
@@ -89,6 +81,13 @@ const ButtonConnect = () => {
                 return (
                   <button onClick={openChainModal} type="button">
                     Wrong network
+                  </button>
+                );
+              }
+              if (isConnected && !data?.user?.address && !window.localStorage.getItem('address')) {
+                return (
+                  <button onClick={handleAuth} type="button">
+                    Sign
                   </button>
                 );
               }

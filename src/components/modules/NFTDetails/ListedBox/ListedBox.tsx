@@ -1,9 +1,9 @@
 import { Button, Col, Row } from 'antd';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { getEllipsisTxt } from 'utils/format';
 import styless from './ListedBox.module.css';
-import { useSigner } from 'wagmi';
-import { ethers, Signer } from 'ethers';
+import { useContractWrite, usePrepareContractWrite, useSigner } from 'wagmi';
+import { BigNumber, ethers } from 'ethers';
 import constants from '../../../../../constants';
 import { failureModal, successModal } from '../../../../../helpers/modal';
 import { useRouter } from 'next/router';
@@ -19,27 +19,46 @@ interface ListedBoxParams {
 
 const ListedBox = ({ address, price, item, tokenAddress }: ListedBoxParams) => {
   const { data: signer } = useSigner();
-  const marketplace = new ethers.Contract(constants.MRKPLACE_ADDR, constants.MRKPLACE_ABI, signer as Signer);
   const router = useRouter();
-  const [loadingBuy, setLoadingBuy] = useState<boolean>(false);
+  const [transferPrice, setTransferPrice] = useState<BigNumber>();
+
+  const { config } = usePrepareContractWrite({
+    // eslint-disable-next-line etc/no-commented-out-code
+    // address: '0x08b749d12c8d4b9C9ECBbe166A9bCf324f793dd6',
+
+    address: constants.MRKPLACE_ADDR as `0x${string}`,
+    abi: constants.MRKPLACE_ABI,
+    functionName: 'createMarketSale',
+    args: [address, item, { value: transferPrice }],
+    onSettled(data: any, error: any) {
+      console.log('Settled', { data, error });
+    },
+    signer,
+    enabled: Boolean(signer),
+  });
+  const { write, isSuccess, status, isError, error, isLoading } = useContractWrite(config);
+
+  useEffect(() => {
+    if (price !== '' && typeof price === 'string') {
+      const Price = ethers.utils.parseEther(price);
+      setTransferPrice(Price);
+    }
+  }, [price]);
+
+  useEffect(() => {
+    if (isSuccess) {
+      successModal();
+      router.push('/my-collection/nft');
+    } else if (isError) {
+      failureModal(undefined, error?.message);
+    }
+  }, [isSuccess, status, isError]);
 
   const buyItem = async () => {
     if (signer) {
-      console.log('first');
       try {
-        setLoadingBuy(true);
-        const transferPrice = ethers.utils.parseEther(price as string);
-        console.log(address, item, { value: transferPrice });
-        console.log({ marketplace });
-        const createSale = await marketplace.createMarketSale(address, item, { value: transferPrice });
-        console.log({ createSale });
-        const tx = await createSale.wait();
-        console.log('Tx', tx.events);
-        setLoadingBuy(false);
-        successModal();
-        router.push('/my-collection/nft');
+        write?.();
       } catch (e) {
-        setLoadingBuy(false);
         console.log('Error', e);
       }
     } else {
@@ -84,9 +103,8 @@ const ListedBox = ({ address, price, item, tokenAddress }: ListedBoxParams) => {
                 fontWeight: 700,
                 marginTop: '10px',
               }}
-              disabled={price === '0.0'}
               onClick={buyItem}
-              loading={loadingBuy}
+              loading={isLoading}
             >
               <span>Buy</span>
             </Button>

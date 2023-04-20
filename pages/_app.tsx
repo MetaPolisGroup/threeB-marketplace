@@ -1,5 +1,5 @@
 import { ChakraProvider } from '@chakra-ui/react';
-import { createClient, configureChains, WagmiConfig, Chain } from 'wagmi';
+import { createClient, configureChains, WagmiConfig } from 'wagmi';
 import createCache from '@emotion/cache';
 import { CacheProvider } from '@emotion/react';
 
@@ -10,17 +10,15 @@ import type { AppProps } from 'next/app';
 import '@rainbow-me/rainbowkit/styles.css';
 import { RainbowKitProvider, connectorsForWallets } from '@rainbow-me/rainbowkit';
 import { metaMaskWallet, walletConnectWallet, rainbowWallet, coinbaseWallet } from '@rainbow-me/rainbowkit/wallets';
-import constants from '../constants';
+import { bsc } from '@wagmi/chains';
+
 import Head from 'next/head';
 import '../styles/globals.css';
 import store from 'store';
 import { Provider } from 'react-redux';
 import '../node_modules/antd/dist/reset.css';
 
-const { provider, webSocketProvider, chains } = configureChains(
-  [constants.CHAIN.bscChain as Chain],
-  [publicProvider()],
-);
+const { provider, webSocketProvider, chains } = configureChains([bsc], [publicProvider()]);
 const emotionCache = createCache({
   key: 'emotion-css-cache',
   nonce: 'emotion-nonce-value',
