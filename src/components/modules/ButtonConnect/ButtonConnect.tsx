@@ -8,10 +8,21 @@ import constants from '../../../../constants';
 import { useAppDispatch } from 'store/hooks';
 import { EvmAddressish } from 'moralis/common-evm-utils';
 import { clearUserInfo, setUserInfo } from 'store/slice/user-slice';
+import { useState } from 'react';
+import { Modal } from 'antd';
 
 const ButtonConnect = () => {
   const { disconnectAsync } = useDisconnect();
   const { address, isConnected } = useAccount();
+  const [open, setOpen] = useState(true);
+
+  const showModal = () => {
+    setOpen(true);
+  };
+
+  const hideModal = () => {
+    setOpen(false);
+  };
   const { signMessageAsync } = useSignMessage();
   const toast = useToast();
   const { data } = useSession();
@@ -46,6 +57,7 @@ const ButtonConnect = () => {
   const handleDisconnect = async () => {
     await disconnectAsync();
     signOut({ redirect: false });
+    hideModal();
     dispatch(clearUserInfo());
     window.localStorage.removeItem('address');
   };
@@ -72,23 +84,70 @@ const ButtonConnect = () => {
             {(() => {
               if (!connected) {
                 return (
-                  <button onClick={openConnectModal} type="button" className={classes['connect-button']}>
+                  <button
+                    onClick={() => {
+                      openConnectModal();
+                      showModal();
+                    }}
+                    type="button"
+                    className={classes['connect-button']}
+                  >
                     Connect
-                  </button>
-                );
-              }
-              if (chain.unsupported) {
-                return (
-                  <button onClick={openChainModal} type="button">
-                    Wrong network
                   </button>
                 );
               }
               if (isConnected && !data?.user?.address && !window.localStorage.getItem('address')) {
                 return (
-                  <button onClick={handleAuth} type="button">
-                    Sign
-                  </button>
+                  <>
+                    <button
+                      onClick={() => {
+                        showModal();
+                      }}
+                      type="button"
+                      className={classes['connect-button']}
+                    >
+                      Sign
+                    </button>
+                    <Modal
+                      title="Warning"
+                      open={open}
+                      okText="Sign"
+                      onOk={() => {
+                        handleAuth();
+                        showModal();
+                      }}
+                      onCancel={hideModal}
+                    >
+                      <p>You have to sign to continue.</p>
+                    </Modal>
+                  </>
+                );
+              }
+              if (chain.unsupported) {
+                return (
+                  <>
+                    <button
+                      onClick={() => {
+                        showModal();
+                      }}
+                      type="button"
+                      className={classes['connect-button']}
+                    >
+                      Change network
+                    </button>
+                    <Modal
+                      title="Warning"
+                      open={open}
+                      okText="Change network"
+                      onOk={() => {
+                        openChainModal();
+                        showModal();
+                      }}
+                      onCancel={hideModal}
+                    >
+                      <p>Wrong network! You have to change to network.</p>
+                    </Modal>
+                  </>
                 );
               }
               return (
