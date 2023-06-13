@@ -161,7 +161,11 @@ const SidebarContent = ({ onClose, isConnected, onLogoutHandler, ...rest }: Side
           AI Trading Bot
         </a>
 
-        <a href="#" style={{ display: 'block', fontSize: 20, color: '#5356FB', fontWeight: 700, marginTop: 30 }}>
+        <a
+          href="https://iqprediction.com/"
+          target="_blank"
+          style={{ display: 'block', fontSize: 20, color: '#5356FB', fontWeight: 700, marginTop: 30 }}
+        >
           Prediction
         </a>
         {isConnect && (
