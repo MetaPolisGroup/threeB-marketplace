@@ -9,7 +9,7 @@ const MoralisLogo = () => {
     <Link href={'/'}>
       <Image
         className="logo1988"
-        src={colorMode === 'dark' ? '/logo_ThreeB.svg' : '/logo_ThreeB.svg'}
+        src={colorMode === 'dark' ? '/logo-threeb.png' : '/logo-threeb.png'}
         height={90}
         width={180}
         alt="Three B Logo"

@@ -29,7 +29,7 @@ const MobileNav = ({ onOpen, ...rest }: MobileProps) => {
           style={{ marginRight: '10px' }}
         />
         <Link href={'/'}>
-          <Image src="/logo_ThreeB.svg" alt="asd" width={120} height={60} />
+          <Image src="/logo-threeb.png" alt="asd" width={120} height={60} />
         </Link>
       </div>
       <div>
